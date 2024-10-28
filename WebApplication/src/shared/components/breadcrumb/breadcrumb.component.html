@@ -1,0 +1,65 @@
+<div *ngIf="breadcrumbType === breadcrumbTypeEnum.full"
+     class="root d-flex justify-content-center align-items-center mb-5 shadow">
+  <div class="opacity">
+    <h2 *ngIf="currentBreadcrumbItem"
+        class="d-flex justify-content-center">
+      <a [routerLink]="[currentBreadcrumbItem.url]"
+         class="fw-bold text-primary underline">
+        <span>
+          {{ currentBreadcrumbItem.label | translate }}
+        </span>
+      </a>
+    </h2>
+    <nav class="mt-4 d-flex justify-content-center">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a [routerLink]="['/']">
+            <span class="fas fa-home text-primary"></span>
+          </a>
+        </li>
+        <ng-container *ngIf="currentBreadcrumbItem; else noBreadcrumbsItems">
+          <li *ngFor="let breadcrumb of breadcrumbItems; let i = index"
+              class="breadcrumb-item">
+            <a [routerLink]="[breadcrumb.url]"
+               class="text-primary underline">
+              <span>
+                {{ breadcrumb.label | translate }}
+              </span>
+            </a>
+          </li>
+
+          <li class="breadcrumb-item active">
+            <a [routerLink]="[currentBreadcrumbItem.url]"
+               class="text-primary underline">
+              <span>
+                {{ currentBreadcrumbItem.label | translate }}
+              </span>
+            </a>
+          </li>
+        </ng-container>
+        <ng-template #noBreadcrumbsItems>
+          <li class="active breadcrumb-item">
+            <span class="text-primary">
+              {{ 'root.header.sc' | translate }}
+            </span>
+          </li>
+        </ng-template>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<div *ngIf="breadcrumbType === breadcrumbTypeEnum.simple"
+     class="root-simple d-flex justify-content-start align-items-center mb-5 shadow">
+  <div class="container">
+    <a *ngIf="showBackButton"
+       (click)="goBack()"
+       clickStopPropagation
+       class="link-white fw-bold">
+      <i class="fa-solid fa-angle-left"></i>
+      <span>
+        {{ 'root.buttons.back' | translate }}
+      </span>
+    </a>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="card {{class}}">
+    <div class="card-header collapsable-header-section"
+         (click)="dropdownCollapsed.toggle()"
+         [class.collapsed-section]="isCollapsed">
+        <i class="fa-solid fa-chevron-right me-2"></i>
+        <span>{{ heading | translate }}</span>
+    </div>
+    <div #dropdownCollapsed="ngbCollapse"
+         [(ngbCollapse)]="isCollapsed">
+        <ng-content select="[body]"></ng-content>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="col">
+    <div>
+        <div class="card-body">
+            <div class="card-title">
+                <h5 class="text-purple">
+                    <translate-field [model]="supplierOffering"
+                                     class="link-primary"
+                                     (click)="openReadSupplierOffering(supplierOffering.supplierId, supplierOffering.id)"
+                                     clickStopPropagation>
+                    </translate-field>
+                </h5>
+            </div>
+
+            <div class="card-subtitle">
+                <span class="fw-bold">{{'supplierOfferings.offeringCode' | translate}}</span>
+                <h6 class="text-primary d-inline">{{supplierOffering.code}}</h6>
+            </div>
+
+            <div class="card-subtitle">
+                <h6 class="text-muted fst-italic d-flex">
+                    <translate-field [model]="supplierOffering"
+                                     bgProperty="supplierName"
+                                     enProperty="supplierNameAlt">
+                    </translate-field>
+
+                    <translate-field *ngIf="supplierOffering.institutionId !== supplierOffering.rootInstitutionId"
+                                     class="ms-1"
+                                     [model]="supplierOffering"
+                                     [hasBrackets]="true"
+                                     bgProperty="rootInstitutionShortName"
+                                     enProperty="rootInstitutionShortNameAlt">
+                    </translate-field>
+                </h6>
+            </div>
+
+            <div *ngIf="supplierOffering.shortDescription"
+                 class="card-text mt-3">
+                <p class="text-truncate-4-rows">
+                    {{supplierOffering.shortDescription}}
+                </p>
+            </div>
+
+            <div *ngIf="supplierOffering.file"
+                 class="card-text mt-3">
+                <file-read [file]="supplierOffering.file">
+                </file-read>
+            </div>
+            <hr>
+        </div>
+    </div>
+</div>

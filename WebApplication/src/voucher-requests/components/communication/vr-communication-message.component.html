@@ -1,0 +1,20 @@
+<div class="message-container"
+     [class.text-end]="userContextService.userContext.userId === communicationMessage.fromUserId">
+    <div class="message-data">
+        <div *ngIf="userContextService.userContext.userId !== communicationMessage.fromUserId
+            && communicationMessage.fromUserId !== previousCommunicationMessage?.fromUserId"
+             class="mt-2">
+            {{communicationMessage.fromFullname}} ({{communicationMessage.fromUsername}})
+        </div>
+        <div *ngIf="showDate">
+            {{communicationMessage.createDate | date: 'dd.MM.yy, hh.mm'}}
+        </div>
+    </div>
+    <div class="message my-message cursor-pointer"
+         [class.my-message]="userContextService.userContext.userId === communicationMessage.fromUserId"
+         [class.other-message]="userContextService.userContext.userId !== communicationMessage.fromUserId"
+         (click)="showDate = !showDate"
+         clickStopPropagation>
+        {{ communicationMessage.text }}
+    </div>
+</div>

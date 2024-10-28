@@ -1,0 +1,41 @@
+<div class="modal-header">
+    <h5 class="modal-title text-primary fw-bold">
+        {{ 'receivedVouchers.generateCertificate' | translate }}
+    </h5>
+    <sync-button btnClass="btn-close"
+                 (btnClickedEvent)="close(null)">
+    </sync-button>
+</div>
+<div class="modal-body">
+    <ng-template ngFor
+                 let-receivedVoucherCertificateItem
+                 [ngForOf]="receivedVoucherCertificateSelections"
+                 let-i="index">
+        <div class="align-items-center d-flex gap-2 mb-2 mt-2">
+            <input class="form-check-input cursor-pointer"
+                   type="radio"
+                   id="receivedVoucherCertificateItem{{i}}"
+                   name="receivedVoucherCertificateItem{{i}}"
+                   (click)="changeSelectedCertificate(receivedVoucherCertificateItem)"
+                   [checked]="receivedVoucherCertificateItem.offeringId === selectedVoucherCertificate.offeringId">
+            <label class="form-check-label cursor-pointer"
+                   for="receivedVoucherCertificateItem{{i}}">
+                <div class="d-flex fw-bold">
+                    {{ receivedVoucherCertificateItem.offering.code }} - {{ receivedVoucherCertificateItem.offering.name
+                    }}
+                </div>
+                <div class="d-flex fst-italic text-muted">
+                    {{ receivedVoucherCertificateItem.supplier?.institution?.name ||
+                    receivedVoucherCertificateItem.supplier?.complex?.name}}
+                </div>
+            </label>
+        </div>
+    </ng-template>
+</div>
+<div class="modal-footer gap-1">
+    <sync-button btnClass="btn btn-sm btn-primary"
+                 (btnClickedEvent)="accept()"
+                 text="root.buttons.generate"
+                 [pending]="generatingCertificatePending">
+    </sync-button>
+</div>

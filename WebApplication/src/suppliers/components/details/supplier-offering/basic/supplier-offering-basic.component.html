@@ -1,0 +1,378 @@
+<div class="row">
+    <div class="col-md-12">
+        <label class="form-label">
+            {{ 'supplierOfferings.name' | translate }}
+        </label>
+        <input type="text"
+               class="form-control form-control-sm is-invalid-default"
+               [(ngModel)]="supplierOfferingDto.name"
+               name="name"
+               minlength="2"
+               maxlength="200"
+               #name="ngModel"
+               ngbTooltip="{{ name.invalid ? ('invalidTexts.required' | translate) : null }}"
+               triggers="blur"
+               tooltipClass="custom-tooltip-invalid"
+               noWhiteSpacesValidation
+               [disabled]="!isEditMode">
+        <remaining-symbols *ngIf="isEditMode"
+                           [maxLength]="200"
+                           [textLength]="supplierOfferingDto?.name?.length">
+        </remaining-symbols>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <label class="form-label">{{ 'enums.offeringType.title' | translate }}</label>
+        <enum-select name="offeringType"
+                     [(ngModel)]="supplierOfferingDto.offeringType"
+                     enumName="offeringType"
+                     [enumType]="offeringType"
+                     [disabled]="!isEditMode"
+                     [required]="true"></enum-select>
+    </div>
+    <div class="col-md-9">
+        <div class="row">
+            <label class="form-label">{{ 'nomenclatures.smartSpecializations.primary' | translate }}</label>
+            <div class="col-md-12">
+                <div *ngFor="let soSmartSpecialization of supplierOfferingDto.smartSpecializations; let i = index"
+                     class="row">
+                    <label *ngIf="i === 1"
+                           class="form-label">
+                        {{ 'nomenclatures.smartSpecializations.secondary' | translate }}
+                    </label>
+                    <div class="col-md-11">
+                        <nomenclature-select *ngIf="isEditMode; else disabledSmartSpecializations"
+                                             restUrl="nomenclatures/smartSpecializations/search"
+                                             name="smartSpecialization{{i}}"
+                                             [(ngModel)]="soSmartSpecialization.smartSpecialization"
+                                             (keyPropertyChange)="smartSpecializationChanged($event, i)"
+                                             textTemplate="{{translateService.currentLang === 'bg' ? '{code} {name}' : '{code} {nameAlt}'}}"
+                                             [filter]="{isRoot: false, level: level.second, excludeIds: excludedSmartSpecializationIds}"
+                                             [allowClear]="false"
+                                             [required]="true">
+                        </nomenclature-select>
+                        <ng-template #disabledSmartSpecializations>
+                            <div class="d-flex">
+                                <span>{{ soSmartSpecialization.smartSpecialization.code }}</span>
+                                <translate-field class="ms-1"
+                                                 [model]="soSmartSpecialization.smartSpecialization">
+                                </translate-field>
+                            </div>
+                        </ng-template>
+                    </div>
+                    <div class="col-md-1">
+                        <sync-button *ngIf="isEditMode && i === 0"
+                                     (btnClickedEvent)="triggerAddEvent.emit()"
+                                     icon="fas fa-plus"
+                                     btnClass="btn btn-primary btn-sm"
+                                     [disabled]="disableSoSmartSpecializationAdd()">
+                        </sync-button>
+
+                        <sync-button *ngIf="isEditMode && supplierOfferingDto.smartSpecializations.length > 1 && i !== 0"
+                                     (btnClickedEvent)="eraseSmartSpecialization(i)"
+                                     title="root.buttons.delete"
+                                     icon="fas fa-trash"
+                                     btnClass="btn btn-danger btn-sm">
+                        </sync-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <label class="form-label">
+            {{ 'supplierOfferings.addressOffer' | translate }}
+            <i class="fa-solid fa-circle-info icon-spacing text-purple"
+               ngbTooltip="{{'supplierOfferings.addressTooltip' | translate}}"
+               tooltipClass="custom-tooltip-purple">
+            </i>
+        </label>
+        <input type="text"
+               class="form-control form-control-sm is-invalid-default"
+               [(ngModel)]="supplierOfferingDto.address"
+               name="address"
+               minlength="2"
+               maxlength="250"
+               [disabled]="!isEditMode">
+    </div>
+
+
+    <div class="col-md-2">
+        <label class="form-label">
+            {{'supplierOfferings.webPageUrl' | translate}}
+            <i class="fa-solid fa-circle-info icon-spacing text-purple"
+               ngbTooltip="{{'supplierOfferings.webPageTooltip' | translate}}"
+               tooltipClass="custom-tooltip-purple">
+            </i>
+        </label>
+        <input type="text"
+               class="form-control form-control-sm is-invalid-default"
+               [(ngModel)]="supplierOfferingDto.webPageUrl"
+               title="{{!isEditMode ? supplierOfferingDto.webPageUrl : null}}"
+               minlength="2"
+               maxlength="100"
+               name="webPageUrl"
+               [disabled]="!isEditMode">
+    </div>
+
+    <div class="col-md-2">
+        <label class="form-label">{{ 'nomenclatures.districts.name' | translate }}</label>
+        <nomenclature-select restUrl="nomenclatures/districts/search"
+                             name="district"
+                             [(ngModel)]="supplierOfferingDto.district"
+                             (ngModelChange)="settlementChangeService.districtChange(supplierOfferingDto, $event, 'district', 'municipality', 'settlement')"
+                             textTemplate="{{translateService.currentLang === 'bg' ? '{name}' : '{nameAlt}'}}"
+                             [disabled]="!isEditMode"
+                             [required]="true">
+        </nomenclature-select>
+    </div>
+
+    <div class="col-md-2">
+        <label class="form-label">{{ 'nomenclatures.municipalities.name' | translate }}</label>
+        <nomenclature-select restUrl="nomenclatures/municipalities/search"
+                             name="municipality"
+                             [(ngModel)]="supplierOfferingDto.municipality"
+                             (ngModelChange)="settlementChangeService.municipalityChange(supplierOfferingDto, $event, 'municipality', 'district', 'settlement')"
+                             [filter]="{districtId: supplierOfferingDto.districtId}"
+                             [disabled]="!supplierOfferingDto.districtId || !isEditMode"
+                             textTemplate="{{translateService.currentLang === 'bg' ? '{name}' : '{nameAlt}'}}"
+                             [required]="true">
+        </nomenclature-select>
+    </div>
+
+    <div class="col-md-2">
+        <label class="form-label">{{ 'nomenclatures.settlements.name' | translate }}</label>
+        <nomenclature-select restUrl="nomenclatures/settlements/search"
+                             name="settlement"
+                             [(ngModel)]="supplierOfferingDto.settlement"
+                             (ngModelChange)="settlementChangeService.settlementChange(supplierOfferingDto, $event, 'settlement', 'district', 'municipality')"
+                             [filter]="{municipalityId: supplierOfferingDto.municipalityId}"
+                             [disabled]="!supplierOfferingDto.municipalityId || !isEditMode"
+                             textTemplate="{{translateService.currentLang === 'bg' ? '{name}' : '{nameAlt}'}}"
+                             [required]="true">
+        </nomenclature-select>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <label class="form-label">
+            {{ 'supplierOfferings.shortDescription' | translate }}
+        </label>
+        <input type="text"
+               class="form-control form-control-sm is-invalid-default"
+               [(ngModel)]="supplierOfferingDto.shortDescription"
+               name="shortDescription"
+               minlength="2"
+               maxlength="250"
+               #shortDescription="ngModel"
+               ngbTooltip="{{ shortDescription.invalid ? ('invalidTexts.required' | translate) : null }}"
+               triggers="blur"
+               tooltipClass="custom-tooltip-invalid"
+               noWhiteSpacesValidation
+               [disabled]="!isEditMode">
+        <remaining-symbols *ngIf="isEditMode"
+                           [maxLength]="250"
+                           [textLength]="supplierOfferingDto?.shortDescription?.length">
+        </remaining-symbols>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <label class="form-label">
+            {{ 'supplierOfferings.longDescription' | translate }}
+        </label>
+        <textarea name="description"
+                  class="form-control form-control-sm is-invalid-default"
+                  [(ngModel)]="supplierOfferingDto.description"
+                  minlength="2"
+                  maxlength="500"
+                  #description="ngModel"
+                  style="max-height: 400px; height: 100px;"
+                  [disabled]="!isEditMode">
+                </textarea>
+        <remaining-symbols *ngIf="isEditMode"
+                           [maxLength]="500"
+                           [textLength]="supplierOfferingDto?.description?.length">
+        </remaining-symbols>
+    </div>
+</div>
+
+<div class="row">
+    <div *ngIf="isEditMode || supplierOfferingDto.supplierOfferingTeams.length > 0"
+         class="col-md-6">
+        <div class="row">
+            <div class="d-flex gap-1">
+                <label class="form-label">
+                    {{ 'supplierTeams.pluralTitle' | translate }} <i
+                       class="fa-solid fa-circle-info icon-spacing text-purple"
+                       ngbTooltip="{{'supplierTeams.teamsToolTip' | translate}}"
+                       tooltipClass="custom-tooltip-purple">
+                    </i>
+                    <sync-button *ngIf="isEditMode && supplierOfferingDto.supplierOfferingTeams.length === 0"
+                                 (btnClickedEvent)="triggerTeamAddEvent.emit()"
+                                 title="root.buttons.add"
+                                 icon="fas fa-plus"
+                                 btnClass="btn btn-primary btn-sm">
+                    </sync-button>
+                </label>
+            </div>
+            <div class="col-md-11">
+                <div *ngFor="let soTeam of supplierOfferingDto.supplierOfferingTeams; let i = index"
+                     class="row">
+                    <div class="col-md-11">
+                        <nomenclature-select *ngIf="isEditMode; else disabledSoTeam"
+                                             restUrl="suppliers/teams/search"
+                                             name="soTeam{{i}}"
+                                             [(ngModel)]="soTeam.supplierTeam"
+                                             (keyPropertyChange)="supplierTeamChanged($event, i)"
+                                             [filter]="{isActive: true, supplierId: supplierId, excludeIds: excludedSupplierTeamIds}"
+                                             [allowClear]="false"
+                                             [required]="true">
+                        </nomenclature-select>
+                        <ng-template #disabledSoTeam>
+                            <div class="d-flex">
+                                <translate-field [model]="soTeam.supplierTeam">
+                                </translate-field>
+                            </div>
+                        </ng-template>
+                    </div>
+                    <div class="col-md-1 d-flex gap-1">
+                        <sync-button *ngIf="isEditMode && i === 0"
+                                     (btnClickedEvent)="triggerTeamAddEvent.emit()"
+                                     title="root.buttons.add"
+                                     icon="fas fa-plus"
+                                     btnClass="btn btn-primary btn-sm"
+                                     [disabled]="disableSoTeamAdd()">
+                        </sync-button>
+
+                        <sync-button *ngIf="isEditMode"
+                                     (btnClickedEvent)="eraseSoTeam(i)"
+                                     title="root.buttons.delete"
+                                     icon="fas fa-trash"
+                                     btnClass="btn btn-danger btn-sm">
+                        </sync-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="isEditMode || supplierOfferingDto.supplierOfferingEquipment.length > 0"
+         class="col-md-6">
+        <div class="row">
+            <div class="d-flex gap-1">
+                <label class="form-label"
+                       clickStopPropagation>
+                    {{ 'supplierEquipment.singularTitle' | translate }} <i
+                       class="fa-solid fa-circle-info icon-spacing text-purple"
+                       ngbTooltip="{{'supplierEquipment.equipmentToolTip' | translate}}"
+                       tooltipClass="custom-tooltip-purple">
+                    </i>
+
+                    <i *ngIf="isEditMode"
+                       class="fas fa-plus-circle icon-spacing link-primary"
+                       clickStopPropagation
+                       ngbTooltip="{{'supplierOfferings.buttons.addEquipment' | translate}}"
+                       tooltipClass="custom-tooltip-purple"
+                       (click)="openAddSupplierEquipment()"></i>
+                </label>
+
+                <sync-button *ngIf="isEditMode && supplierOfferingDto.supplierOfferingEquipment.length === 0"
+                             (btnClickedEvent)="triggerEquipmentAddEvent.emit()"
+                             title="supplierOfferings.buttons.selectEquipment"
+                             icon="fas fa-plus"
+                             btnClass="btn btn-primary btn-sm">
+                </sync-button>
+            </div>
+            <div class="col-md-11">
+                <div *ngFor="let soEquipment of supplierOfferingDto.supplierOfferingEquipment; let i = index"
+                     class="row">
+                    <div class="col-md-11">
+                        <nomenclature-select *ngIf="isEditMode; else disabledSoEquipment"
+                                             restUrl="suppliers/equipment/search"
+                                             name="soEquipment{{i}}"
+                                             [(ngModel)]="soEquipment.supplierEquipment"
+                                             (keyPropertyChange)="supplierEquipmentChanged($event, i)"
+                                             [filter]="{isActive: true, supplierId: supplierId, excludeIds: excludedSupplierEquipmentIds}"
+                                             [allowClear]="false"
+                                             [required]="true">
+                        </nomenclature-select>
+                        <ng-template #disabledSoEquipment>
+                            <div class="d-flex">
+                                <translate-field [model]="soEquipment.supplierEquipment">
+                                </translate-field>
+                            </div>
+                        </ng-template>
+                    </div>
+                    <div div
+                         class="col-md-1 d-flex gap-1">
+                        <sync-button *ngIf="isEditMode && i === 0"
+                                     (btnClickedEvent)="triggerEquipmentAddEvent.emit()"
+                                     title="root.buttons.add"
+                                     icon="fas fa-plus"
+                                     btnClass="btn btn-primary btn-sm"
+                                     [disabled]="disableSoEquipmentAdd()">
+                        </sync-button>
+
+                        <sync-button *ngIf="isEditMode"
+                                     (btnClickedEvent)="eraseSoEquipment(i)"
+                                     title="root.buttons.delete"
+                                     icon="fas fa-trash"
+                                     btnClass="btn btn-danger btn-sm">
+                        </sync-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead class="table-light">
+        <tr>
+            <th class="col-11">
+                {{ 'supplierOfferings.fileDetailedDescription' | translate }}
+                <i class="fa-solid fa-circle-info icon-spacing text-purple"
+                   ngbTooltip="{{'supplierOfferings.fileToolTip' | translate}}"
+                   tooltipClass="custom-tooltip-purple">
+                </i>
+            </th>
+            <th class="col-1 text-end">
+                <sync-button *ngIf="isEditMode"
+                             (btnClickedEvent)="triggerFileAddEvent.emit()"
+                             icon="fas fa-plus"
+                             btnClass="btn btn-primary btn-sm"
+                             [disabled]="disableSoFileAdd()">
+                </sync-button>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let file of supplierOfferingDto.files; let i = index">
+            <td class="col-11">
+                <file-upload name="fileUpload{{i}}"
+                             [(ngModel)]="supplierOfferingDto.files[i]"
+                             [acceptedFileFormats]="['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']"
+                             [disabled]="!isEditMode"
+                             [allowClear]="false"
+                             [required]="true">
+                </file-upload>
+            </td>
+            <td class="col-1 text-end">
+                <sync-button *ngIf="isEditMode"
+                             title="supplierOfferings.buttons.eraseFile"
+                             btnClass="btn btn-danger btn-sm"
+                             (btnClickedEvent)="eraseSoFile(i)"
+                             icon="fas fa-trash">
+                </sync-button>
+            </td>
+        </tr>
+    </tbody>
+</table>

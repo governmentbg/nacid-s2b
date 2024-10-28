@@ -1,0 +1,72 @@
+<td class="align-middle">
+    <div class="fw-bold">
+        {{ receivedVoucher.contractNumber }}
+    </div>
+    <div>
+        {{ receivedVoucher.contractDate | date: 'dd.MM.yyyy hh:mm' }}
+    </div>
+</td>
+
+<td class="align-middle">
+    <translate-field *ngIf="receivedVoucher.offeringId"
+                     title="{{receivedVoucher.offering.name}}"
+                     class="fw-bold link-primary text-truncate-1-rows"
+                     [model]="receivedVoucher.offering"
+                     (click)="getSupplierOffering(receivedVoucher.supplierId, receivedVoucher.offeringId)"
+                     clickStopPropagation>
+    </translate-field>
+
+    <translate-field *ngIf="receivedVoucher.supplierId"
+                     title="{{receivedVoucher.supplier?.institution?.name ?? receivedVoucher.supplier?.complex?.name}}"
+                     class="text-truncate-1-rows"
+                     [model]="receivedVoucher.supplier?.institution ?? receivedVoucher.supplier?.complex">
+    </translate-field>
+
+    <div *ngIf="receivedVoucher.secondOfferingId || receivedVoucher.secondSupplierId"
+         class="mt-2">
+        <translate-field *ngIf="receivedVoucher.secondOfferingId"
+                         title="{{receivedVoucher.secondOffering.name}}"
+                         class="fw-bold link-primary text-truncate-1-rows"
+                         [model]="receivedVoucher.secondOffering"
+                         (click)="getSupplierOffering(receivedVoucher.secondSupplierId, receivedVoucher.secondOfferingId)"
+                         clickStopPropagation>
+        </translate-field>
+
+        <translate-field *ngIf="receivedVoucher.secondSupplierId"
+                         title="{{receivedVoucher.secondSupplier?.institution?.name ?? receivedVoucher.secondSupplier?.complex?.name}}"
+                         class="text-truncate-1-rows"
+                         [model]="receivedVoucher.secondSupplier?.institution ?? receivedVoucher.secondSupplier?.complex">
+        </translate-field>
+    </div>
+</td>
+
+<td class="align-middle">
+    <translate-field title="{{receivedVoucher.company.name}}"
+                     class="fw-bold link-primary text-truncate-1-rows"
+                     [model]="receivedVoucher.company"
+                     (click)="getCompany()"
+                     clickStopPropagation>
+    </translate-field>
+    <div>
+        {{ 'companies.uic' | translate }}: {{receivedVoucher.company.uic}}
+    </div>
+</td>
+
+<td class="align-middle text-center">
+    <i title="{{ 'enums.receivedVoucherState.' + receivedVoucherState[receivedVoucher.state] | translate }}"
+       class="fa-lg fa-solid"
+       [class.text-purple]="receivedVoucher.state === receivedVoucherState.draft"
+       [class.text-success]="receivedVoucher.state === receivedVoucherState.completed || receivedVoucher.state === receivedVoucherState.generatedCertificate"
+       [class.text-danger]="receivedVoucher.state === receivedVoucherState.terminated"
+       [ngClass]="{'fa-file-pdf': receivedVoucher.state === receivedVoucherState.generatedCertificate, 'fa-check': receivedVoucher.state === receivedVoucherState.draft || receivedVoucher.state === receivedVoucherState.completed, 'fa-xmark': receivedVoucher.state === receivedVoucherState.terminated }">
+    </i>
+</td>
+
+<td class="align-middle text-center">
+    <sync-button *ngIf="configuration.useAllFunctionalities"
+                 (btnClickedEvent)="open()"
+                 title="root.buttons.view"
+                 icon="fas fa-search"
+                 btnClass="btn btn-purple btn-sm">
+    </sync-button>
+</td>

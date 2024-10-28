@@ -1,0 +1,95 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-check form-check-inline">
+            <input class="form-check-input cursor-pointer"
+                   type="radio"
+                   name="universityRadio"
+                   id="universityRadio"
+                   (click)="changeSupplierExtendedType(supplierExtendedType.university)"
+                   [checked]="signUp.supplierExtendedType === supplierExtendedType.university"
+                   [disabled]="readonly">
+            <label class="form-check-label cursor-pointer"
+                   for="universityRadio">
+                {{ 'enums.supplierExtendedType.university' | translate }}
+            </label>
+        </div>
+
+        <div class="form-check form-check-inline">
+            <input class="form-check-input cursor-pointer"
+                   type="radio"
+                   name="scientificOrganizationRadio"
+                   id="scientificOrganizationRadio"
+                   (click)="changeSupplierExtendedType(supplierExtendedType.scientificOrganization)"
+                   [checked]="signUp.supplierExtendedType === supplierExtendedType.scientificOrganization"
+                   [disabled]="readonly">
+            <label class="form-check-label cursor-pointer"
+                   for="scientificOrganizationRadio">
+                {{ 'enums.supplierExtendedType.scientificOrganization' | translate }}
+            </label>
+        </div>
+
+        <div class="form-check form-check-inline">
+            <input class="form-check-input cursor-pointer"
+                   type="radio"
+                   name="complexRadio"
+                   id="complexRadio"
+                   (click)="changeSupplierExtendedType(supplierExtendedType.complex)"
+                   [checked]="signUp.supplierExtendedType === supplierExtendedType.complex"
+                   [disabled]="readonly">
+            <label class="form-check-label cursor-pointer"
+                   for="complexRadio">
+                {{ 'enums.supplierExtendedType.complex' | translate }}
+            </label>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="signUp.supplierType === supplierType.institution"
+     class="row">
+    <div class="col-md-6">
+        <label class="form-label">
+            {{ (signUp.supplierExtendedType === supplierExtendedType.university ?
+            'enums.supplierExtendedType.university'
+            : 'enums.supplierExtendedType.scientificOrganization') | translate }}
+        </label>
+        <nomenclature-select restUrl="nomenclatures/institutions/search"
+                             name="root"
+                             [(ngModel)]="signUp.rootInstitution"
+                             (ngModelChange)="changedInstitution($event)"
+                             [filter]="{organizationTypes: signUp.supplierExtendedType === supplierExtendedType.university ? rootUniversityTypes : rootScientificOrganizationTypes, level: level.first, isRoot: true}"
+                             textTemplate="{{translateService.currentLang === 'bg' ? '{name}' : '{nameAlt}'}}"
+                             [required]="true"
+                             [disabled]="readonly">
+        </nomenclature-select>
+    </div>
+
+    <div class="col-md-6">
+        <label class="form-label">
+            {{ 'auth.signUp.subordinate' | translate }}
+        </label>
+        <nomenclature-select restUrl="nomenclatures/institutions/search"
+                             name="institution"
+                             [(ngModel)]="signUp.institution"
+                             [filter]="{level: level.second, parentId: signUp?.rootInstitution?.id}"
+                             textTemplate="{{translateService.currentLang === 'bg' ? '{name}' : '{nameAlt}'}}"
+                             [disabled]="signUp.rootInstitution === null || signUp.rootInstitution.children?.length < 1 || readonly"
+                             [allowClear]="false">
+        </nomenclature-select>
+    </div>
+</div>
+
+<div *ngIf="signUp.supplierType === supplierType.complex"
+     class="row">
+    <div class="col-md-12">
+        <label class="form-label">
+            {{ 'auth.signUp.complex' | translate }}
+        </label>
+        <nomenclature-select restUrl="nomenclatures/complexes/search"
+                             name="complex"
+                             [(ngModel)]="signUp.complex"
+                             textTemplate="{{translateService.currentLang === 'bg' ? '{name}' : '{nameAlt}'}}"
+                             [required]="true"
+                             [disabled]="readonly">
+        </nomenclature-select>
+    </div>
+</div>

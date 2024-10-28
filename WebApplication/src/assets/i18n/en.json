@@ -1,0 +1,1121 @@
+{
+    "root": {
+        "title": "Business and scientific organizations",
+        "header": {
+            "nacidShort": "NACID",
+            "sc": "Business and scientific organizations",
+            "menu": {
+                "home": "Home",
+                "bgMap": "Map",
+                "offers": "Services",
+                "regions": "Regions",
+                "vouchers": "Vouchers",
+                "suppliers": "Service providers",
+                "login": "Login",
+                "signUp": "Sign up",
+                "profile": "Profile"
+            }
+        },
+        "footer": {
+            "nacidShort": "NACID",
+            "sc": "Business and scientific organizations",
+            "portal": {
+                "title": "About",
+                "termsOfUse": "Terms of use",
+                "confidentiality": "Confidentiality",
+                "cookies": "Cookies",
+                "accessibility": "Accessibility"
+            },
+            "links": {
+                "title": "Links",
+                "first": "Ministry of Innovation and Growth",
+                "second": "PNIIDIT",
+                "third": "ISIS",
+                "forth": "NACID",
+                "fifth": "ISUN"
+            },
+            "contacts": {
+                "title": "Contact us",
+                "address": "Dr. G.M. Dimitrov Blvd. 52 A 1125 Sofia",
+                "email": "supports2b@nacid.bg",
+                "phone": "Phone: (+359 2) 817 38 24",
+                "fax": "Fax: (+359 2) 971 31 20",
+                "feedback": "Feedback"
+            },
+            "funds": "Проектът се финансира от Програма „Научни изследвания, иновации и дигитализация за интелигентна трансформация“ 2021-2027, съфинансирана от Европейския съюз чрез Европейския фонд за регионално развитие в изпълнение на проект № BG16RFPR002-1.007 „Платформа за сътрудничество между висшите училища, изследователските организации и бизнеса чрез надграждането на Регистър за научната дейност, Регистър на академичния състав и Българския портал за отворена наука“.",
+            "eufunds": "www.eufunds.bg",
+            "eufundsUrl": "http://www.eufunds.bg",
+            "copyright": "Science-business collaboration platform: S2B. © 2024 - {{ year }} NACID. All rights reserved."
+        },
+        "sidebar": {
+            "myCompanies": "My companies",
+            "home": "Home",
+            "supplierDropdownMenu": "Details",
+            "voucherRequests": "Questions and answers",
+            "receivedVouchers": "Received vouchers",
+            "companies": "Companies",
+            "nomenclaturesDropdownMenu": "Nomenclatures",
+            "settlements": "Settlements",
+            "others": "Others",
+            "reports": "Reports",
+            "logs": "Logs",
+            "approveRegistration": "Approve Registrations"
+        },
+        "language": {
+            "bg": "Български",
+            "en": "Английски",
+            "bulgarian": "Bulgarian",
+            "english": "English"
+        },
+        "loadingPage": {
+            "text": "Please wait..."
+        },
+        "loadingSection": {
+            "text": "Loading..."
+        },
+        "buttons": {
+            "search": "Search",
+            "clear": "Clear",
+            "add": "Add",
+            "view": "View",
+            "history": "History",
+            "terminate": "Terminate",
+            "edit": "Edit",
+            "viewEdit": "View and edit",
+            "activate": "Activate",
+            "deactivate": "Deactivate",
+            "save": "Save",
+            "cancel": "Cancel",
+            "delete": "Delete",
+            "yes": "Yes",
+            "yesSure": "Yes, sure",
+            "signUp": "Sign up",
+            "details": "Details",
+            "close": "Close",
+            "loadMore": "Load more",
+            "actions": "Actions",
+            "accept": "Accept",
+            "decline": "Decline",
+            "recover": "Recover",
+            "generateCode": "Generate code",
+            "declineCode": "Decline code",
+            "sendEmail": "Send email",
+            "changeUserName": "Change administrator",
+            "back": "Back",
+            "first": "First",
+            "last": "Last",
+            "info": "Info",
+            "requestCode": "Request code",
+            "change": "Change",
+            "addReceivedVoucher": "Add received voucher",
+            "saveAsCompleted": "Completed",
+            "saveAsDraft": "Draft",
+            "generateCertificate": "Generate certificate",
+            "generate": "Generate",
+            "export": {
+                "title": "Export",
+                "excel": "Excel",
+                "csv": "CSV",
+                "json": "JSON"
+            }
+        },
+        "modals": {
+            "confirmDelete": "Are you sure you want to delete the record?",
+            "changeState": "Are you sure you want to change the state?",
+            "approveRegistration": "Are you sure you want to approve this registration?",
+            "approve": "Approve",
+            "submit": "Submit"
+        },
+        "searchResult": {
+            "noResults": "No found results.",
+            "noInfoEntered": "No info entered",
+            "notSearched": "Please enter desired filters and search by them.",
+            "found": "Found",
+            "total": "Total",
+            "count": "Total",
+            "countShort": "number of",
+            "results": "results",
+            "page": "Page",
+            "moreThan": "More than: 9 990",
+            "loadingResults": "Loading...",
+            "missingData": "Missing data.",
+            "approvedRegistrations": "organizations with total of",
+            "service": "offers",
+            "team": "experts",
+            "equipment": "equipment"
+        },
+        "levShort": "lev"
+    },
+    "fileUpload": {
+        "noFileUpload": "No file uploaded."
+    },
+    "auth": {
+        "loginTitle": "Login",
+        "userName": "Username",
+        "password": "Password",
+        "confirmPassword": "Confirm password",
+        "loginButton": "Login",
+        "signUpNewUser": "Sign up new company",
+        "forgottenPassword": "Forgotten password",
+        "exit": "Sign out",
+        "userActivation": "User activation",
+        "recoverPassword": "User recover password",
+        "signUp": {
+            "title": "Sign up company",
+            "supplierTitle": "Sign up service provider",
+            "supplierDraftTitle": "Organization administrator preview",
+            "supplierEditTitle": "Edit organization administrator",
+            "authorizedRepresentative": "Authorized representative",
+            "authorizedRepresentativeTooltip": "The person may be different from manager and/or representative.",
+            "companyTypeTooltip": "The category of the company is determined according the law of the small and medium companies.",
+            "companyNameTooltip": "Fill only name without law form",
+            "getCompanyByUicTooltip": "After entering UIC, select",
+            "isRegistryAgencyTooltip": "Is the enterprise registered in the Commercial Register and the Register of the National Center for Trade and Industry?",
+            "getByUicTooltip": "Get company from register by uic",
+            "companySettlementTooltip": "Merchant's registered office",
+            "editNotAvalibleTooltip": "You need to approve the administrator if you want to edit his information.",
+            "serviceAdministrator": "Service provider administrator",
+            "supplierAdministrator": "Supplier administrator",
+            "type": "Sign up type",
+            "supplier": "Organization",
+            "company": "Company",
+            "correspondence": "Correspondence",
+            "subordinate": "Subordinate",
+            "complex": "Infrastructure"
+        },
+        "signUpUser": {
+            "email": "Email",
+            "confirmEmail": "Confirm email",
+            "phoneNumber": "Phone number",
+            "fullName": "Name",
+            "firstName": "First name",
+            "middleName": "Middle name",
+            "lastName": "Last name",
+            "address": "Address for correspondence",
+            "file": "Attached file",
+            "sampleFile": "Sample",
+            "sampleFileUrl": "Пълномощно_администратор_на_организация_v.1.0"
+        },
+        "changePassword": {
+            "changePassword": "Change password",
+            "changePasswordTitle": "Change password",
+            "oldPassword": "Old password",
+            "newPassword": "New password",
+            "newPasswordAgain": "Enter the new password again"
+        }
+    },
+    "eAuth": {
+        "sendRequestHeader": "Login with e-Auth",
+        "modals": {
+            "paragraph": "When you press the button \"Continue\" you will be redirected to the e-Authentication site. There you have to choose your desired way of identification.",
+            "submitForm": "Continue"
+        }
+    },
+    "institutions": {
+        "title": "Organization",
+        "name": "Name",
+        "organizationType": "Organization type",
+        "type": "Type",
+        "ownershipType": "Ownership type",
+        "uic": "UIC",
+        "webPageUrl": "Web page",
+        "offeredServices": "Offered services",
+        "organizationalInformation": "Organizational information"
+    },
+    "complexes": {
+        "title": "Infrastructure",
+        "webPageUrl": "Web page"
+    },
+    "suppliers": {
+        "title": "Suppliers",
+        "search": "Suppliers search",
+        "tabs": {
+            "root": "Root",
+            "subordinate": "Subordinate",
+            "teamDetailsTab": "Team",
+            "offeringDetailsTab": "Services offered",
+            "equipmentDetailsTab": "Equipment",
+            "subordinateDetailsTab": "Subordinate"
+        },
+        "name": "Name",
+        "type": "Type",
+        "webPageUrl": "Web page",
+        "offeredServices": "Offered services",
+        "organizationalInformation": "Organizational information"
+    },
+    "supplierRepresentatives": {
+        "title": "Representative",
+        "phoneNumber": "Phone number"
+    },
+    "supplierTeams": {
+        "singularTitle": "Team",
+        "pluralTitle": "Team",
+        "name": "Name",
+        "firstName": "First name",
+        "middleName": "Middle name",
+        "lastName": "Last name",
+        "email": "Email",
+        "confirmEmail": "Confirm email",
+        "phoneNumber": "Phone number",
+        "position": "Position",
+        "academicRankDegree": "Academic rank/degree",
+        "rasIdentificator": "RAS identificator",
+        "rasScientist": "RAS Scientist",
+        "rasLotNumber": "RAS number",
+        "rasPortalUrl": "RAS portal link",
+        "nameToolTip": "Scientists names, whick will be in offerings. It is recommended to enter before the introduction of Services and Equipment Offered",
+        "teamsToolTip": "Property not required",
+        "academicRankDegreeToolTip": "Degree and/or academic work is indicated at the discretion of the introducer. The entered data will be visualized in front of the scientist's name in the Platform (cf. Assoc. Dr. Petar Petrov)",
+        "positionToolTip": "A position other than academic is indicated. (ex. Head of laboratory for ... )",
+        "offeringToolTip": "The services for which the scientist will be the contact person are indicated.  In order for a service to appear in the drop-down menu, it must first be entered in the Offered Services section. The service can also be added at a later stage, via the Edit menu",
+        "tabTooltip": "Team must be inserted before offerings",
+        "buttons": {
+            "addToTeam": "Add to team"
+        },
+        "modals": {
+            "addToTeam": "Adding to team",
+            "read": "{{ name }}",
+            "editTeam": "Update - {{ name }}",
+            "deleteTeam": "After deleting the person all references would be deleted too. Please delete the person only if it's made a technical error!",
+            "activateTitle": "Activate person",
+            "deactivateTitle": "Deactivate person",
+            "deleteTitle": "Delete person",
+            "confirmDelete": "Are you sure you want to delete the person?",
+            "infoModal": "People in team must be created before offering services."
+        }
+    },
+    "supplierOfferings": {
+        "singularTitle": "Offered service",
+        "search": "Offered services search",
+        "name": "Name",
+        "code": "Code",
+        "offeringCode": "Offering code: ",
+        "shortDescription": "Short description",
+        "longDescription": "Long description",
+        "description": "Description",
+        "offeringDescription": "Offering description",
+        "address": "Address",
+        "addressOffer": "Address of the offered service",
+        "webPageUrl": "Web page address",
+        "keywords": "Keywords in attached file",
+        "file": "Attached file with extended description",
+        "fileDetailedDescription": "Service brochure or detailed description",
+        "noOfferedServices": "No services are offered",
+        "fileDescription": "Service description",
+        "typeAndSmartSpecialization": "Offering type and Innovation strategy for smart specialization",
+        "addressTooltip": "Offering address",
+        "webPageTooltip": "Offering information web page url",
+        "fileToolTip": "Files with .pdf or .docx extension containing additional information",
+        "buttons": {
+            "addOffering": "Add offered service",
+            "addEquipment": "Add new equipment",
+            "selectEquipment": "Select equipment",
+            "eraseFile": "If you dont attach file please press this button"
+        },
+        "modals": {
+            "addOffering": "Add offered service",
+            "title": "Offered service",
+            "read": "{{ name }}",
+            "editOffering": "Update offered service: {{ code }}",
+            "deleteOffering": "Service has team:",
+            "deleteTitle": "Deleting offering",
+            "activateTitle": "Activate offering",
+            "deactivateTitle": "Deactivate offering"
+        },
+        "smartSpecializationGroup": {
+            "offeredServicesCount": "Offered services count:"
+        },
+        "supplierOfferingGroup": {
+            "filters": "Filters",
+            "showAll": "More...",
+            "clear": "Clear filters",
+            "noFilters": "No active filters"
+        }
+    },
+    "supplierEquipment": {
+        "singularTitle": "Equipment",
+        "name": "Equipment name",
+        "description": "Equipment description",
+        "file": "Attached file",
+        "tabTooltip": "It is recommended that you insert Laboratory/Equipment before entering information about the services that are complemented by them",
+        "buttons": {
+            "addEquipment": "Add equipment"
+        },
+        "modals": {
+            "addOffering": "Add equipment",
+            "read": "{{ name }}",
+            "editOffering": "Update equipment",
+            "deleteEquipment": "After deleting the equipment all references would be deleted too. Please delete the equipment only if it's made a technical error!",
+            "deleteTitle": "Delete equipment",
+            "confirmDelete": "Are you sure you want to delete the equipment?",
+            "infoModal": "Equipment must be created before offering services."
+        }
+    },
+    "companies": {
+        "title": "Company",
+        "search": "Company search",
+        "tabs": {
+            "companyAdditionalTab": "Additional info"
+        },
+        "uic": "UIC",
+        "email": "Email",
+        "phoneNumber": "Phone number",
+        "name": "Name",
+        "shortName": "Short name",
+        "address": "Address for correspondence",
+        "contacts": "Contacts",
+        "isRegistryAgency": "Registered in CRRNCITI"
+    },
+    "companyAdditionals": {
+        "staffCount": "Staff count",
+        "annualTurnover": "Annual turnover",
+        "webPage": "Web",
+        "buttons": {
+            "addAdditional": "Add additional info"
+        },
+        "modals": {
+            "addAdditionalInfo": "Adding additional info to company",
+            "editAdditional": "Editing the info to company"
+        }
+    },
+    "vouchers": {
+        "title": "Innovation Vouchers",
+        "spyMenu": {
+            "description": {
+                "title": "Description",
+                "firstParagraph": "The small innovation grants were developed with the aim of building a connection between Universities, Scientific organizations and small/medium businesses in Bulgaria. They provide support for science-intensive services that help businesses introduce new products, processes or services, solve technological problems, develop new business models or prototypes. This support is provided through fixed grants that companies can use for services from universities, scientific organizations and specialized centers registered in the National Roadmap for Scientific Infrastructure.",
+                "secondParagraph": "The small innovation grants are in a fixed amount depending on whether they will be used to obtain one or two services:",
+                "firstPrice": "Fixed value for financing one service – BGN 13,510",
+                "secondPrice": "Fixed value for financing two services - BGN 27,020",
+                "thirdParagraph": "Innovation is critical if you want to stay ahead of the competition in these rapidly evolving markets and technologies. But you may lack the time or the \"know-how\" to develop the right innovative solutions that could set your business apart.",
+                "fourthParagraph": "Innovation vouchers can help you get started. Each Innovation Voucher gives you time with an expert in the field to help you come up with an idea, develop a new product, access expensive and often unique scientific equipment combined with the right expertise, or overcome an important business or technical challenge."
+            },
+            "purpose": {
+                "title": "Purpose",
+                "firstParagraph": "Vouchers can be used for any kind of innovation such as:",
+                "secondParagraph": "Fixed small grants can be used for the following purposes:",
+                "firstService": "Innovation and innovation support services are all services provided by research and knowledge dissemination organizations, research infrastructures, testing and experimentation infrastructures for the purpose of developing more efficient or high-tech products, processes or services, including the application of innovative technologies and solutions, including:",
+                "secondService": "Services for access to scientific infrastructures/specialized laboratory complexes or unique scientific equipment.",
+                "firstConsulting": "Consultancy, assistance or training in the field of knowledge transfer;",
+                "secondConsulting": "Consulting, assistance or training in the field of acquisition, protection or exploitation of intangible assets and the use of the standards and rules governing them;",
+                "thirdConsulting": "Consulting, assisting or training in the introduction or use of innovative technologies and solutions (including digital technologies and solutions)"
+            },
+            "ineligibleActivities": {
+                "title": "Ineligible activities",
+                "firstParagraph": "Activities that are ineligible:",
+                "firstActivity": "Activities, the implementation of which began before the conclusion of an administrative contract for the provision of small innovative grants",
+                "secondActivity": "Activities already financed under another project, program or any other financial scheme originating from the national budget, from the Community budget or another donor program",
+                "thirdActivity": "In order to ensure maximum compliance with the \"do no significant harm\" principle, they will not be supported",
+                "forthActivity": "Activities related to the provision of consulting services for applying for small innovative grants",
+                "fifthActivity": "Activities related to the provision of consulting, legal and accounting services of a general nature",
+                "sixthActivity": "All activities that are not among those specified as eligible in the Application Conditions under procedure BG16RFPR002-1.005 Small innovative grants for small and medium-sized enterprises (SMEs)",
+                "firstAdditional": "activities and assets related to fossil fuels, including downstream use",
+                "secondAdditional": "activities and assets under the EU Emissions Trading Scheme",
+                "thirdAdditional": "the activities and assets related to landfills, waste incineration plants and mechanical-biological treatment plants",
+                "fourthAdditional": "the activities and assets where long-term waste disposal may cause harm to the environment"
+            },
+            "voucherTypes": {
+                "title": "Available voucher types",
+                "firstParagraph": "Small grants are grant-in-kind support that is provided through reimbursement, i.e. the amount is reimbursed to the recipient company only if a specific end result has been achieved.",
+                "secondParagraph": "Once awarded through the conclusion of an administrative contract, small innovation grants must be implemented – i.e. to achieve their specific goal - within 12 months of signing the contract.",
+                "thirdParagraph": "Certification of the achievement of the intended final result is proven by obtaining a certificate or other document issued by the service provider - the university, the research organization for the service provided and/or access to scientific infrastructures/specialized laboratory complexes or unique scientific equipment.",
+                "firstGrantType": "A small innovation grant for ONE service",
+                "firstGrantTypeFirstParagraph": "The value of the single small innovation grant is a fixed lump sum amounting to BGN 13,510. It can be used when requesting a service provided by a provider registered on the Platform.",
+                "secondGrantType": "Small innovation grant for TWO services",
+                "secondGrantTypeFirstParagraph": "The value of this type of small innovation grant is a fixed lump sum amounting to BGN 27,020 for the implementation of two different services. When applying for such a grant, partial implementation is not allowed, i.e. it is necessary to present a result (certificate) from both requested services.",
+                "secondGrantTypeSecondParagraph": "If only one of the two requested services is implemented, the costs for none of them will be reimbursed to the beneficiary."
+            },
+            "grantApplication": {
+                "title": "Applying for small grants from SMEs",
+                "firstParagraph": "The application by SMEs for the receipt of small grants is carried out by following the following steps:",
+                "firstStep": "Step 1 \"Choosing a service provider\"",
+                "firstStepParagraph": "Enterprises are free to use this platform to find a service provider to provide the appropriate specialists, services and testing facilities needed to realize their innovation project or to obtain a highly specialized service described on the platform.",
+                "secondStep": "Step 2 \"Submitting a project proposal\"",
+                "secondStepFirstParagraph": "The governing body of the Program \"Scientific research, innovation and digitization for intelligent transformation\" 2021-2027 (PNIIDIT) is in the process of preparing a procedure for the selection of project proposals BG16RFPR002-1.005 Small innovative grants for small and medium-sized enterprises (SMEs).",
+                "secondStepSecondParagraph": "The submission of the project proposal by the SME under the specified procedure is carried out entirely electronically by filling in a web-based application form and submitting the form and accompanying documents through the Information System for Management and Monitoring of EFSU Funds, section \"European Funds in Shared management (2021-2027)\", through the \"E-application\" module at the following link:",
+                "link": "https://eumis2020.government.bg/bg/s/8d3ebf57-ff75-4ad5-afa1-5747f558ee98/Procedure/Active",
+                "secondStepThirdParagraph": "In the Application Form, SMEs provide information about the service(s) they wish to receive from the service provider selected on the platform.",
+                "thirdStep": "Step 3 \"Conclusion of an administrative contract\"",
+                "thirdStepParagraph": "After evaluation of the received project proposals, SME Candidates, whose project proposals have been proposed for financing, are invited to enter into an administrative contract for the provision of grant-in-aid with the Governing Body of PNIIDIT.",
+                "fourthStep": "Step 4 “Implementation of the project, by providing the service/s“",
+                "fourthStepParagraph": "The implementation of the project includes the implementation of the activities provided for in it, with SMEs receiving the requested services from knowledge providers (service providers), such as universities, public scientific organizations, incl. competence centers (CC), centers of excellence (CEP), SNIRD of Sofia Tech Park and scientific research infrastructures from the National Road Map for Scientific Infrastructure (NPKNI), entered in the Register of Scientific Activities of the Republic of Bulgaria and registered in this platform.",
+                "fifthStep": "Step 5 \"Reporting the implementation of the project and the service(s) provided\"",
+                "fifthStepParagraph": "After the implementation of the project, the SME submits to the Managing Authority a request for payment, which must indicate the achievement of the project's objectives through the implementation of the project activities, as well as show the actual implementation of the set expected results. The following documents must be attached to the payment request:",
+                "firstDocument": "Service contract between the SME and the service provider (research organization/institution registered in the Platform for cooperation between higher education institutions, research organizations and businesses).",
+                "secondDocument": "Certificate according to the model of the Platform for cooperation between higher schools, research organizations and business, issued to the SME by the Service Provider for the provided service and/or access to scientific infrastructures/specialized laboratory complexes or unique scientific equipment.",
+                "thirdDocument": "Description of the achieved results."
+            },
+            "faq": {
+                "title": "FAQ",
+                "firstParagraph": "Questions related to the financing with small innovative grants and the application procedure for them are directed to the MA of PNIDIIT from the procedure page in ISUN.",
+                "secondParagraph": "Inquiries regarding the functioning of this Platform for cooperation between higher education institutions, research organizations and businesses can be sent to",
+                "link": "supports2b@nacid.bg "
+            },
+            "successfullExample": {
+                "title": "Successful examples of the use of small innovative grants",
+                "firstParagraph": "A company develops and sells personal care products in granular form. These powdered products not only reduce the use of single-use plastic, but the company also places great importance on maximum environmental compatibility when it comes to the ingredients that are used. Through the support of an innovation voucher, the company was able to develop a powder shampoo that can be used with the addition of water, like a conventional liquid shampoo. A research organization, the service provider, develops the exact formula and makes a prototype of the shampoo. The product has already been approved at European level and entered in the relevant European registers as a finalized product."
+            }
+        },
+        "questionnaire": {
+            "title": "Self-Assessment Questionnaire",
+            "title2": "Questionnaire",
+            "title3": "Pre-Self-Assessment Questionnaire",
+            "eligibility": {
+                "firstParagraph": "If your answers match those previously noted, then your SME is an eligible candidate under procedure BG16RFPR002-1.005 Small innovative grants for small and medium-sized enterprises.",
+                "secondParagraph:": "The questionnaire does not bind the Governing Body in any way, which carries out an independent assessment of the eligibility of each applicant. Enterprises eligible for financing are determined by a decision of the Managing Authority.",
+                "thirdParagraph": "In order to be sure that your enterprise and the services you plan are subject to financing under the procedure, please familiarize yourself with the requirements of the Program Application Conditions in detail."
+            },
+            "questions": {
+                "answers": {
+                    "yes": "Yes",
+                    "no": "No",
+                    "yesMicro": "Yes, micro-enterprise.",
+                    "yesSmall": "Yes, small enterprise.",
+                    "yesMid": "Yes, medium enterprise."
+                },
+                "table": {
+                    "category": "Company category",
+                    "net": "2023 Net Sales Revenue",
+                    "microCompany": "Micro-Company",
+                    "smallCompany": "Small-Company",
+                    "midCompany": "Medium-Company"
+                },
+                "firstQuestion": "Is your organization a trader under the meaning of the Commercial Law, a cooperative under the meaning of the Cooperatives Act, or an equivalent entity under the legislation of a member state of the European Economic Area?",
+                "secondQuestion": "Is your organization registered in the Commercial Register by 31.12.2022, inclusive?",
+                "thirdQuestion": "Does your organization qualify as a micro, small, or medium-sized enterprise (SME) under Articles 3 and 4 of the Law on Small and Medium Enterprises and Annex I 'Definition of SMEs' to Commission Regulation (EU) No 651/2014?",
+                "fourthQuestion": "Does your organization have an average number of employees for 2023 that is ≥ 2?",
+                "fifthQuestion": "Has your organization generated net sales revenue for the financial year 2023 according to the category of the applicant enterprise as follows?",
+                "sixthQuestion": "Does your organization meet the requirements for the provision of state aid, as stated in item 16 'Applicable state aid regime' of the Application Conditions regarding the provision of state aid under Article 28 'Aid for innovation in favor of SMEs', from Regulation (EU) No 651/2014, provided that the conditions in Chapter I of the Regulation are also met?",
+                "seventhQuestion": "Are there circumstances for your organization that would disqualify it from participating in a public procurement procedure under Article 54 and 55 of the Public Procurement Act?",
+                "eighthQuestion": "Is your organization declared bankrupt, in bankruptcy proceedings, in liquidation, or has it ceased its activities?",
+                "ninthQuestion": "Has your organization entered into an out-of-court settlement with its creditors under Article 740 of the Commercial Law?",
+                "tenthQuestion": "Is your organization in a similar situation resulting from procedures such as bankruptcy, liquidation, cessation of activities, under the legislation of the country in which it is established?",
+                "eleventhQuestion": "Has your organization been found to have violated Articles 61, para. 1, 62, para. 1 or 3, 63, para. 1 or 2, 118, 128, 228, para. 3, 245, and 301-305 of the Labor Code or Article 13, para. 1 of the Labor Migration and Labor Mobility Act or equivalent obligations established by a competent authority in the country where your organization is established?",
+                "twelfthQuestion": "Is your organization deprived of the right to exercise a certain profession or activity under the legislation of the country where the act was committed?",
+                "thirteenthQuestion": "Has it been proven that your organization is guilty of non-performance of a public procurement contract or a concession contract for construction or service, leading to its termination or early cancellation, payment of compensation, or similar sanctions, except when the non-performance affects less than 50 percent of the value or scope of the contract?",
+                "fourteenthQuestion": "Does your organization have tax and mandatory social security contributions under Article 162, para. 2, item 1 of the Tax and Social Insurance Procedure Code and their interest, due to the state or the Sofia Municipality and to the municipality of its seat, or similar obligations according to the legislation of the country where your organization is established, proven with an enforceable act of a competent authority, and has no deferred, postponed, or secured liabilities, or the amount of unpaid due taxes or social security contributions exceeds 1 percent of the total annual turnover for the last completed financial year, or exceeds 50,000 BGN?",
+                "fifteenthQuestion": "Is your organization in default of a European Commission order to recover unlawful and incompatible state aid?",
+                "sixteenthQuestion": "Is there a conflict of interest for the persons representing your organization in connection with the procedure for providing grant financial assistance that cannot be eliminated?",
+                "seventeenthQuestion": "Have the persons representing your organization attempted to obtain information that may give them an undue advantage in the procedure for providing grant financial assistance?",
+                "eighteenthQuestion": "Have the persons representing your organization been convicted by a final judgment for a crime under Articles 108a, 159a – 159g, 172, 192a, 194 – 217, 219 – 252, 253 – 260, 301 – 307, 321, 321a, and 352 – 353e of the Penal Code or a crime analogous to these, in another member state or third country?",
+                "nineteenthQuestion": "Does your organization fall under the prohibitive regimes according to Article 1, para. 3 of Commission Regulation (EU) No 651/2014, Regulation (EU) No 2021/1060, Regulation (EU) No 2021/1058, and the ZUSEFSU and the sub-legislative regulatory framework?",
+                "twentiethQuestion": "Has it been established for your organization with an enforceable administrative act the presence of undue payments and/or overpayments, as well as unlawfully received and/or unlawfully utilized funds from projects financed by pre-accession financial instruments, operational programs, Structural Funds, and the Cohesion Fund of the European Union, European agricultural funds and the European Fisheries Fund, the Schengen Instrument, and the Transition Financial Instrument, including related national co-financing?",
+                "twentyFirstQuestion": "Does your organization fall under the scope of Article 5l of Council Regulation (EU) 2022/576 of April 8, 2022, amending Regulation (EU) No 833/2014 concerning restrictive measures in view of Russia's actions destabilizing the situation in Ukraine?",
+                "twentySecondQuestion": "Is there an ongoing investigation for your organization based on a report of irregularity?",
+                "еxception": "*Branches of legal entities registered in Bulgaria cannot participate in the procedure."
+            }
+        }
+    },
+    "reports": {
+        "bgMap": {
+            "navigation": "Navigation",
+            "select": "select",
+            "filters": "Filters"
+        },
+        "offeringContracts": {
+            "title": "Offering contracts",
+            "excelTitle": "Offering contracts count",
+            "fromContractDate": "From contract date",
+            "toContractDate": "To contract date",
+            "rootInstitution": "Organizaiton",
+            "institution": "Supplier",
+            "complex": "Supplier",
+            "offering": "Offerings",
+            "offeringsCount": "Count"
+        }
+    },
+    "cookies": {
+        "title": "Cookies",
+        "introduction": {
+            "firstParagraph": "It is important for the User to be aware of how the website uses cookies and for what purpose they are stored on his computer.",
+            "secondParagraph": "NACID uses cookies to the extent that they are necessary for the operation of the website and to monitor the quality and efficiency of the website."
+        },
+        "description": {
+            "title": "What are cookies",
+            "firstParagraph": "Cookies are small text files that are stored on the User's computer. The function of cookies is to differentiate Users of the Website or to store certain information related to their preferences. They are used by most sites to help Users navigate through the website.",
+            "secondParagraph": "Cookies also generate anonymous statistics (in terms of user activity on the site) in order to improve the structure and content of the pages and for the Portal to ensure optimal user experience.",
+            "thirdParagraph": "Each cookie is unique to the User's browser and contains information about the domain name, expiration date and property."
+        },
+        "cookieTypes": {
+            "title": "Types of cookies",
+            "firstParagraph": "Security and Identification",
+            "secondParagraph": "The purpose of cookies designed for connection security is:",
+            "thirdParagraph": "to recognize the User within a specific session;",
+            "fourthParagraph": "to control security;",
+            "fifthParagraph": "to ensure that the information entered by the User is visible only to them.",
+            "sixthParagraph": "Security and identification cookies are automatically deleted after the browser session ends or are kept for a limited time to ensure seamless operation with the site. It is important to note that these, as well as other types of cookies on the site, do not store the personal data entered.",
+            "seventhParagraph": "Performance Cookies",
+            "eighthParagraph": "These cookies allow the counting of visits and traffic sources, so that the performance of the site can be measured and improved.",
+            "ninthParagraph": "Google Analytics is used to provide this service, which also uses cookies. The collected data is processed by Google and is not provided to third parties.",
+            "tenthParagraph": "The information obtained through the use of these cookies is anonymous, and there is no attempt to identify the User or influence how the site is used when visited. If the User does not allow these cookies, the visit will not be included in the site's statistics."
+        },
+        "cookiesControl": {
+            "title": "Managing and Deleting Cookies",
+            "firstParagraph": "It should be noted that many of the cookies used will enhance the browsing experience on the website, while the remaining ones are important for ensuring secure access.",
+            "secondParagraph": "Depending on the browser used, the User has the option to:",
+            "thirdParagraph": "allow or refuse the storage of cookies from all sources;",
+            "fourthParagraph": "set a notification that will request permission to accept or reject each new cookie.",
+            "fifthParagraph": "Most browsers are set to accept cookies by default. However, if the User does not want cookies to be stored on their computer, they have the option to restrict them by changing the settings of the browser they are using."
+        }
+    },
+    "termsOfUse": {
+        "title": "Terms of use",
+        "firstParagraph": "The platform for collaboration between higher education institutions, research organizations, and businesses (hereinafter referred to as the 'Platform') provides an opportunity for business representatives to connect with representatives of higher education institutions and research organizations to offer scientific and innovative services and to publish the results of the provided services. The offered services aim to assist businesses in introducing new products, processes, or services, solving technological problems, or developing new business models or prototypes.",
+        "secondParagraph": "The Platform is maintained by the National Center for Information and Documentation (NACID). By using the Platform, you agree to these Terms of Use.",
+        "thirdParagraph": "The Platform can be used by both registered and unregistered users. Only registered users can access functionalities related to uploading content, communicating with other users through the Platform, and generating documents and content.",
+        "fourthParagraph": "Registered users can be:",
+        "firstPoint": "representatives of higher education institutions, public research organizations, including competence centers, centers of excellence, R&D organizations from Sofia Tech Park, and research entities from the National Roadmap for Research Infrastructure (NRRI), listed in the Register of Research Activities of the Republic of Bulgaria. For these groups, a collective term 'Service Providers' is used on the Platform.",
+        "secondPoint": "representatives of micro, small, and medium-sized enterprises (SMEs) as defined in Articles 3 and 4 of the Law on Small and Medium Enterprises and Annex I 'Definition of SMEs' to Commission Regulation (EU) No. 651/2014, who are traders within the meaning of the Commercial Law or the Law on Cooperatives, or equivalent entities under the legislation of a member state of the European Economic Area.",
+        "thirdPoint": "representatives of state bodies (NACID and the Managing Authority of the NRRI) when performing their duties related to the operation of the Platform.",
+        "fifthParagraph": "The actions that different categories of users can perform, as well as how they are performed, are described in the User Manual, accessible after logging into the respective user profile.",
+        "sixthParagraph": "Users creating and sharing content are responsible for its accuracy, reliability, and legality.",
+        "seventhParagraph": "The use of the system is free for both registered and unregistered users.",
+        "eighthParagraph": "Registered users are required to protect their login credentials and not to share them with third parties.",
+        "ninthParagraph": "The information exchanged between SMEs and Service Providers during their communication through the Platform is confidential, and the parties agree not to disclose it without the explicit consent of the other party or when required by law.",
+        "tenthParagraph": "In case of violations of these Terms of Use, breaches of the law, or evidence thereof, NACID has the right to delete the respective content or make it publicly inaccessible, as well as to deactivate the profile of the organization and/or the individual who committed the violation.",
+        "eleventhParagraph": "The personal data of users in the System are processed in accordance with the Privacy Policy.",
+        "twelfthParagraph": "Inquiries regarding the operation of this Platform for collaboration between higher education institutions, research organizations, and businesses can be sent to: supports2b@nacid.bg.",
+        "thirteenthParagraph": "SME applicants may ask additional questions and request clarifications regarding the Application Conditions up to 3 (three) weeks before the deadline for project proposal submission, only in the ISUN system, section 'European Funds under Shared Management (2021-2027)', procedure BG16RFPR002-1.005 'Small Innovative Grants for Small and Medium Enterprises (SMEs)' at the address - ",
+        "secondThirteenthParagraph": "Answers to the applicants' questions are published on the website of the Ministry of Innovation and Growth in the section for the procedure (at the address - <a href='https://www.mig.government.bg/programa-nauchni-izsledvaniya-inovaczii-i-digitalizacziya-za-inteligentna-transformacziya/proczeduri-po-pniidit/' target='_blank'>https://www.mig.government.bg/programa-nauchni-izsledvaniya-inovaczii-i-digitalizacziya-za-inteligentna-transformacziya/proczeduri-po-pniidit/</a>), as well as in ISUN, in the section for the procedure, within 10 days of receiving them, but no later than two weeks before the application deadline.",
+        "fourteenthParagraph": "The relationships between SMEs and research organizations concerning the provision of services and/or equipment/scientific laboratories, as well as regarding intellectual property rights over the results of the provided services, are governed by a written contract between the two groups of entities.",
+        "fifteenthParagraph": "NACID is not responsible for the accuracy of the published information, does not guarantee the capacity of service providers to deliver the services they offer in a timely and quality manner, and does not verify the existence or quality of the results. NACID has no obligation to verify the content published on the Platform, the availability of the described research laboratories and equipment, or the possibility of providing the described services.",
+        "sixteenthParagraph": "NACID reserves the right to unilaterally amend or entirely cancel these Terms of Use at any time with new Terms of Use. Changes take effect after the publication of the new version of the Terms of Use. By accessing the Platform after the new version of the Terms of Use is published, the User expresses their agreement to the current version of the Terms of Use. If the User does not agree with the updated version of the Terms of Use or parts thereof, they are not entitled to use the Platform.",
+        "firstLink": "https://eumis2020.government.bg/bg/s/8d3ebf57-ff75-4ad5-afa1-5747f558ee98/Procedure/Active",
+        "secondLink": "https://www.mig.government.bg/programa-nauchni-izsledvaniya-inovaczii-i-digitalizacziya-za-inteligentna-transformacziya/proczeduri-po-pniidit/"
+    },
+    "confidentiality": {
+        "title1": "PLATFORM FOR COOPERATION BETWEEN HIGHER EDUCATION INSTITUTIONS, RESEARCH ORGANIZATIONS, AND BUSINESSES",
+        "title2": "Privacy policy",
+        "purpose": {
+            "title": "Purpose of the Policy",
+            "firstParagraph": "This policy aims to provide transparency in the processing of personal data during the operation of the Platform for Cooperation between Higher Education Institutions, Research Organizations, and Businesses (the Platform), maintained by the National Center for Information and Documentation (NACID).",
+            "secondParagraph": "NACID processes personal data on the Platform based on Article 6, paragraph 1, letter 'd' of Regulation (EU) 2016/679, within its legally defined powers to lead and maintain the Platform in accordance with Article 8, item 8 of the Regulations for the organization and activities of the National Center for Information and Documentation (published in the State Gazette, Issue 79 of September 17, 2024).",
+            "contactData": "Contact Information:",
+            "name": "National Center for Information and Documentation",
+            "address": "1125 Sofia, Dr. G.M. Dimitrov Blvd. 52A",
+            "phone": "Tel.: (+359 2) 817 38 24",
+            "email": "Email: ",
+            "person": "Data Protection Officer:",
+            "personName": "Dimitar Evtimov",
+            "personEmail": "Email: "
+        },
+        "categoryPersonalData": {
+            "title": "Category Personal Data",
+            "firstParagraph": "User Profile on the Platform",
+            "secondParagraph": "To create a user profile, the following information is required: the individual’s names (first, middle, and last or just first and last name), email address, phone number, and the organization to which the individual belongs. The user profile allows traceability and transparency of actions during the operation of the Platform.",
+            "thirdParagraph": "For registered users, representatives of SMEs: the names, email addresses, and the organization to which they belong are accessible to representatives of higher education institutions and research organizations with whom they communicate.",
+            "fourthParagraph": "For registered users, representatives of higher education institutions and research organizations, including centers listed on the National Roadmap for Research Infrastructure: the names, email addresses, and the organization to which they belong are accessible to representatives of higher education institutions as well as to unregistered users.",
+            "fifthParagraph": "Automatically Collected Data",
+            "sixthParagraph": "The Platform automatically receives technical data from users solely for its proper functioning (type and version of the operating environment, browser used, IP address)."
+        },
+        "purposesOfProcessing": {
+            "title": "Purposes of Processing",
+            "firstParagraph": "Data is processed for the following purposes:",
+            "firstPoint": "To identify the individual and determine their role and powers on the Platform in accordance with the Terms of Use;",
+            "secondPoint": "To send notifications regarding the registration process and communication between participants on the Platform;",
+            "thirdPoint": "To collect feedback from users to improve the Platform's operation and to create new features for user convenience;",
+            "fourthPoint": "To enable business representatives to connect with representatives of higher education institutions and research organizations to provide scientific and innovative services that help businesses introduce new products, processes, or services, solve technological problems, develop new business models, or prototypes.",
+            "secondParagraph": "Registered users from NACID and PNIIDIT, for the purposes of fulfilling their official duties, have access to personal data of representatives of SMEs, higher education institutions, and research organizations."
+        },
+        "storagePeriod": {
+            "title": "Storage Period",
+            "firstParagraph": "Data is stored indefinitely or as long as necessary for the above purposes, including to meet legal and reporting requirements."
+        },
+        "securityOfProcessing": {
+            "title": "Security of Processing",
+            "firstParagraph": "Appropriate and state-of-the-art technical and organizational security measures have been implemented. In this way, the processed data is protected from accidental or intentional manipulation, loss, destruction, and unauthorized access."
+        },
+        "dataSubjectRigths": {
+            "title": "Data Subject Rights",
+            "firstParagraph": "Every data subject has the right to receive confirmation of whether their personal data is being processed. If processed, the data subject can gain access to their personal data and information about what categories of personal data are being processed, how they are processed, and stored.",
+            "secondParagraph": "The data subject has the right to request the correction of personal data that is inaccurate or incomplete, which they cannot correct themselves.",
+            "thirdParagraph": "The data subject has the right to request the deletion of personal data. The data subject cannot request deletion when the data is processed in compliance with a legal obligation, for the performance of a task in the public interest, in defense of legal claims, or for statistical purposes. They have the right to request deletion of data beyond these cases, when it is no longer necessary for the purposes for which it was collected or processed in another way, as well as in other cases provided for in Regulation (EU) 2016/679.",
+            "fourthParagraph": "If a User disputes the accuracy of their personal data for a period that allows for verification of this accuracy, as well as in other cases provided for in Regulation (EU) 2016/679, they may request the restriction of the processing of their personal data.",
+            "fifthParagraph": "In addition to the above rights, the data subject has the right to object to the processing of personal data."
+        },
+        "rightsExcersice": {
+            "title": "Exercising Rights",
+            "firstParagraph": "If the User wishes to exercise any of their rights or has questions regarding the processing of their personal data, they can do so by contacting NACID at the contact addresses provided above.",
+            "secondParagraph": "The inquiry will be reviewed within 30 days of receipt, and a response will be sent to the User. If necessary, this period may be extended by up to two months, for which the respective individual will be informed in a timely manner.",
+            "thirdParagraph": "If the User believes that their personal data has not been processed lawfully, they may contact the Commission for Personal Data Protection (CPDP) at Tel.: (+359) 2 915 35 19, email: kzld@cpdp.bg, and submit a complaint. Up-to-date information on how to exercise the right to file a complaint with the CPDP is available at: https://www.cpdp.bg/ – the website of the supervisory authority."
+        },
+        "changes": {
+            "title": "Changes to the Privacy Policy",
+            "firstParagraph": "This Privacy Policy may be updated at any time. It is regularly reviewed for maximum clarity, accuracy, transparency, and to include newly arising amendments or additions in applicable legislation. If the user continues to use the Platform, it will be considered that they are aware of these changes."
+        }
+    },
+    "nomenclatures": {
+        "code": "Code",
+        "isActive": "Active",
+        "deactivated": "Deactivated",
+        "districts": {
+            "name": "District",
+            "nameAlt": "District (in english)",
+            "shortName": "district",
+            "title": "Districts"
+        },
+        "municipalities": {
+            "name": "Municipality",
+            "nameAlt": "Municipality (in english)",
+            "title": "Municipalities",
+            "shortName": "municipality"
+        },
+        "settlements": {
+            "name": "Settlement",
+            "nameAlt": "Settlement (in english)",
+            "title": "Settlements"
+        },
+        "lawForms": {
+            "name": "Law forms",
+            "nameAlt": "Law forms (in english)",
+            "title": "Law forms"
+        },
+        "smartSpecializations": {
+            "primary": "Primary innovation strategy for smart specialization",
+            "secondary": "Secondary innovation strategy for smart specialization",
+            "name": "Innovation strategy for smart specialization",
+            "nameAlt": "Innovation strategy for smart specialization (in english)",
+            "title": "Innovation strategies for smart specialization",
+            "title2": "Smart specializations"
+        }
+    },
+    "logs": {
+        "ip": "IP",
+        "url": "URL",
+        "verb": "Verb",
+        "date": "Date",
+        "username": "User",
+        "userAgent": "User agent",
+        "body": "body",
+        "errors": {
+            "title": "Errors",
+            "errorLogType": "Error type",
+            "message": "Exception",
+            "modals": {
+                "read": "Error view"
+            }
+        },
+        "actions": {
+            "title": "Actions",
+            "modals": {
+                "read": "Action view"
+            }
+        }
+    },
+    "approveRegistrations": {
+        "ip": "IP",
+        "authorizedRepresentativeUsername": "Username (Email)",
+        "authorizedRepresentativeFullname": "Name",
+        "createDate": "Creation date",
+        "finishDate": "Finish date",
+        "administratedUserId": "Administrated ID",
+        "administratedUsername": "Administrated username",
+        "state": "State",
+        "declinedNote": "Decline note",
+        "actions": "Actions",
+        "userWithUsername": "User with username",
+        "userExist": "exists in SSO",
+        "notInSsoApplications": "No active system.",
+        "searchHistoryTooltip": "Search is done also in history",
+        "history": "History",
+        "modals": {
+            "titleDecline": "Decline the registration",
+            "titleApprove": "Approve Registration",
+            "registrationDetails": {
+                "title": "Institution information",
+                "approveDate": "Approve Date",
+                "declineDate": "Decline Date",
+                "userAction": "User that performed the action",
+                "phone": "Phone"
+            },
+            "supplierAdministrator": "Administrator"
+        },
+        "buttons": {
+            "decline": "Decline registration"
+        }
+    },
+    "voucherRequests": {
+        "titleSingular": "Questions and answers",
+        "generatedCodeTitle": "Generated code:",
+        "createDate": "Date",
+        "fromCreateDate": "From date",
+        "toCreateDate": "To date",
+        "communications": {
+            "start": "Communication",
+            "title": "Communication",
+            "enterText": "Enter text...",
+            "noCommunication": "You are not connected with the organization."
+        },
+        "modals": {
+            "declineTitle": "Declining the code",
+            "declineText": "Are you sure you want to decline the voucher code?"
+        }
+    },
+    "receivedVouchers": {
+        "createTitle": "Adding results",
+        "details": "Review",
+        "contract": "Contract",
+        "fromContractDate": "From contract date",
+        "toContractDate": "To contract date",
+        "contractDate": "Contract date",
+        "contractDateExplanation": "(The contract between the SME and the Management Board of PNIIDIT)",
+        "signularTitleExplanation": "(Refers to the service as recorded in this Platform with code from the Provider (Contractor))",
+        "smartSpecializationExplanation": "(The ISIS domain will be automatically generated in the Certificate)",
+        "settlementExplanation": "(Place of provision of the service)",
+        "clarificationExplanation": "(You can indicate information that you consider important. It will not be included in the issued Certificate)",
+        "receivedOfferingExplanation": "(The service is specified exactly as it is written in the contract with the Supplier (Contractor))",
+        "contractNumber": "Contract number",
+        "file": "Attached file with results",
+        "offeringInformation": "Used service",
+        "secondOfferingInformation": "Second used service",
+        "offeringAdditionalPayment": "Additional payment",
+        "offeringClarifications": "Additional information",
+        "receivedOffering": "Received Offering",
+        "clarificationTooltip": "The field must be filled in when the service provided under the contract does not exactly match the one indicated in the \"Offered service\" field",
+        "generateCertificate": "Generating certificate",
+        "generatedCertificates": "Generated certificates",
+        "modals": {
+            "verifyState": "Please choose state.",
+            "draftTitle": "Are you sure you want to save results in draft?",
+            "terminateTitle": "Terminate",
+            "terminateText": "Are you sure you want to terminate the voucher?"
+        },
+        "communications": {
+            "title": "Communication",
+            "enterText": "Enter text...",
+            "noCommunication": "You are not connected with the organization."
+        }
+    },
+    "booleans": {
+        "active": "Yes",
+        "inactive": "No",
+        "all": "All"
+    },
+    "routes": {
+        "home": "Home",
+        "vouchers": "Innovation Vouchers",
+        "companies": "Companies",
+        "companyDetails": "Details",
+        "routes": "Logs",
+        "notFound": "Page not found",
+        "nomenclatures": {
+            "settlements": "Settlements",
+            "others": "Others"
+        }
+    },
+    "pageNotFound": {
+        "text": "Page is not found",
+        "returnToWebsibe": "Back to website"
+    },
+    "enums": {
+        "organizationType": {
+            "institutionScientificOrganization": "Institution in scientific organization",
+            "museum": "Museum",
+            "firm": "Firm",
+            "center": "Center",
+            "laboratory": "Laboratory",
+            "foundation": "Foundation",
+            "university": "University",
+            "faculty": "Faculty",
+            "agency": "Agency",
+            "agencyWithoutUniversity": "Agency (without university)",
+            "association": "Association",
+            "library": "Library",
+            "hospitalAccredited": "Hospital (accredited)",
+            "botanicalGarden": "Botanical garden",
+            "gallery": "Gallery",
+            "subdivisionHospital": "Subdivision hospital",
+            "cluster": "Cluster",
+            "association2": "Partnership association",
+            "sector": "Sector",
+            "station": "Station",
+            "union": "Union",
+            "fund": "Fund",
+            "scientificOrganization": "Scientific organization",
+            "hospitalNotAccredited": "Hospital (not accredited)",
+            "chair": "Chair",
+            "department": "Department",
+            "independentCollege": "Independent college",
+            "institutionUniversity": "Institution in university",
+            "collegeUniversity": "College in university",
+            "affiliate": "Affiliate",
+            "specializedUniversity": "Specialized university",
+            "centerUniversity": "Center in university"
+        },
+        "ownershipType": {
+            "state": "State",
+            "private": "Private",
+            "cooperative": "Cooperative",
+            "mixedParticipation": "Mixed Participation"
+        },
+        "keywordsSearchType": {
+            "exactMatch": "Exact match",
+            "matchAll": "Match all",
+            "matchAny": "Match any"
+        },
+        "errorLogType": {
+            "serverExceptionLog": "Server exception",
+            "jobExceptionLog": "Job еxception",
+            "messageBrokerExceptionLog": "Message broker exception",
+            "emailSenderExceptionLog": "Email sender exception",
+            "integrationExceptionLog": "Integration exception"
+        },
+        "verb": {
+            "get": "GET",
+            "post": "POST",
+            "put": "PUT",
+            "delete": "DELETE"
+        },
+        "approveRegistrationState": {
+            "draft": "Draft",
+            "approved": "Approved",
+            "declined": "Declined"
+        },
+        "companyType": {
+            "title": "Company type",
+            "micro": "Micro",
+            "small": "Small",
+            "medium": "Medium"
+        },
+        "offeringType": {
+            "title": "Type of service",
+            "consultation": "Innovation Consulting",
+            "accessInfrastructure": "Access to science infrastructure"
+        },
+        "supplierType": {
+            "title": "Supplier type",
+            "institution": "Institution",
+            "complex": "Infrastructure"
+        },
+        "areaOfActivity": {
+            "title": "Infrastructure type",
+            "scienceAndEngineering": "Science and engineering",
+            "energy": "Energy",
+            "environment": "Environment",
+            "health": "Health",
+            "humanities": "Humanities",
+            "electronic": "Electronic"
+        },
+        "supplierExtendedType": {
+            "university": "University",
+            "scientificOrganization": "Scientific organization",
+            "complex": "Infrastructure"
+        },
+        "supplierOfferingSmartSpecializationType": {
+            "title": "Smart specialization type",
+            "primary": "Primary",
+            "secondary": "Secondary"
+        },
+        "voucherRequestState": {
+            "title": "State",
+            "draft": "Draft",
+            "pending": "Pending",
+            "requested": "Requested",
+            "generated": "Generated code",
+            "recieved": "Recieved",
+            "declined": "Declined"
+        },
+        "receivedVoucherState": {
+            "title": "State",
+            "draft": "Draft",
+            "completed": "Completed",
+            "generatedCertificate": "Generated certificate",
+            "terminated": "Terminated"
+        }
+    },
+    "invalidTexts": {
+        "required": "Field is required",
+        "invalidEmail": "Invalid email",
+        "invalidConfirmEmail": "Invalid email or emails are not the same",
+        "invalidPasswordValidation": "The field requires at least 8 characters, 1 special symbol, 1 number, uppercase and lowercase letter",
+        "invalidConfirmPasswordValidation": "Invalid password or passwords are not the same",
+        "invalidPhoneNumber": "Invalid phone number",
+        "invalidName": "The field between 2 and 50 Cyrillic characters",
+        "invalidFullName": "The field between 2 and 150 Cyrillic characters",
+        "invalidAddress": "Invalid characters were used in the address or the number of characters allowed was exceeded.",
+        "invalidAddressAlt": "Invalid characters were used in the address (in english) or the number of characters allowed was exceeded.",
+        "invalidUic": "Invalid UIC",
+        "nonCyrillic": "Cyrillic letters are not allowed",
+        "nonLatin": "Latin letters are not allowed"
+    },
+    "successTexts": {
+        "userSignedUp": "Successfully created user. You will receive activation code on your email!",
+        "signUpSupplierEdit": "Institution administrator is successfully changed. Activation code is send on email you provided!",
+        "userActivated": "User is successfully activated",
+        "sendForApproval": "A request for user registration has been successfully submitted to the indicated organization. After approval by a NACID expert, you will receive an activation email.",
+        "companySignUp": "Data saved successfully. To complete the SME registration, please activate the link sent to the authorized representative's email.",
+        "supplierSignUp": "Data saved successfully. After approval by NACID, you will receive an email with an activation link.",
+        "userRecoverCodeGenerated": "Email is successfully send with instructions for password recovery.",
+        "userRecovered": "Password is successfully restored.",
+        "changePassword": "You successfully changed your password."
+    },
+    "errorTexts": {
+        "System_InternalServerError": "An error has occurred! Please contact the system administrator or support team!",
+        "System_ServerUnavailible": "No connection could be made with the server.",
+        "System_QueryTimeout": "The query is taking longer than expected! Please try again or contact the support team.",
+        "System_FunctionalityUnavailible": "Functionality is unavailible.",
+        "AgencyRegix_Company_NotFound": "Company not found with this UIC.",
+        "AgencyRegix_UnableToConnectToAgencyRegix": "Communication error, please try again later",
+        "AgencyRegix_LawForm_Invalid": "Company not accepted.",
+        "FileUpload_WrongFileFormat": "Wrong file format. The system does not accept file with extension ",
+        "Permission_NotEnoughPermissions": "Not enough permissions.",
+        "Auth_CommunicationExceptionWithSso": "Communication exception with SSO server.",
+        "Auth_UndefinedDomainError": "Undefined domain error.",
+        "Auth_WrongUserNameOrPassword": "Wrong username and/or password.",
+        "Auth_InvalidRecaptcha": "Invalid ReCaptcha.",
+        "Auth_InvalidSignUpType": "Invalid sign up type.",
+        "Auth_UserLocked": "Your account is inactive!",
+        "Auth_UserDeactivated": "Your account has been deactived!",
+        "Auth_UserHasNoSsoApplicationPermissions": "No permissions for the system",
+        "Auth_UserSsoApplicationLocked ": "User is locked for system",
+        "Auth_UserSsoApplicationDeactivated": "User is deactivated for system",
+        "User_EmptyUserInfo": "Missing user info.",
+        "User_UserNameExists": "Username exists.",
+        "User_EmailExists": "Email address exists.",
+        "User_NewPasswordsMismatch": "New passwords mismatch.",
+        "User_InvalidPassword": "Old password is incorrect.",
+        "User_InvalidPasswordValidation": "Requires 1 character, 1 number, upper and lower case.",
+        "User_InvalidEmailLength": "Invalid email length.",
+        "User_NotFound": "User not found.",
+        "User_IsNotLocked": "User is not in state locked.",
+        "User_WithGivenActivationCodeNotFound": "User with activation code not found.",
+        "User_ActivationCodeNotExpired": "User has already generated activation code.",
+        "User_ActivationCodeExpired": "Invalid activation code.",
+        "User_LockedUserForFailedLoginAttempts": "User is deactivate because of too many login failed attempts. Please contact the administrator of the system.",
+        "User_InvalidOrExpiredTwoFactorAuthCode": "Invalid or expired auth code.",
+        "User_RecoverCodeNotExpired": "User has already generated recover code.",
+        "User_InvalidRecoverCode": "Invalid recover code.",
+        "SsoAppUser_UserExistsForSsoApplication": "User is already added to the system.",
+        "Supplier_Type_Required": "Supplier type requited.",
+        "Supplier_Institution_Required": "Institution for supplier required.",
+        "Supplier_Complex_Required": "Complex for supplier required.",
+        "SupplierRepresentative_Supplier_InvalidSupplierId": "Supplier representative is not correct.",
+        "SupplierRepresentative_Entity_Exists": "Organization contains representative.",
+        "SupplierRepresentative_Name_Required": "Name is required.",
+        "SupplierRepresentative_Name_LengthOverAllowed": "Name must not have more than 100 characters.",
+        "SupplierRepresentative_Name_OnlyCyrillicAllowed": "Name must contain only cyrillic characters.",
+        "SupplierRepresentative_NameAlt_LengthOverAllowed": "Name (in english) must not have more than 100 characters.",
+        "SupplierRepresentative_NameAlt_OnlyLatinAllowed": "Name (in english) must contain only latin characters.",
+        "SupplierRepresentative_UserName_Required": "Email is required.",
+        "SupplierRepresentative_UserName_Invalid": "Invalid email format.",
+        "SupplierRepresentative_PhoneNumber_LengthOverAllowed": "Phone number must not have more than 18 characters.",
+        "SupplierRepresentative_PhoneNumber_Invalid": "Invalid phone number format.",
+        "SupplierTeam_UserName_DoesNotMatch": "Email does not match",
+        "SupplierTeam_Supplier_InvalidSupploierId": "Supplier team is not correct.",
+        "SupplierTeam_Position_LengthOverAllowed": "Position must not have more than 50 characters.",
+        "SupplierTeam_AcademicRankDegree_LengthOverAllowed": "Academic rank/degree must not have more than 50 characters.",
+        "SupplierTeam_FirstName_Required": "First name is required.",
+        "SupplierTeam_FirstName_LengthOverAllowed": "First name must not have more than 50 characters.",
+        "SupplierTeam_FirstName_OnlyCyrillicAllowed": "First name must contain only cyrillic characters.",
+        "SupplierTeam_MiddleName_LengthOverAllowed": "Middle name must not have more than 50 characters.",
+        "SupplierTeam_MiddleName_OnlyCyrillicAllowed": "Middle name must contain only cyrillic characters.",
+        "SupplierTeam_LastName_Required": "Last name is required.",
+        "SupplierTeam_LastName_LengthOverAllowed": "Last name must not have more than 50 characters.",
+        "SupplierTeam_LastName_OnlyCyrillicAllowed": "Last name must contain only cyrillic characters.",
+        "SupplierTeam_Name_Required": "Name is required.",
+        "SupplierTeam_Name_LengthOverAllowed": "Name must not have more than 250 characters.",
+        "SupplierTeam_Name_OnlyCyrillicAllowed": "Name must contain only cyrillic characters.",
+        "SupplierTeam_Email_Required": "Email is required.",
+        "SupplierTeam_Email_Invalid": "Invalid email format.",
+        "SupplierTeam_PhoneNumber_LengthOverAllowed": "Phone number must not have more than 18 characters.",
+        "SupplierTeam_PhoneNumber_Invalid": "Invalid phone number format.",
+        "SupplierTeam_Entity_Exists": "The person is already added to the team.",
+        "SupplierTeam_Entity_CannotChangeSupplierId": "Cannot change supplier for person in it.",
+        "SupplierTeam_Representative_CannotBeInTeam": "The administrator of institution cannot be in the institution team.",
+        "SupplierOffering_Supplier_InvalidSupplierId": "Offered service is not correct.",
+        "SupplierOffering_Name_Required": "Offering name is required.",
+        "SupplierOffering_Name_LengthOverAllowed": "Offering name must not have more than 100 characters.",
+        "SupplierOffering_Name_OnlyCyrillicAllowed": "Offering name must contain only cyrillic characters.",
+        "SupplierOffering_ShortDescription_Required": "Offering short description is required.",
+        "SupplierOffering_ShortDescription_LengthOverAllowed": "Offering short description must not have more than 250 characters.",
+        "SupplierOffering_ShortDescription_OnlyCyrillicAllowed": "Offering short description must contain only cyrillic characters.",
+        "SupplierOffering_Description_OnlyCyrillicAllowed": "Offering description must contain only cyrillic characters.",
+        "SupplierOffering_Address_LengthOverAllowed": "Offering address must not have more than 250 characters.",
+        "SupplierOffering_Address_OnlyCyrillicAllowed": "Offering address must contain only cyrillic characters.",
+        "SupplierOffering_SmartSpecializations_Required": "Atleast one innovation strategy for smart specialization is required.",
+        "SupplierOffering_SmartSpecializations_Exists": "Innovation strategy for smart specialization already exists in this offered service.",
+        "SupplierOffering_SmartSpecializations_CannotChangeInstitutionOfferingId": "Wrong offered service for the innovation strategy for smart specialization.",
+        "SupplierOffering_Delete_ReferenceExisting": "Offered service cannot be deleted because there is existing reference.",
+        "SupplierOffering_WebPageUrl_LengthOverAllowed": "Offering web page must not have more than 100 characters.",
+        "SupplierOffering_Description_LengthOverAllowed": "Offering description must not have more than 500 characters.",
+        "SupplierOffering_SmartSpecializations_MustHaveOnePrimary": "Innovation strategy for smart specialization must have exactly one primary.",
+        "SupplierEquipment_Supplier_InvalidSupplierId": "Equipment is not correct.",
+        "SupplierEquipment_Name_Required": "Equipment name is required.",
+        "SupplierEquipment_Name_LengthOverAllowed": "Equipment name must not have more than 500 characters.",
+        "SupplierEquipment_Name_OnlyCyrillicAllowed": "Equipment name must contain only cyrillic characters.",
+        "SupplierEquipment_NameAlt_Required": "Equipment name (in english) is required.",
+        "SupplierEquipment_NameAlt_LengthOverAllowed": "Equipment name (in english) must not have more than 500 characters.",
+        "SupplierEquipment_NameAlt_OnlyLatinAllowed": "Equipment name (in english) must contain only latin characters.",
+        "SupplierEquipment_Description_Required": "Equipment description is required.",
+        "SupplierEquipment_Description_OnlyCyrillicAllowed": "Equipment description must contain only cyrillic characters.",
+        "SupplierEquipment_DescriptionAlt_Required": "Equipment description (in english) is required.",
+        "SupplierEquipment_DescriptionAlt_LengthOverAllowed": "Equipment description (in english) must not have more than 500 characters.",
+        "SupplierEquipment_DescriptionAlt_OnlyLatinAllowed": "Equipment description (in english) must contain only latin characters.",
+        "SupplierEquipment_SmartSpecialization_Required": "Strategy for smart specialization is required.",
+        "SupplierOffering_Entity_Inactive": "Offering is not active.",
+        "Company_Name_Required": "Name is required.",
+        "Company_Name_LengthOverAllowed": "Name must not have more than 100 characters.",
+        "Company_Name_OnlyCyrillicAllowed": "Name must contain only cyrillic characters.",
+        "Company_NameAlt_Required": "Name (in english) is required.",
+        "Company_NameAlt_LengthOverAllowed": "Name (in english) must not have more than 100 characters.",
+        "Company_NameAlt_OnlyLatinAllowed": "Name (in english) must contain only latin characters.",
+        "Company_District_Required": "Company district is required",
+        "Company_Municipality_Required": "Company municipality is required",
+        "Company_Settlement_Required": "Company settlement is required",
+        "Company_Uic_Required": "UIC required.",
+        "Company_Uic_OnlyDigitsAllowed": "UIC accepts only digits.",
+        "Company_LawForm_Required": "Company law form required",
+        "Company_Address_Required": "Company address is required.",
+        "Company_Address_LengthOverAllowed": "Company address must not have more than 250 characters.",
+        "Company_Address_Invalid": "Invalid characters are used in company address.",
+        "Company_AddressAlt_Required": "Company address (in english) is required.",
+        "Company_AddressAlt_LengthOverAllowed": "Company address (in english) must not have more than 250 characters.",
+        "Company_AddressAlt_Invalid": "Invalid characters are used in company address (in english).",
+        "Company_Email_Required": "Company email is required.",
+        "Company_Email_Invalid": "Invalid company email format.",
+        "Company_PhoneNumber_Required": "Company phone is required.",
+        "Company_PhoneNumber_LengthOverAllowed": "Company phone number must not have more than 18 characters.",
+        "Company_PhoneNumber_Invalid": "Invalid company phone number format.",
+        "Company_Entity_Exists": "Company exists with this UIC.",
+        "CompanyAdditional_StaffCount_Invalid": "Invalid company staff count.",
+        "CompanyAdditional_WebPage_Required": "Web page is required.",
+        "CompanyAdditional_AnnualTurnover_Invalid": "Invalid company annual turnover.",
+        "CompanyAdditional_Entity_Exists": "Company has already additional info.",
+        "CompanyAdditional_Entity_InvalidId": "Invalid company Id.",
+        "Nomenclature_Name_Required": "Name is required.",
+        "Nomenclature_Name_LengthOverAllowed": "Name must not have more than 100 characters.",
+        "Nomenclature_Name_OnlyCyrillicAllowed": "Name must contain only cyrillic characters.",
+        "Nomenclature_NameAlt_Required": "Name (in english) is required.",
+        "Nomenclature_NameAlt_LengthOverAllowed": "Name (in english) must not have more than 100 characters.",
+        "Nomenclature_NameAlt_OnlyLatinAllowed": "Name (in english) must contain only latin characters.",
+        "Nomenclature_Entity_HasReference": "Nomenclature could not be deleted because there is existing references.",
+        "ApproveRegistration_WrongState": "Wrong approve registration state.",
+        "ApproveRegistration_File_Required": "Approve registration file missing.",
+        "ApproveRegistration_Supplier_Exists": "Organization has administrator or is waiting for approval.",
+        "VoucherRequest_User_Required": "An error has occurred! User not found.",
+        "VoucherRequest_Company_Required": "An error has occurred! Company not found.",
+        "VoucherRequest_SupplierOffering_Required": "An error has occurred! Offering not found.",
+        "VoucherRequestCommunication_SupplierOfferingCompany_Required": "Communication not found by offering-company.",
+        "VoucherRequest_State_Wrong": "Voucher request is in wrong state! Please reload the page.",
+        "ReceivedVoucher_User_Required": "Company required.",
+        "ReceivedVoucher_Company_Required": "Company required.",
+        "ReceivedVoucher_ContractDate_Invalid": "Contract date must be after 31.12.2023 year.",
+        "ReceivedVoucher_ContractNumber_Required": "Contract number is required.",
+        "ReceivedVoucher_ContractNumber_LengthOverAllowed": "Contract number must not have more than 100 characters.",
+        "ReceivedVoucher_State_Required": "Wrong state.",
+        "ReceivedVoucher_Supplier_Required": "Please select supplier.",
+        "ReceivedVoucher_SecondSupplier_Required": "Please select supplier for the second offering.",
+        "ReceivedVoucher_OfferingClarifications_LengthOverAllowed": "Offering clarifications must not have more than 500 characters.",
+        "ReceivedVoucher_SecondOfferingClarifications_LengthOverAllowed": "Second offering clarifications must not have more than 500 characters.",
+        "ReceivedVoucher_SupplierOffering_Required": "Please select offering.",
+        "ReceivedVoucher_Offering_Duplicate": "Second offering must be different than first.",
+        "ReceivedVoucher_File_Required": "Please attach file with results.",
+        "ReceivedVoucher_Entity_Exists": "Contract number exists.",
+        "ReceivedVoucher_Certificate_FileRequired": "Certificate file missing.",
+        "ReceivedVoucher_Certificate_AllAreGenerated": "All certificates are generated.",
+        "ReceivedVoucher_Certificate_AlreadyGenerated": "This certificate is already generated.",
+        "ReceivedVoucher_Certificate_InvalidSupplier": "Wrong supplier.",
+        "ReceivedVoucher_Certificate_InvalidOffering": "Wrong offering.",
+        "ReceivedVoucherCommunication_ReceivedVoucher_Required": "Communication for received voucher is not established."
+    }
+}

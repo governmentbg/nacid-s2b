@@ -1,0 +1,136 @@
+<div class="row">
+    <div class="col-md-4">
+        <label class="form-label">{{ 'auth.signUpUser.firstName' | translate }}</label>
+        <input type="text"
+               class="form-control form-control-sm is-invalid-default"
+               [(ngModel)]="userDto.userInfo.firstName"
+               name="firstName"
+               minlength="2"
+               maxlength="150"
+               #firstName="ngModel"
+               ngbTooltip="{{ firstName.invalid ? ('invalidTexts.invalidFullName' | translate) : null }}"
+               triggers="blur"
+               tooltipClass="custom-tooltip-invalid"
+               customRegexValidation="namesCyrillic"
+               [disabled]="!isEditMode">
+    </div>
+
+    <div class="col-md-4">
+        <label class="form-label">{{ 'auth.signUpUser.middleName' | translate }}</label>
+        <input type="text"
+               class="form-control form-control-sm is-invalid-default"
+               [(ngModel)]="userDto.userInfo.middleName"
+               name="middleName"
+               minlength="2"
+               maxlength="150"
+               #middleName="ngModel"
+               ngbTooltip="{{ middleName.invalid ? ('invalidTexts.invalidFullName' | translate) : null }}"
+               triggers="blur"
+               tooltipClass="custom-tooltip-invalid"
+               customRegexValidation="namesCyrillic"
+               [enableEmptyValidation]="true"
+               [disabled]="!isEditMode">
+    </div>
+
+    <div class="col-md-4">
+        <label class="form-label">{{ 'auth.signUpUser.lastName' | translate }}</label>
+        <input type="text"
+               class="form-control form-control-sm is-invalid-default"
+               [(ngModel)]="userDto.userInfo.lastName"
+               name="lastName"
+               minlength="2"
+               maxlength="150"
+               #lastName="ngModel"
+               ngbTooltip="{{ lastName.invalid ? ('invalidTexts.invalidFullName' | translate) : null }}"
+               triggers="blur"
+               tooltipClass="custom-tooltip-invalid"
+               customRegexValidation="namesCyrillic"
+               [disabled]="!isEditMode">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <label class="form-label">{{ 'auth.signUpUser.email' | translate }}</label>
+        <input type="text"
+               blockCopyPaste
+               class="form-control form-control-sm is-invalid-default"
+               [(ngModel)]="userDto.userName"
+               (ngModelChange)="userDto.confirmUserName = null"
+               name="userName"
+               minlength="8"
+               maxlength="50"
+               emailValidation
+               #userName="ngModel"
+               ngbTooltip="{{ userName.invalid ? ('invalidTexts.invalidEmail' | translate) : null }}"
+               triggers="blur"
+               tooltipClass="custom-tooltip-invalid"
+               [disabled]="disableUsername || !isEditMode">
+    </div>
+
+    <div class="col-md-4">
+        <label class="form-label">{{ 'auth.signUpUser.confirmEmail' | translate }}</label>
+        <input type="text"
+               blockCopyPaste
+               class="form-control form-control-sm is-invalid-default"
+               [(ngModel)]="userDto.confirmUserName"
+               name="confirmUserName"
+               minlength="8"
+               maxlength="50"
+               emailValidation
+               [confirmValidation]="userDto.userName"
+               #confirmUserName="ngModel"
+               ngbTooltip="{{ confirmUserName.invalid ? ('invalidTexts.invalidConfirmEmail' | translate) : null }}"
+               triggers="blur"
+               tooltipClass="custom-tooltip-invalid"
+               [disabled]="userName.invalid || disableUsername || !isEditMode">
+    </div>
+
+    <div class="col-md-4">
+        <label class="form-label">{{ 'auth.signUpUser.phoneNumber' | translate }}</label>
+        <input type="text"
+               class="form-control form-control-sm is-invalid-default"
+               [(ngModel)]="userDto.phoneNumber"
+               name="phoneNumber"
+               minlength="9"
+               maxlength="18"
+               #phoneNumber="ngModel"
+               ngbTooltip="{{ phoneNumber.invalid ? ('invalidTexts.invalidPhoneNumber' | translate) : null }}"
+               triggers="blur"
+               tooltipClass="custom-tooltip-invalid"
+               phoneValidation
+               [disabled]="!isEditMode">
+    </div>
+</div>
+
+<div *ngIf="showFile"
+     class="row">
+    <div class="col-md-4">
+        <label class="form-label">
+            {{ 'auth.signUpUser.file' | translate }}
+        </label>
+        <file-upload name="fileUpload"
+                     [(ngModel)]="file"
+                     (ngModelChange)="fileChanged($event)"
+                     [acceptedFileFormats]="['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']"
+                     [allowClear]="false"
+                     [disabled]="!isEditMode"
+                     [required]="true">
+        </file-upload>
+    </div>
+
+    <div *ngIf="showSampleFile"
+         class="col-md-6 d-flex align-items-end gap-2">
+        <span>{{'auth.signUpUser.sampleFile' | translate}}</span>
+        <a href="assets/pdf/{{'auth.signUpUser.sampleFileUrl' | translate}}.pdf"
+           target="_blank"
+           class="cursor-pointer link-primary">
+            <i class="fa-xl fa-regular fa-file-pdf me-1"></i>
+        </a>
+        <a href="assets/docx/{{'auth.signUpUser.sampleFileUrl' | translate}}.docx"
+           target="_blank"
+           class="cursor-pointer link-primary">
+            <i class="fa-xl fa-regular fa-file-word me-1"></i>
+        </a>
+    </div>
+</div>

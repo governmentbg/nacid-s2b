@@ -1,0 +1,114 @@
+<header class="shadow">
+    <nav class="navbar navbar-expand-lg container">
+        <a class="navbar-brand text-purple d-flex align-items-center"
+           [routerLink]="['/']">
+            <img src=".. /../../assets/img/nacid_logo.png"
+                 width="100"
+                 height="82" />
+            <div class="logo-text mt-2">
+                <h4 class="nacid-text">{{ 'root.header.nacidShort' | translate }}</h4>
+                <h6 class="nacid-subtext">{{ 'root.header.sc' | translate }}</h6>
+            </div>
+        </a>
+
+        <button #toggleBtn
+                class="navbar-toggler text-purple shadow-none me-3"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse">
+            <i class="fa-solid fa-bars fa-xl"></i>
+        </button>
+
+        <div id="navbarCollapse"
+             #collapseContainer
+             class="collapse navbar-collapse justify-content-end">
+            <ul ngbNav
+                class="nav-pills">
+
+                <li ngbNavItem="vouchers"
+                    class="nav-item-underline">
+                    <a ngbNavLink
+                       routerLink="vouchers"
+                       routerLinkActive="nav-link-box"
+                       #vouchersActive="routerLinkActive"
+                       [ngClass]="{'active': vouchersActive.isActive }">
+                        {{ 'root.header.menu.home' | translate }}
+                    </a>
+                </li>
+
+                <li ngbNavItem="home"
+                    class="nav-item-underline">
+                    <a ngbNavLink
+                       routerLink="home"
+                       routerLinkActive="nav-link-box"
+                       #homeActive="routerLinkActive"
+                       [ngClass]="{'active': homeActive.isActive }">
+                        {{ 'root.header.menu.offers' | translate }}
+                    </a>
+                </li>
+
+                <li *ngIf="!hasApproveRegistrationReadPermission"
+                    ngbNavItem="suppliers"
+                    class="nav-item-underline">
+                    <a ngbNavLink
+                       routerLink="suppliers"
+                       routerLinkActive="nav-link-box"
+                       #suppliersActive="routerLinkActive"
+                       [ngClass]="{'active': suppliersActive.isActive }">
+                        {{ 'root.header.menu.suppliers' | translate }}
+                    </a>
+                </li>
+
+                <li *ngIf="hasApproveRegistrationReadPermission"
+                    ngbNavItem="approveRegistrations"
+                    class="nav-item-underline">
+                    <a ngbNavLink
+                       routerLink="approveRegistrations"
+                       routerLinkActive="nav-link-box"
+                       #approveRegistrationsActive="routerLinkActive"
+                       [ngClass]="{'active': approveRegistrationsActive.isActive }">
+                        {{ 'root.header.menu.suppliers' | translate }}
+                    </a>
+                </li>
+
+                <li ngbNavItem="bgMap"
+                    class="nav-item-underline">
+                    <a ngbNavLink
+                       routerLink="bgMap"
+                       routerLinkActive="nav-link-box"
+                       #bgMapActive="routerLinkActive"
+                       [ngClass]="{'active': bgMapActive.isActive }">
+                        {{ 'root.header.menu.regions' | translate }}
+                    </a>
+                </li>
+
+                <li *ngIf="userContextService.authorizationState === authorizationState.logout"
+                    ngbNavItem="login"
+                    class="nav-item-underline"
+                    (click)="openLoginModal()">
+                    <a ngbNavLink
+                       routerLinkActive="nav-link-active"
+                       #loginActive="routerLinkActive"
+                       [ngClass]="{'active': loginActive.isActive }">
+                        {{ 'root.header.menu.login' | translate }}
+                    </a>
+                </li>
+
+                <li *ngIf="userContextService.authorizationState === authorizationState.login || userContextService.authorizationState === authorizationState.eAuthLogin"
+                    ngbNavItem="profile"
+                    class="nav-item-underline"
+                    (click)="openProfileSidebar()">
+                    <a ngbNavLink
+                       routerLinkActive="nav-link-active"
+                       #profileActive="routerLinkActive"
+                       [ngClass]="{'active': profileActive.isActive }">
+                        {{ 'root.header.menu.profile' | translate }}
+                    </a>
+                </li>
+
+                <language-select>
+                </language-select>
+            </ul>
+        </div>
+    </nav>
+</header>

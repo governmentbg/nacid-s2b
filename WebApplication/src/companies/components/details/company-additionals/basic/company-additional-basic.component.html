@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-md-4">
+        <label class="form-label">
+            {{ 'companyAdditionals.staffCount' | translate }}
+        </label>
+        <input type="number"
+               class="form-control form-control-sm is-invalid-default"
+               [(ngModel)]="companyAdditionalDto.staffCount"
+               name="staffCount"
+               min="1"
+               max="9999"
+               required
+               [disabled]="!isEditMode">
+    </div>
+
+    <div class="col-md-4">
+        <label class="form-label">
+            {{ 'companyAdditionals.annualTurnover' | translate }}
+        </label>
+
+        <currency-input name="annualTurnover"
+                        [(ngModel)]="companyAdditionalDto.annualTurnover"
+                        appendText="root.levShort"
+                        [max]="500000"
+                        [min]="1"
+                        [step]="1"
+                        [required]="true"
+                        [disabled]="!isEditMode">
+        </currency-input>
+    </div>
+
+    <div class="col-md-4">
+        <label class="form-label">
+            {{ 'companyAdditionals.webPage' | translate }}
+        </label>
+        <input type="text"
+               class="form-control form-control-sm is-invalid-default"
+               [(ngModel)]="companyAdditionalDto.webPage"
+               name="webPage"
+               [disabled]="!isEditMode">
+    </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{'approveRegistrations.modals.titleApprove' | translate}}</h4>
+  <sync-button btnClass="btn-close"
+               (btnClickedEvent)="onCancel()"
+               [disabled]="approveDataPending">
+  </sync-button>
+</div>
+<div class="modal-body">
+  <p>{{'root.modals.approveRegistration' | translate}}</p>
+  <div *ngIf="signUpDto.ssoUserValidateSignUpInfo?.exists">
+    <h6>
+      <span>{{'approveRegistrations.userWithUsername' | translate}}</span>
+      <a href="mailto:{{ signUpDto.user.userName }}"> {{signUpDto.user.userName}} </a>
+      <span>{{'approveRegistrations.userExist' | translate}}</span>
+    </h6>
+    <ul *ngIf="signUpDto.ssoUserValidateSignUpInfo?.ssoApplicationUnits?.length > 0; else notInSsoApplications">
+      <ng-template ngFor
+                   let-ssoApplicationUnit
+                   [ngForOf]="signUpDto.ssoUserValidateSignUpInfo.ssoApplicationUnits"
+                   let-i="index">
+        <li>
+          {{ ssoApplicationUnit.ssoApplicationName }}
+          <ul *ngIf="ssoApplicationUnit.organizationalUnitNames?.length > 0">
+            <ng-template ngFor
+                         let-organizationalUnitName
+                         [ngForOf]="ssoApplicationUnit.organizationalUnitNames"
+                         let-j="index">
+              <li>
+                {{ organizationalUnitName }}
+              </li>
+            </ng-template>
+          </ul>
+        </li>
+      </ng-template>
+    </ul>
+    <ng-template #notInSsoApplications>
+      <ul>
+        <li>
+          {{ 'approveRegistrations.notInSsoApplications' | translate }}
+        </li>
+      </ul>
+    </ng-template>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <sync-button btnClass="btn btn-sm btn-primary"
+               (btnClickedEvent)="onApprove()"
+               [pending]="approveDataPending"
+               text="root.modals.approve">
+  </sync-button>
+
+</div>

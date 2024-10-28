@@ -1,0 +1,59 @@
+<div class="root d-flex justify-content-center align-items-center mb-4 shadow text-white">
+    <div class="container opacity">
+        <h2 class="d-flex justify-content-center text-uppercase fw-bold mb-4">
+            {{ 'supplierOfferings.search' | translate }}
+        </h2>
+        <div class="row">
+            <div class="col-md-3">
+                <input type="text"
+                       class="form-control"
+                       [(ngModel)]="filter.name"
+                       name="offeringName"
+                       placeholder="{{ 'supplierOfferings.name' | translate }}">
+            </div>
+
+            <div class="col-md-4">
+                <input type="text"
+                       class="form-control"
+                       [(ngModel)]="filter.keywords"
+                       name="keywords"
+                       placeholder="{{ 'supplierOfferings.keywords' | translate }}">
+            </div>
+
+            <div class="col-md-3">
+                <enum-select [(ngModel)]="filter.keywordsSearchType"
+                             formControlClass="form-control"
+                             [allowClear]="false"
+                             enumName="keywordsSearchType"
+                             [enumType]="keywordsSearchType"
+                             name="keywordsSearchType">
+                </enum-select>
+            </div>
+
+            <div class="col-md-2">
+                <sync-button (btnClickedEvent)="getData(false)"
+                             text="root.buttons.search"
+                             icon="fas fa-search"
+                             btnClass="btn btn-primary fw-bold"
+                             [pending]="getDataPending">
+                </sync-button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <ng-container *ngIf="showOfferingGroup; else smartSpecializationGroup">
+        <supplier-offering-group [loadingData]="loadingData"
+                                 [clearFilterDtos]="clearFilterDtos"
+                                 (clearFilterDtosChanged)="clearFilterDtos = $event"
+                                 [filterResultGroup]="filterResultGroup"
+                                 [filter]="filter"
+                                 (triggerSearch)="getData(true)">
+        </supplier-offering-group>
+    </ng-container>
+
+    <ng-template #smartSpecializationGroup>
+        <smart-specialization-group></smart-specialization-group>
+    </ng-template>
+</div>

@@ -1,0 +1,41 @@
+<div class="modal-header">
+    <h5 class="modal-title text-primary fw-bold">{{ 'supplierOfferings.modals.deleteTitle' | translate }}</h5>
+    <sync-button btnClass="btn-close"
+                 (btnClickedEvent)="decline()">
+    </sync-button>
+</div>
+<div class="modal-body">
+    <ng-container *ngIf="!loadingData; else loadingSection">
+        <h6>
+            {{ supplierOfferingDto.name }}
+        </h6>
+        <i>
+            {{ supplierOfferingDto.shortDescription }}
+        </i>
+        <div *ngIf="supplierOfferingDto.supplierOfferingTeams?.length > 0"
+             class="mt-2">
+            <h6>
+                {{ 'supplierOfferings.modals.deleteOffering' | translate }}
+            </h6>
+            <ul>
+                <ng-template ngFor
+                             let-soTeam
+                             [ngForOf]="supplierOfferingDto.supplierOfferingTeams"
+                             let-i="index">
+                    <li>
+                        {{ soTeam.supplierTeam.name }}
+                    </li>
+                </ng-template>
+            </ul>
+        </div>
+    </ng-container>
+    <ng-template #loadingSection>
+        <loading-section></loading-section>
+    </ng-template>
+</div>
+<div class="modal-footer">
+    <sync-button btnClass="btn btn-sm btn-primary"
+                 (btnClickedEvent)="accept()"
+                 text="root.buttons.delete">
+    </sync-button>
+</div>

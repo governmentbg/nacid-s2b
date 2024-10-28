@@ -1,0 +1,89 @@
+<div class="container mt-5">
+    <div class="card shadow no-border">
+        <div class="card-body">
+            <div *ngIf="registrationSuccessMessage; else checkSupplierSuccess">
+                <p>{{ 'successTexts.companySignUp' | translate }}</p>
+            </div>
+
+            <ng-template #checkSupplierSuccess>
+                <div *ngIf="registrationSupplierSuccessMessage; else signUpForm">
+                    <p>{{ 'successTexts.supplierSignUp' | translate }}</p>
+                </div>
+            </ng-template>
+            <ng-template #signUpForm>
+                <form #form="ngForm"
+                      autocomplete="off">
+                    <div class="d-flex justify-content-center">
+                        <h3 class="text-purple text-uppercase">
+                            {{ (signUpDeclarationDto.signUp.type === signUpType.supplier
+                            ? 'auth.signUp.supplierTitle'
+                            : 'auth.signUp.title') | translate }}
+                        </h3>
+                    </div>
+
+                    <div class="card shadow mt-4">
+                        <div class="card-header">
+                            <h4 class="text-purple">
+                                {{ (signUpDeclarationDto.signUp.type === signUpType.supplier
+                                ? 'auth.signUp.supplier'
+                                : 'auth.signUp.company') | translate }}
+                            </h4>
+                        </div>
+                        <div class="card-body"
+                             [ngSwitch]="signUpDeclarationDto.signUp.type">
+                            <supplier-sign-up *ngSwitchCase="signUpType.supplier"
+                                              [signUp]="signUpDeclarationDto.signUp"></supplier-sign-up>
+                            <company-sign-up *ngSwitchCase="signUpType.company"
+                                             [company]="signUpDeclarationDto.signUp.company"
+                                             (companyChanged)="signUpDeclarationDto.signUp.company = $event"></company-sign-up>
+                            <ng-template *ngSwitchDefault></ng-template>
+                        </div>
+                    </div>
+
+
+                    <div class="card shadow mt-5">
+                        <div class="card-header">
+                            <h4 class="text-purple">
+                                <span>
+                                    {{ (signUpDeclarationDto.signUp.type === signUpType.supplier
+                                    ? 'auth.signUp.serviceAdministrator'
+                                    : 'auth.signUp.authorizedRepresentative') | translate }}
+                                </span>
+                                <i *ngIf="signUpDeclarationDto.signUp.type === signUpType.company"
+                                   class="fa-solid fa-circle-info text-purple"
+                                   ngbTooltip="{{'auth.signUp.authorizedRepresentativeTooltip' | translate}}"
+                                   tooltipClass="custom-tooltip-purple">
+                                </i>
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <user-sign-up [userDto]="signUpDeclarationDto.signUp.user"
+                                          [showFile]="signUpDeclarationDto.signUp.type === signUpType.supplier"
+                                          [showSampleFile]="signUpDeclarationDto.signUp.type === signUpType.supplier"
+                                          [file]="signUpDeclarationDto.file"
+                                          (updateFile)="signUpDeclarationDto.file = $event">
+                            </user-sign-up>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end align-items-center mt-5 gap-2">
+                        <re-captcha id="recaptcha"
+                                    name="recaptcha"
+                                    [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"
+                                    #recaptcha="ngModel"
+                                    [(ngModel)]="signUpDeclarationDto.signUp.recaptchaToken"
+                                    required>
+                        </re-captcha>
+
+                        <sync-button btnClass="btn btn-primary"
+                                     (btnClickedEvent)="signUp()"
+                                     text="root.buttons.signUp"
+                                     [pending]="signUpPending"
+                                     [disabled]="form.invalid || userContextService.authorizationState !== authorizationState.logout">
+                        </sync-button>
+                    </div>
+                </form>
+            </ng-template>
+        </div>
+    </div>
+</div>

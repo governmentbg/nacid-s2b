@@ -1,0 +1,47 @@
+.footer-links {
+    position: relative;
+    background-image: url('../../../assets/img/main_2.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 60px 0px 60px 0px;
+}
+
+.scroll-up-row {
+    height: 44px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(0%, -50%);
+}
+
+.scroll-up {
+    height: 44px;
+    width: 44px;
+    border-radius: 8px;
+    border: none;
+    box-shadow: inset 6px 6px 15px #15589b,
+        inset -6px -6px 15px #15589b;
+}
+
+.flex-column {
+    line-height: 36px;
+    margin-top: 36px;
+}
+
+.footer-copyright {
+    padding: 32px 0px 8px 0px;
+    font-size: 16px;
+}
+
+.footer-img {
+    max-width: 300px;
+}
+
+.address {
+    margin-top: -13px; 
+    white-space: nowrap;
+}

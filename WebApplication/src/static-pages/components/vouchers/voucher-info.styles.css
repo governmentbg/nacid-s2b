@@ -1,0 +1,38 @@
+.scroll-spy-container {
+    height: 600px;
+    scroll-behavior: auto; 
+}
+
+.nav-link {
+    color: #135496
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    background-color: #135496;
+}
+
+p {
+    text-align: justify;
+}
+
+.list-checkmarks li,
+.list-redcheckmarks li {
+    list-style-type: none;
+    padding-left: 1rem;
+    padding-bottom: 5px;
+}
+
+.list-checkmarks li:before {
+    font-family: 'FontAwesome';
+    content: "\f00c";
+    margin: 0 10px 0 -28px;
+    color: #17aa1c;
+}
+
+.list-redcheckmarks li:before {
+    font-family: 'FontAwesome';
+    content: "\f00c";
+    margin: 0 10px 0 -28px;
+    color: #dc3545;
+}

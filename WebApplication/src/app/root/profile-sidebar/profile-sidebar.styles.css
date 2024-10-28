@@ -1,0 +1,40 @@
+.offcanvas-header {
+    padding-bottom: 0;
+}
+
+.offcanvas-title {
+    color: white;
+}
+
+.offcanvas-body {
+    color: white;
+}
+
+.offcanvas-subtitle {
+    color: #ff9800;
+}
+
+.nav-link {
+    color: white;
+}
+
+.nav-link:hover {
+    color: #ff9800;
+}
+
+.list-dropbown-btn .fa-chevron-right {
+    transition: .3s transform ease-in-out;
+}
+
+.list-dropbown-btn:not(.collapsed-section) .fa-chevron-right {
+    transform: rotate(90deg);
+}
+
+.my-organizations {
+    min-height: 300px;
+}
+
+.text-decoration-line-through,
+.text-decoration-line-through:hover {
+    color: #ff9800;
+}

@@ -1,0 +1,28 @@
+<div class="d-flex align-items-center gap-1 mt-1">
+   <a (click)="dropdownCollapsed.toggle()"
+      class="nav-link align-middle px-0 list-dropbown-btn {{class}}"
+      [class.cursor-pointer]="bgMapItem.children?.length > 0"
+      [class.collapsed-section]="isCollapsed">
+      <i *ngIf="bgMapItem.children?.length > 0"
+         class="fa-solid fa-chevron-right me-2">
+      </i>
+      <i *ngIf="icon"
+         class="{{icon}} me-2">
+      </i>
+      <span>{{ bgMapItem.title | translate }}</span>
+   </a>
+</div>
+<div #dropdownCollapsed="ngbCollapse"
+     [(ngbCollapse)]="isCollapsed">
+   <ng-template ngFor
+                let-bgMapChild
+                [ngForOf]="bgMapItem.children"
+                let-i="index">
+      <highchart-bg-map-menu-item [bgMapItem]="bgMapChild"
+                                  [selectedBgReportData]="selectedBgReportData"
+                                  (selectRegionEvent)="selectRegion($event)"
+                                  class="fs-16 ms-4 {{i !== 0 ? 'mt-1' : ''}}"
+                                  icon="fa-solid fa-location-dot">
+      </highchart-bg-map-menu-item>
+   </ng-template>
+</div>

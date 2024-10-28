@@ -1,0 +1,89 @@
+<div class="container mt-5">
+    <div class="card shadow no-border">
+        <div class="card-body">
+            <form #form="ngForm"
+                  autocomplete="off">
+                <ng-container *ngIf="!loadingData; else loadingSection">
+                    <div class="d-flex justify-content-center">
+                        <h3 class="text-purple text-uppercase">
+                            {{ (approveRegistrationDto.state === state.approved
+                            ? 'auth.signUp.supplierEditTitle'
+                            : 'auth.signUp.supplierDraftTitle') | translate }}
+                        </h3>
+                    </div>
+
+                    <div class="card shadow mt-4">
+                        <div class="card-header">
+                            <h4 class="text-purple">
+                                {{ 'auth.signUp.supplier' | translate }}
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <supplier-sign-up [signUp]="approveRegistrationDto.signUpDto"
+                                              [readonly]="true"></supplier-sign-up>
+                        </div>
+                    </div>
+
+                    <div class="card shadow mt-5">
+                        <div class="card-header">
+                            <h4 class="text-purple">
+                                <span>
+                                    {{ 'auth.signUp.serviceAdministrator' | translate }}
+                                </span>
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <user-sign-up [userDto]="approveRegistrationDto.signUpDto.user"
+                                          [file]="approveRegistrationDto.file"
+                                          (updateFile)="approveRegistrationDto.file = $event"
+                                          [showFile]="true"
+                                          [disableUsername]="editState !== signUpEditType.userName"
+                                          [isEditMode]="editState !== signUpEditType.disabled"></user-sign-up>
+                        </div>
+                    </div>
+
+                    <div *ngIf="!loadingData && approveRegistrationDto.state === state.approved"
+                         class="d-flex justify-content-end align-items-center mt-5 gap-2">
+                        <sync-button *ngIf="editState === signUpEditType.disabled"
+                                     btnClass="btn btn-sm btn-primary"
+                                     (btnClickedEvent)="edit(signUpEditType.userName)"
+                                     text="root.buttons.changeUserName">
+                        </sync-button>
+
+                        <sync-button *ngIf="editState === signUpEditType.disabled"
+                                     btnClass="btn btn-sm btn-primary"
+                                     (btnClickedEvent)="edit(signUpEditType.details)"
+                                     text="root.buttons.edit">
+                        </sync-button>
+
+                        <sync-button *ngIf="editState !== signUpEditType.disabled"
+                                     btnClass="btn btn-sm btn-success"
+                                     (btnClickedEvent)="update()"
+                                     text="root.buttons.save"
+                                     [pending]="signUpPending"
+                                     [disabled]="form.invalid || !hasApprovalRegistrationWritePermission">
+                        </sync-button>
+
+                        <sync-button *ngIf="editState !== signUpEditType.disabled"
+                                     btnClass="btn btn-sm btn-danger"
+                                     (btnClickedEvent)="cancel()"
+                                     text="root.buttons.cancel">
+                        </sync-button>
+                    </div>
+
+                    <div *ngIf="!loadingData && approveRegistrationDto.state === state.draft"
+                         class="d-flex justify-content-end mt-5 mb-3">
+                        <div ngbTooltip="{{'auth.signUp.editNotAvalibleTooltip' | translate}}"
+                             tooltipClass="custom-tooltip-purple">
+                            <i class="fa-solid fa-circle-info text-purple fa-2xl">
+                            </i>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-template #loadingSection>
+                    <loading-section></loading-section>
+                </ng-template>
+            </form>
+        </div>
+    </div>
+</div>

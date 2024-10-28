@@ -1,0 +1,52 @@
+<div class="modal-header">
+    <h5 class="modal-title text-primary fw-bold">
+        {{ 'approveRegistrations.history' | translate }}
+    </h5>
+    <sync-button btnClass="btn-close"
+                 (btnClickedEvent)="close()">
+    </sync-button>
+</div>
+<div class="modal-body">
+    <ng-template ngFor
+                 let-historyItem
+                 [ngForOf]="history"
+                 let-i="index">
+        <collapsable-section
+                             heading="{{ historyItem.createDate | date: 'dd.MM.yyyy hh.mm' }} - {{ historyItem.signUpDto?.user.userInfo.fullName }} ({{ historyItem.signUpDto?.user.userName }})">
+            <div body
+                 class="modal-body">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label class="form-label">
+                            {{ 'approveRegistrations.modals.registrationDetails.approveDate' | translate }}
+                        </label>
+                        <input type="text"
+                               class="form-control form-control-sm fw-bold"
+                               value="{{historyItem.finishDate | date: 'dd.MM.yyyy hh:mm'}}"
+                               disabled />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">
+                            {{ 'auth.signUpUser.phoneNumber' | translate }}
+                        </label>
+                        <input type="text"
+                               class="form-control form-control-sm fw-bold"
+                               value="{{historyItem.signUpDto?.user.phoneNumber}}"
+                               disabled />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">
+                            {{ 'approveRegistrations.modals.registrationDetails.userAction' | translate }}
+                        </label>
+                        <input type="text"
+                               class="form-control form-control-sm fw-bold"
+                               value="{{historyItem.administratedUsername}}"
+                               disabled />
+                    </div>
+                </div>
+            </div>
+        </collapsable-section>
+    </ng-template>
+</div>

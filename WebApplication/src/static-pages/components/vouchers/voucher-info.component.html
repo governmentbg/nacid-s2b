@@ -1,0 +1,245 @@
+<div class="card no-border mt-2">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12 pb-3">
+                <h3 class="text-purple fw-bold">
+                    {{ 'vouchers.title' | translate }}
+                </h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 mb-4">
+                <nav [ngbScrollSpyMenu]="spy"
+                     class="h-100 flex-column align-items-stretch pe-4 border-end">
+                    <nav class="nav nav-pills flex-column">
+                        <a role="button"
+                           class="nav-link"
+                           ngbScrollSpyItem="description">
+                            {{ 'vouchers.spyMenu.description.title' | translate }}
+                        </a>
+                        <a role="button"
+                           class="nav-link"
+                           ngbScrollSpyItem="purpose">
+                            {{ 'vouchers.spyMenu.purpose.title' | translate }}
+                        </a>
+                        <a role="button"
+                           class="nav-link"
+                           ngbScrollSpyItem="ineligibleActivities">
+                            {{ 'vouchers.spyMenu.ineligibleActivities.title' | translate }}
+                        </a>
+                        <a role="button"
+                           class="nav-link"
+                           ngbScrollSpyItem="voucherTypes">
+                            {{ 'vouchers.spyMenu.voucherTypes.title' | translate }}
+                        </a>
+                        <nav class="nav nav-pills flex-column">
+                            <a role="button"
+                               class="nav-link ms-3 my-1"
+                               ngbScrollSpyItem="oneService"
+                               parent="voucherTypes">
+                                {{ 'vouchers.spyMenu.voucherTypes.firstGrantType' | translate }}
+                            </a>
+                            <a role="button"
+                               class="nav-link ms-3 my-1"
+                               ngbScrollSpyItem="twoServices"
+                               parent="voucherTypes">
+                                {{ 'vouchers.spyMenu.voucherTypes.secondGrantType' | translate }}
+                            </a>
+                        </nav>
+                        <a role="button"
+                           class="nav-link"
+                           ngbScrollSpyItem="grantApplication">
+                            {{ 'vouchers.spyMenu.grantApplication.title' | translate }}
+                        </a>
+                        <a role="button"
+                           class="nav-link"
+                           ngbScrollSpyItem="faq">
+                            {{ 'vouchers.spyMenu.faq.title' | translate }}
+                        </a>
+                        <a role="button"
+                           class="nav-link"
+                           ngbScrollSpyItem="successfullExample">
+                            {{ 'vouchers.spyMenu.successfullExample.title' | translate }}
+                        </a>
+                        <a role="button"
+                           class="nav-link"
+                           ngbScrollSpyItem="questionnaire">
+                            {{ 'vouchers.questionnaire.title' | translate }}
+                        </a>
+                    </nav>
+                </nav>
+            </div>
+
+            <div class="col-md-9">
+                <div ngbScrollSpy
+                     #spy="ngbScrollSpy"
+                     rootMargin="16px"
+                     scrollBehavior="auto"
+                     class="scroll-spy-container bg-light pe-3 rounded-2 mb-3">
+
+                    <h4 ngbScrollSpyFragment="description"
+                        class="text-primary fw-bold">{{ 'vouchers.spyMenu.description.title' | translate }}</h4>
+                    <p translate="vouchers.spyMenu.description.firstParagraph">
+                    </p>
+                    <p translate="vouchers.spyMenu.description.secondParagraph">
+                    </p>
+                    <ul class="list-checkmarks">
+                        <li *ngFor="let price of prices">
+                            {{ price | translate}}
+                        </li>
+                    </ul>
+                    <p translate="vouchers.spyMenu.description.thirdParagraph">
+                    </p>
+                    <p translate="vouchers.spyMenu.description.fourthParagraph">
+                    </p>
+
+                    <h4 ngbScrollSpyFragment="purpose"
+                        class="text-primary fw-bold">{{ 'vouchers.spyMenu.purpose.title' | translate }}</h4>
+                    <p translate="vouchers.spyMenu.purpose.firstParagraph">
+                    </p>
+                    <p translate="vouchers.spyMenu.purpose.secondParagraph">
+                    </p>
+                    <ul class="list-checkmarks">
+                        <ng-container *ngFor="let service of services; let i = index">
+                            <li>
+                                {{ service | translate }}
+                            </li>
+                            <ng-container *ngIf="i === 0">
+                                <ul class="list-checkmarks">
+                                    <li *ngFor="let consulting of consultings">
+                                        {{ consulting | translate }}
+                                    </li>
+                                </ul>
+                            </ng-container>
+                        </ng-container>
+                    </ul>
+
+                    <h4 ngbScrollSpyFragment="ineligibleActivities"
+                        class="text-primary fw-bold">{{ 'vouchers.spyMenu.ineligibleActivities.title' | translate }}
+                    </h4>
+                    <p translate="vouchers.spyMenu.ineligibleActivities.firstParagraph">
+                    </p>
+
+                    <ul class="list-redcheckmarks">
+                        <ng-container *ngFor="let ineligibleActivity of ineligibleActivities; let i = index">
+                            <li>
+                                {{ ineligibleActivity | translate }}
+                            </li>
+                            <ng-container *ngIf="i === 2">
+                                <ul class="list-redcheckmarks">
+                                    <li *ngFor="let additionalIneligibleActivity of additionalIneligibleActivities">
+                                        {{ additionalIneligibleActivity | translate }}
+                                    </li>
+                                </ul>
+                            </ng-container>
+                        </ng-container>
+                    </ul>
+
+
+
+                    <h4 ngbScrollSpyFragment="voucherTypes"
+                        class="text-primary fw-bold">{{ 'vouchers.spyMenu.voucherTypes.title' | translate }}
+                    </h4>
+
+                    <p translate="vouchers.spyMenu.voucherTypes.firstParagraph">
+                    </p>
+                    <p translate="vouchers.spyMenu.voucherTypes.secondParagraph">
+                    </p>
+                    <p translate="vouchers.spyMenu.voucherTypes.thirdParagraph">
+                    </p>
+
+                    <h5 ngbScrollSpyFragment="oneService"
+                        class="text-purple fw-bold">{{ 'vouchers.spyMenu.voucherTypes.firstGrantType' | translate }}
+                    </h5>
+
+                    <p translate="vouchers.spyMenu.voucherTypes.firstGrantTypeFirstParagraph">
+                    </p>
+
+                    <h5 ngbScrollSpyFragment="twoServices"
+                        class="text-purple fw-bold">{{ 'vouchers.spyMenu.voucherTypes.secondGrantType' | translate
+                        }}
+                    </h5>
+
+                    <p translate="vouchers.spyMenu.voucherTypes.secondGrantTypeSecondParagraph">
+                    </p>
+                    <p translate="vouchers.spyMenu.voucherTypes.secondGrantTypeSecondParagraph">
+                    </p>
+
+                    <h4 ngbScrollSpyFragment="grantApplication"
+                        class="text-primary fw-bold">{{ 'vouchers.spyMenu.grantApplication.title' | translate }}
+                    </h4>
+
+                    <p translate="vouchers.spyMenu.grantApplication.firstParagraph">
+                    </p>
+                    <p translate="vouchers.spyMenu.grantApplication.firstStep"
+                       class="fw-bold">
+                    </p>
+                    <p translate="vouchers.spyMenu.grantApplication.firstStepParagraph">
+                    </p>
+                    <p translate="vouchers.spyMenu.grantApplication.secondStep"
+                       class="fw-bold">
+                    </p>
+                    <p translate="vouchers.spyMenu.grantApplication.secondStepFirstParagraph">
+                    </p>
+                    <p translate="vouchers.spyMenu.grantApplication.secondStepSecondParagraph">
+                        <a href="https://eumis2020.government.bg/bg/s/8d3ebf57-ff75-4ad5-afa1-5747f558ee98/Procedure/Active"
+                           target="_blank"
+                           class="link-default cursor-pointer"> {{'vouchers.spyMenu.grantApplication.link' |
+                            translate}}</a>
+                    </p>
+                    <p translate="vouchers.spyMenu.grantApplication.secondStepThirdParagraph">
+                    </p>
+                    <p translate="vouchers.spyMenu.grantApplication.thirdStep"
+                       class="fw-bold">
+                    </p>
+                    <p translate="vouchers.spyMenu.grantApplication.thirdStepParagraph">
+                    </p>
+                    <p translate="vouchers.spyMenu.grantApplication.fourthStep"
+                       class="fw-bold">
+                    </p>
+                    <p translate="vouchers.spyMenu.grantApplication.fourthStepParagraph">
+                    </p>
+                    <p translate="vouchers.spyMenu.grantApplication.fifthStep"
+                       class="fw-bold">
+                    </p>
+                    <p translate="vouchers.spyMenu.grantApplication.fifthStepParagraph"></p>
+                    <ul class="list-checkmarks">
+                        <li *ngFor="let document of fifthStepDocuments">
+                            {{ document | translate}}
+                        </li>
+                    </ul>
+
+                    <h4 ngbScrollSpyFragment="faq"
+                        class="text-primary fw-bold">{{ 'vouchers.spyMenu.faq.title' | translate }}
+                    </h4>
+
+                    <p translate="vouchers.spyMenu.faq.firstParagraph"></p>
+
+                    <p translate="vouchers.spyMenu.faq.secondParagraph">
+                        <a href="mailto:https://eumis2020.government.bg/bg/s/8d3ebf57-ff75-4ad5-afa1-5747f558ee98/Procedure/Active"
+                           target="_blank"
+                           class="link-default cursor-pointer"> {{'vouchers.spyMenu.faq.link' | translate}}</a>
+                    </p>
+
+                    <h4 ngbScrollSpyFragment="successfullExample"
+                        class="text-primary fw-bold">{{ 'vouchers.spyMenu.successfullExample.title' | translate }}
+                    </h4>
+                    <p translate="vouchers.spyMenu.successfullExample.firstParagraph">
+                    </p>
+
+                    <h4 ngbScrollSpyFragment="questionnaire"
+                        class="text-primary fw-bold">{{ 'vouchers.questionnaire.title' | translate }}
+                    </h4>
+
+                    <p class="ms-4">
+                        <static-file-download href="assets/pdf/Въпросник_самооценка_МСП.pdf"
+                                              icon="fa-xl fa-regular fa-file-pdf"
+                                              text="vouchers.questionnaire.title2">
+                        </static-file-download>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{'receivedVouchers.modals.terminateTitle' | translate}}</h4>
+  <sync-button btnClass="btn-close"
+               (btnClickedEvent)="onCancel()"
+               [disabled]="terminateDataPending">
+  </sync-button>
+</div>
+<div class="modal-body">
+  <label>
+    {{'receivedVouchers.modals.terminateText' | translate}}
+  </label>
+</div>
+<div class="modal-footer">
+  <sync-button btnClass="btn btn-sm btn-primary"
+               (btnClickedEvent)="terminate()"
+               [pending]="terminateDataPending"
+               text="root.buttons.terminate"></sync-button>
+</div>

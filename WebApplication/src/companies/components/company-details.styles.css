@@ -1,0 +1,19 @@
+.border-bottom-purple:after {
+    content: "";
+    display: block;
+    padding-top: 12px;
+    border-bottom: 1px solid #135496;
+}
+
+.form-check-input:disabled {
+    cursor: default; 
+    background-color: white !important; 
+    border-color: #135496 !important; 
+    opacity: 1 !important; 
+  }
+  
+  .form-check-input:disabled {
+    cursor: default; 
+    background-color: white !important;
+    opacity: 1 !important; 
+  }

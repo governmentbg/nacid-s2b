@@ -1,0 +1,119 @@
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h4 class="text-purple">
+                {{ (voucherRequest.code ? 'voucherRequests.generatedCodeTitle' : 'voucherRequests.titleSingular') |
+                translate }}
+                <span *ngIf="voucherRequest.code">
+                    {{voucherRequest.code}}
+                </span>
+            </h4>
+
+            <!-- <div *ngIf="!loadingData"
+                 class="btn-group gap-2">
+                <sync-button *ngIf="hasVoucherReuqestGeneratePermission && voucherRequest.state !== voucherRequestState.declined && voucherRequest.state !== voucherRequestState.generated"
+                             btnClass="btn btn-sm btn-outline-danger"
+                             (btnClickedEvent)="openDeclineCodeModal()"
+                             icon="fa fa-times"
+                             text="root.buttons.declineCode"
+                             [pending]="declineCodePending">
+                </sync-button>
+
+                <sync-button *ngIf="hasVoucherRequestCodePermission && voucherRequest.state === voucherRequestState.pending"
+                             btnClass="btn btn-sm btn-outline-primary"
+                             (btnClickedEvent)="requestCode()"
+                             icon="fa-solid fa-handshake"
+                             text="root.buttons.requestCode"
+                             [pending]="requestCodePending">
+                </sync-button>
+
+                <sync-button *ngIf="hasVoucherReuqestGeneratePermission && voucherRequest.state === voucherRequestState.requested"
+                             btnClass="btn btn-sm btn-outline-primary"
+                             (btnClickedEvent)="generateCode()"
+                             icon="fa-solid fa-handshake"
+                             text="root.buttons.generateCode"
+                             [pending]="generateCodePending">
+                </sync-button>
+
+            </div> -->
+        </div>
+
+        <div class="card-body">
+            <ng-container *ngIf="!loadingData; else loadingSection">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="form-label">
+                            {{ 'voucherRequests.createDate' | translate }}
+                        </label>
+                        <input type="text"
+                               class="form-control form-control-sm"
+                               value="{{voucherRequest.createDate | date: 'dd.MM.yyyy hh:mm'}}"
+                               disabled />
+                    </div>
+
+                    <!-- <div class="col-md-3">
+                        <label class="form-label">
+                            {{ 'enums.voucherRequestState.title' | translate }}
+                        </label>
+                        <input type="text"
+                               class="form-control form-control-sm"
+                               value="{{'enums.voucherRequestState.' + voucherRequestState[voucherRequest.state] | translate}}"
+                               disabled />
+                    </div> -->
+
+                    <div class="col-md-9">
+                        <label class="form-label">
+                            {{ 'companies.title' | translate }}
+                        </label>
+                        <input type="text"
+                               class="form-control form-control-sm"
+                               value="{{voucherRequest.requestCompany.name}} ({{voucherRequest.requestCompany.uic}})"
+                               disabled />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-5">
+                        <label class="form-label">
+                            {{ 'suppliers.title' | translate }}
+                        </label>
+                        <input type="text"
+                               class="form-control form-control-sm"
+                               title="{{voucherRequest.supplierOffering.supplier?.institution?.name ?? voucherRequest.supplierOffering.supplier?.complex?.name}}"
+                               value="{{voucherRequest.supplierOffering.supplier?.institution?.name ?? voucherRequest.supplierOffering.supplier?.complex?.name}}"
+                               disabled />
+                    </div>
+
+                    <div class="col-md-7">
+                        <label class="form-label">
+                            {{ 'supplierOfferings.singularTitle' | translate }}
+                        </label>
+                        <input type="text"
+                               title="{{voucherRequest.supplierOffering.name}} ({{voucherRequest.supplierOffering.code}})"
+                               class="form-control form-control-sm"
+                               value="{{voucherRequest.supplierOffering.name}} ({{voucherRequest.supplierOffering.code}})"
+                               disabled />
+                    </div>
+                </div>
+
+                <div *ngIf="canReadCommunication"
+                     class="card">
+                    <div class="card-header">
+                        <h5 class="text-purple">
+                            {{ 'voucherRequests.communications.title' | translate }}
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <vr-communication-container [supplierOffering]="voucherRequest.supplierOffering"
+                                                    [requestCompanyId]="voucherRequest.requestCompanyId"
+                                                    [entityId]="voucherRequest.id">
+                        </vr-communication-container>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-template #loadingSection>
+                <loading-section></loading-section>
+            </ng-template>
+        </div>
+    </div>
+</div>

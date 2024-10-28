@@ -1,0 +1,68 @@
+<div class="row">
+    <div class="col-md-8 pb-3">
+        <h3>
+            <translate-field class="text-purple fw-bold"
+                             [model]="complex"></translate-field>
+        </h3>
+
+        <div *ngIf="complex.webPageUrl"
+             class="mt-4">
+            <div *ngIf="complex.webPageUrl"
+                 class="d-flex">
+                <div class="fw-bold">
+                    {{ 'complexes.webPageUrl' | translate }}:
+                </div>
+                <div class="ms-1">
+                    <a href="{{complex.webPageUrl}}"
+                       target="_blank"
+                       class="link-default cursor-pointer"
+                       clickStopPropagation>
+                        {{ complex.webPageUrl }}
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="complex.settlement"
+             class="d-flex mt-4 align-items-center">
+            <i class="fa-solid fa-location-dot fa-2xl text-purple"></i>
+            <div class="ms-2 fst-italic">
+                <div class="d-flex">
+                    <span>{{complex.settlement.code}},</span>
+                    <translate-field class="ms-1"
+                                     [model]="complex.settlement"></translate-field>
+                    <translate-field [model]="complex"
+                                     bgProperty="address"
+                                     enProperty="addressAlt"
+                                     class="ms-1">
+                    </translate-field>
+                </div>
+                <div *ngIf="complex.district"
+                     class="d-flex">
+                    <span>{{ 'nomenclatures.districts.shortName' | translate }}</span>
+                    <translate-field class="ms-1"
+                                     [model]="complex.district"></translate-field>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div *ngIf="complex.areaOfActivity"
+             class="row pb-4">
+            <h5 class="text-primary border-bottom-purple">
+                {{ 'enums.areaOfActivity.title' | translate }}
+            </h5>
+            <div class="col-md-12">
+                <translate-enum class="fs-18"
+                                [model]="complex.areaOfActivity"
+                                [enumType]="areaOfActivity"
+                                enumName="areaOfActivity"></translate-enum>
+            </div>
+        </div>
+
+        <supplier-representative *ngIf="supplierRepresentative?.id"
+                                 [supplierRepresentative]="supplierRepresentative">
+        </supplier-representative>
+    </div>
+</div>

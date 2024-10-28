@@ -1,0 +1,26 @@
+<div class="container mt-5">
+  <div class="card no-border shadow">
+    <div class="card-body">
+      <nav ngbNav
+           #nav="ngbNav"
+           [(activeId)]="activeTab"
+           class="nav-tabs">
+        <ng-container ngbNavItem="VoucherInfo">
+          <a ngbNavLink>{{ 'root.buttons.info' | translate }}</a>
+          <ng-template ngbNavContent>
+            <voucher-info></voucher-info>
+          </ng-template>
+        </ng-container>
+        <ng-container ngbNavItem="Questionnaire">
+          <a ngbNavLink>{{ 'vouchers.questionnaire.title2' | translate }}</a>
+          <ng-template ngbNavContent>
+            <questionaire></questionaire>
+          </ng-template>
+        </ng-container>
+      </nav>
+      <div [ngbNavOutlet]="nav"
+           class="mt-2">
+      </div>
+    </div>
+  </div>
+</div>

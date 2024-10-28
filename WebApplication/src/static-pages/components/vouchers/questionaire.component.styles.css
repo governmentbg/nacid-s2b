@@ -1,0 +1,33 @@
+.scroll-spy-container {
+  height: 600px;
+}
+
+p {
+  text-align: justify;
+}
+
+.form-check-input:disabled {
+  cursor: default; 
+  background-color: white !important; 
+  border-color: #135496 !important; 
+  opacity: 1 !important; 
+}
+
+.form-check-input:disabled {
+  cursor: default; 
+  background-color: white !important;
+  opacity: 1 !important; 
+}
+
+.form-check-label {
+  opacity: 1 !important; 
+  cursor: default; 
+}
+
+p { 
+  text-indent: 20px;
+}
+
+.sticky-paragraph {
+  position: sticky;
+}

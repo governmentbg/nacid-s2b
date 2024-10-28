@@ -1,0 +1,134 @@
+<ng-container *ngIf="!loadingData; else loadingSection">
+    <div class="d-flex">
+        <div class="w-35">
+            <h5 *ngIf="clearFilterDtos?.length > 0"
+                class="text-primary text-uppercase fw-bold">
+                {{'supplierOfferings.supplierOfferingGroup.filters' | translate}}
+            </h5>
+
+            <filter-summary *ngIf="clearFilterDtos?.length > 0"
+                            [clearFilterDtos]="clearFilterDtos"
+                            (removeClearFilter)="removeClearFilterElement($event)"
+                            (clearFilters)="clearFilters()">
+            </filter-summary>
+
+            <div *ngIf="filterResultGroup.searchResult.result && filterResultGroup.searchResult.result.length > 0"
+                 class="mt-4">
+                <filter-select *ngIf="filterResultGroup.filterResult[suppliers]"
+                               label="suppliers.title"
+                               labelClass="fw-bold fs-20"
+                               [type]="suppliers"
+                               [filterResult]="filterResultGroup.filterResult[suppliers]"
+                               (addFilterElement)="addFilterElement(suppliers, $event)"
+                               (removeFilterElement)="removeFilterElement(suppliers, $event)">
+                </filter-select>
+
+                <filter-select *ngIf="filterResultGroup.filterResult[smartSpecializations]"
+                               class="mt-4"
+                               label="nomenclatures.smartSpecializations.name"
+                               labelClass="fw-bold fs-20"
+                               [type]="smartSpecializations"
+                               [filterResult]="filterResultGroup.filterResult[smartSpecializations]"
+                               (addFilterElement)="addFilterElement(smartSpecializations, $event)"
+                               (removeFilterElement)="removeFilterElement(smartSpecializations, $event)">
+                </filter-select>
+            </div>
+        </div>
+        <div class="w-65 ps-5">
+            <ng-container
+                          *ngIf="filterResultGroup && filterResultGroup.searchResult.result && filterResultGroup.searchResult.result.length > 0; else noResults">
+                <div class="d-flex justify-content-between mb-3">
+                    <div>
+                        <div *ngIf="filterResultGroup.searchResult.totalCount > 9990; else result">
+                            <span>{{ 'root.searchResult.moreThan' | translate }}</span>
+                        </div>
+
+                        <ng-template #result>
+                            <span>
+                                {{ 'root.searchResult.found' | translate }}:
+                            </span>
+                            <span>
+                                {{ filterResultGroup.searchResult.totalCount }}
+                            </span>
+                        </ng-template>
+                    </div>
+
+                    <div class="d-flex">
+                        <span>{{ 'root.searchResult.page' | translate }}
+                            ({{ filter.currentPage }}/{{
+                            calculateTotalPages(filterResultGroup.searchResult.totalCount, filter.limit) }}):
+                        </span>
+                        <ngb-pagination [collectionSize]="filterResultGroup.searchResult.totalCount"
+                                        [(page)]="filter.currentPage"
+                                        [pageSize]="filter.limit"
+                                        (pageChange)="pageHandlingService.scrollToTop()"
+                                        [maxSize]="3"
+                                        [rotate]="true"
+                                        [boundaryLinks]="true"
+                                        #pagination>
+
+                            <ng-template ngbPaginationFirst>
+                                <span *ngIf="filter.currentPage > 1">{{ 'root.buttons.first' | translate
+                                    }}</span>
+                            </ng-template>
+
+                            <ng-template ngbPaginationLast>
+                                <span
+                                      *ngIf="filter.currentPage  < filterResultGroup.searchResult.totalCount / filter.limit">{{
+                                    'root.buttons.last' | translate }}</span>
+                            </ng-template>
+
+                        </ngb-pagination>
+                    </div>
+                </div>
+
+                <div class="row g-5 justify-content-between row-cols-1 mb-5">
+                    <ng-template ngFor
+                                 let-supplierOffering
+                                 [ngForOf]="filterResultGroup.searchResult.result | slice: (filter.currentPage-1) * filter.limit : filter.currentPage * filter.limit"
+                                 let-i="index">
+                        <supplier-offering-group-card [supplierOffering]="supplierOffering">
+                        </supplier-offering-group-card>
+                    </ng-template>
+                </div>
+            </ng-container>
+            <ng-template #noResults>
+                <i>{{ 'root.searchResult.noResults' | translate }}</i>
+            </ng-template>
+
+            <div *ngIf="!loadingData && filterResultGroup && filterResultGroup.searchResult.result && filterResultGroup.searchResult.result.length > 0"
+                 class="d-flex justify-content-end">
+                <span>{{ 'root.searchResult.page' | translate }}
+                    ({{ filter.currentPage }}/{{
+                    calculateTotalPages(filterResultGroup.searchResult.totalCount, filter.limit) }}):
+                </span>
+                <div>
+                    <ngb-pagination [collectionSize]="filterResultGroup.searchResult.totalCount"
+                                    [(page)]="filter.currentPage"
+                                    [pageSize]="filter.limit"
+                                    (pageChange)="pageHandlingService.scrollToTop()"
+                                    [maxSize]="3"
+                                    [rotate]="true"
+                                    [boundaryLinks]="true"
+                                    #pagination>
+
+                        <ng-template ngbPaginationFirst>
+                            <span *ngIf="filter.currentPage > 1">{{ 'root.buttons.first' | translate
+                                }}</span>
+                        </ng-template>
+
+                        <ng-template ngbPaginationLast>
+                            <span
+                                  *ngIf="filter.currentPage  < filterResultGroup.searchResult.totalCount / filter.limit">{{
+                                'root.buttons.last' | translate }}</span>
+                        </ng-template>
+
+                    </ngb-pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+<ng-template #loadingSection>
+    <loading-section></loading-section>
+</ng-template>

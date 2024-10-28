@@ -1,0 +1,601 @@
+<div class="card no-border mt-2">
+       <div class="card-body">
+              <div class="row">
+                     <div class="col-md-12 pb-3">
+                            <h3 class="text-purple fw-bold">
+                                   {{ 'vouchers.questionnaire.title3' | translate }}
+                            </h3>
+                     </div>
+              </div>
+
+              <div class="col">
+                     <p translate="vouchers.questionnaire.eligibility.firstParagraph"
+                        class="fst-italic ms-3 sticky-paragraph">
+                     </p>
+              </div>
+
+              <div class="col">
+                     <div ngbScrollSpy
+                          #spy="ngbScrollSpy"
+                          rootMargin="16px"
+                          class="scroll-spy-container bg-light pe-3 rounded-2 mb-3">
+                            <div>
+                                   <p translate="vouchers.questionnaire.eligibility.secondParagraph"
+                                      class="fst-italic ms-3"></p>
+                                   <p translate="vouchers.questionnaire.eligibility.thirdParagraph"
+                                      class="fst-italic ms-3"></p>
+                            </div>
+                            <ol class="mt-5">
+                                   <li translate="vouchers.questionnaire.questions.firstQuestion"
+                                       class="fw-bold">
+                                          <div class="form-check mt-3">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question1Yes"
+                                                        disabled
+                                                        checked>
+                                                 <label class="form-check-label"
+                                                        for="question1Yes">{{'vouchers.questionnaire.questions.answers.yes'
+                                                        | translate}}</label>
+                                          </div>
+                                          <div class="form-check fw-normal">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question1No"
+                                                        disabled>
+                                                 <label class="form-check-label"
+                                                        for="question1No">{{'vouchers.questionnaire.questions.answers.no'
+                                                        | translate}}</label>
+                                          </div>
+                                   </li>
+                                   <p translate="vouchers.questionnaire.questions.еxception"
+                                      class="fst-italic fw-normal"></p>
+
+                                   <li translate="vouchers.questionnaire.questions.secondQuestion"
+                                       class="fw-bold">
+                                          <div class="form-check mt-3">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question2Yes"
+                                                        disabled
+                                                        checked>
+                                                 <label class="form-check-label"
+                                                        for="question2Yes">{{'vouchers.questionnaire.questions.answers.yes'
+                                                        | translate}}</label>
+                                          </div>
+                                          <div class="form-check fw-normal">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question2No"
+                                                        disabled>
+                                                 <label class="form-check-label"
+                                                        for="question2No">{{'vouchers.questionnaire.questions.answers.no'
+                                                        | translate}}</label>
+                                          </div>
+                                   </li>
+
+                                   <li translate="vouchers.questionnaire.questions.thirdQuestion"
+                                       class="fw-bold mt-3">
+                                          <div class="form-check mt-3">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question3YesMicro"
+                                                        disabled
+                                                        checked>
+                                                 <label class="form-check-label"
+                                                        for="question3YesMicro">{{'vouchers.questionnaire.questions.answers.yesMicro'
+                                                        |
+                                                        translate}}</label>
+                                          </div>
+                                          <div class="form-check">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question3YesSmall"
+                                                        disabled
+                                                        checked>
+                                                 <label class="form-check-label"
+                                                        for="question3YesSmall">{{'vouchers.questionnaire.questions.answers.yesSmall'
+                                                        |
+                                                        translate}}</label>
+                                          </div>
+                                          <div class="form-check">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question3YesMid"
+                                                        disabled
+                                                        checked>
+                                                 <label class="form-check-label"
+                                                        for="question3YesMid">{{'vouchers.questionnaire.questions.answers.yesMid'
+                                                        | translate}}</label>
+                                          </div>
+                                          <div class="form-check fw-normal">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question3No"
+                                                        disabled>
+                                                 <label class="form-check-label"
+                                                        for="question3No">{{'vouchers.questionnaire.questions.answers.no'
+                                                        | translate}}</label>
+                                          </div>
+                                   </li>
+
+                                   <li translate="vouchers.questionnaire.questions.fourthQuestion"
+                                       class="fw-bold mt-3">
+                                          <div class="form-check mt-3">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question4Yes"
+                                                        disabled
+                                                        checked>
+                                                 <label class="form-check-label"
+                                                        for="question4Yes">{{'vouchers.questionnaire.questions.answers.yes'
+                                                        | translate}}</label>
+                                          </div>
+                                          <div class="form-check fw-normal">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question4No"
+                                                        disabled>
+                                                 <label class="form-check-label"
+                                                        for="question4No">{{'vouchers.questionnaire.questions.answers.no'
+                                                        | translate}}</label>
+                                          </div>
+                                   </li>
+
+                                   <li translate="vouchers.questionnaire.questions.fifthQuestion"
+                                       class="fw-bold mt-3">
+                                          <table class="table table-striped fw-normal mt-3">
+                                                 <thead class="table-light">
+                                                        <tr>
+                                                               <th
+                                                                   translate="vouchers.questionnaire.questions.table.category">
+                                                               </th>
+                                                               <th
+                                                                   translate="vouchers.questionnaire.questions.table.net">
+                                                               </th>
+                                                        </tr>
+                                                 </thead>
+                                                 <tbody>
+                                                        <tr>
+                                                               <td
+                                                                   translate="vouchers.questionnaire.questions.table.microCompany">
+                                                               </td>
+                                                               <td>≥ 41 000 {{'root.levShort' | translate}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                               <td
+                                                                   translate="vouchers.questionnaire.questions.table.smallCompany">
+                                                               </td>
+                                                               <td>≥ 82 000 {{'root.levShort' | translate}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                               <td
+                                                                   translate="vouchers.questionnaire.questions.table.midCompany">
+                                                               </td>
+                                                               <td>≥ 123 000 {{'root.levShort' | translate}}</td>
+                                                        </tr>
+                                                 </tbody>
+                                          </table>
+                                          <div class="form-check mt-4">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question5Yes"
+                                                        disabled
+                                                        checked>
+                                                 <label class="form-check-label"
+                                                        for="question5Yes">{{'vouchers.questionnaire.questions.answers.yes'
+                                                        | translate}}</label>
+                                          </div>
+                                          <div class="form-check fw-normal">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question5No"
+                                                        disabled>
+                                                 <label class="form-check-label"
+                                                        for="question5No">{{'vouchers.questionnaire.questions.answers.no'
+                                                        | translate}}</label>
+                                          </div>
+                                   </li>
+
+                                   <li translate="vouchers.questionnaire.questions.sixthQuestion"
+                                       class="fw-bold mt-3">
+                                          <div class="form-check mt-3">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question6Yes"
+                                                        disabled
+                                                        checked>
+                                                 <label class="form-check-label"
+                                                        for="question6Yes">{{'vouchers.questionnaire.questions.answers.yes'
+                                                        | translate}}</label>
+                                          </div>
+                                          <div class="form-check fw-normal">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question6No"
+                                                        disabled>
+                                                 <label class="form-check-label"
+                                                        for="question6No">{{'vouchers.questionnaire.questions.answers.no'
+                                                        | translate}}</label>
+                                          </div>
+                                   </li>
+
+                                   <li translate="vouchers.questionnaire.questions.seventhQuestion"
+                                       class="fw-bold mt-3">
+                                          <div class="form-check mt-3 fw-normal">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question7Yes"
+                                                        disabled>
+                                                 <label class="form-check-label"
+                                                        for="question7Yes">{{'vouchers.questionnaire.questions.answers.yes'
+                                                        | translate}}</label>
+                                          </div>
+                                          <div class="form-check">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question7No"
+                                                        disabled
+                                                        checked>
+                                                 <label class="form-check-label"
+                                                        for="question7No">{{'vouchers.questionnaire.questions.answers.no'
+                                                        | translate}}</label>
+                                          </div>
+                                   </li>
+
+                                   <li translate="vouchers.questionnaire.questions.eighthQuestion"
+                                       class="fw-bold mt-3">
+                                          <div class="form-check mt-3 fw-normal">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question8Yes"
+                                                        disabled>
+                                                 <label class="form-check-label"
+                                                        for="question8Yes">{{'vouchers.questionnaire.questions.answers.yes'
+                                                        | translate}}</label>
+                                          </div>
+                                          <div class="form-check">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question8No"
+                                                        disabled
+                                                        checked>
+                                                 <label class="form-check-label"
+                                                        for="question8No">{{'vouchers.questionnaire.questions.answers.no'
+                                                        | translate}}</label>
+                                          </div>
+                                   </li>
+
+                                   <li translate="vouchers.questionnaire.questions.ninthQuestion"
+                                       class="fw-bold mt-3">
+                                          <div class="form-check mt-3 fw-normal">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question9Yes"
+                                                        disabled>
+                                                 <label class="form-check-label"
+                                                        for="question9Yes">{{'vouchers.questionnaire.questions.answers.yes'
+                                                        | translate}}</label>
+                                          </div>
+                                          <div class="form-check">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question9No"
+                                                        disabled
+                                                        checked>
+                                                 <label class="form-check-label"
+                                                        for="question9No">{{'vouchers.questionnaire.questions.answers.no'
+                                                        | translate}}</label>
+                                          </div>
+                                   </li>
+
+                                   <li translate="vouchers.questionnaire.questions.tenthQuestion"
+                                       class="fw-bold mt-3">
+                                          <div class="form-check mt-3 fw-normal">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question10Yes"
+                                                        disabled>
+                                                 <label class="form-check-label"
+                                                        for="question10Yes">{{'vouchers.questionnaire.questions.answers.yes'
+                                                        | translate}}</label>
+                                          </div>
+                                          <div class="form-check">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question10No"
+                                                        disabled
+                                                        checked>
+                                                 <label class="form-check-label"
+                                                        for="question10No">{{'vouchers.questionnaire.questions.answers.no'
+                                                        | translate}}</label>
+                                          </div>
+                                   </li>
+
+                                   <li translate="vouchers.questionnaire.questions.eleventhQuestion"
+                                       class="fw-bold mt-3">
+                                          <div class="form-check mt-3 fw-normal">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question11Yes"
+                                                        disabled>
+                                                 <label class="form-check-label"
+                                                        for="question11Yes">{{'vouchers.questionnaire.questions.answers.yes'
+                                                        | translate}}</label>
+                                          </div>
+                                          <div class="form-check">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question11No"
+                                                        disabled
+                                                        checked>
+                                                 <label class="form-check-label"
+                                                        for="question11No">{{'vouchers.questionnaire.questions.answers.no'
+                                                        | translate}}</label>
+                                          </div>
+                                   </li>
+
+                                   <li translate="vouchers.questionnaire.questions.twelfthQuestion"
+                                       class="fw-bold mt-3">
+                                          <div class="form-check mt-3 fw-normal">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question12Yes"
+                                                        disabled>
+                                                 <label class="form-check-label"
+                                                        for="question12Yes">{{'vouchers.questionnaire.questions.answers.yes'
+                                                        | translate}}</label>
+                                          </div>
+                                          <div class="form-check">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question12No"
+                                                        disabled
+                                                        checked>
+                                                 <label class="form-check-label"
+                                                        for="question12No">{{'vouchers.questionnaire.questions.answers.no'
+                                                        | translate}}</label>
+                                          </div>
+                                   </li>
+
+                                   <li translate="vouchers.questionnaire.questions.thirteenthQuestion"
+                                       class="fw-bold mt-3">
+                                          <div class="form-check mt-3 fw-normal">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question13Yes"
+                                                        disabled>
+                                                 <label class="form-check-label"
+                                                        for="question13Yes">{{'vouchers.questionnaire.questions.answers.yes'
+                                                        | translate}}</label>
+                                          </div>
+                                          <div class="form-check">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question13No"
+                                                        disabled
+                                                        checked>
+                                                 <label class="form-check-label"
+                                                        for="question13No">{{'vouchers.questionnaire.questions.answers.no'
+                                                        | translate}}</label>
+                                          </div>
+                                   </li>
+
+                                   <li translate="vouchers.questionnaire.questions.fourteenthQuestion"
+                                       class="fw-bold mt-3">
+                                          <div class="form-check mt-3 fw-normal">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question14Yes"
+                                                        disabled>
+                                                 <label class="form-check-label"
+                                                        for="question14Yes">{{'vouchers.questionnaire.questions.answers.yes'
+                                                        | translate}}</label>
+                                          </div>
+                                          <div class="form-check">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question14No"
+                                                        disabled
+                                                        checked>
+                                                 <label class="form-check-label"
+                                                        for="question14No">{{'vouchers.questionnaire.questions.answers.no'
+                                                        | translate}}</label>
+                                          </div>
+                                   </li>
+
+                                   <li translate="vouchers.questionnaire.questions.fifteenthQuestion"
+                                       class="fw-bold mt-3">
+                                          <div class="form-check mt-3 fw-normal">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question15Yes"
+                                                        disabled>
+                                                 <label class="form-check-label"
+                                                        for="question15Yes">{{'vouchers.questionnaire.questions.answers.yes'
+                                                        | translate}}</label>
+                                          </div>
+                                          <div class="form-check">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question15No"
+                                                        disabled
+                                                        checked>
+                                                 <label class="form-check-label"
+                                                        for="question15No">{{'vouchers.questionnaire.questions.answers.no'
+                                                        | translate}}</label>
+                                          </div>
+                                   </li>
+
+                                   <li translate="vouchers.questionnaire.questions.sixteenthQuestion"
+                                       class="fw-bold mt-3">
+                                          <div class="form-check mt-3 fw-normal">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question16Yes"
+                                                        disabled>
+                                                 <label class="form-check-label"
+                                                        for="question16Yes">{{'vouchers.questionnaire.questions.answers.yes'
+                                                        | translate}}</label>
+                                          </div>
+                                          <div class="form-check">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question16No"
+                                                        disabled
+                                                        checked>
+                                                 <label class="form-check-label"
+                                                        for="question16No">{{'vouchers.questionnaire.questions.answers.no'
+                                                        | translate}}</label>
+                                          </div>
+                                   </li>
+
+                                   <li translate="vouchers.questionnaire.questions.seventeenthQuestion"
+                                       class="fw-bold mt-3">
+                                          <div class="form-check mt-3 fw-normal">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question17Yes"
+                                                        disabled>
+                                                 <label class="form-check-label"
+                                                        for="question17Yes">{{'vouchers.questionnaire.questions.answers.yes'
+                                                        | translate}}</label>
+                                          </div>
+                                          <div class="form-check">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question17No"
+                                                        disabled
+                                                        checked>
+                                                 <label class="form-check-label"
+                                                        for="question17No">{{'vouchers.questionnaire.questions.answers.no'
+                                                        | translate}}</label>
+                                          </div>
+                                   </li>
+
+                                   <li translate="vouchers.questionnaire.questions.eighteenthQuestion"
+                                       class="fw-bold mt-3">
+                                          <div class="form-check mt-3 fw-normal">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question18Yes"
+                                                        disabled>
+                                                 <label class="form-check-label"
+                                                        for="question18Yes">{{'vouchers.questionnaire.questions.answers.yes'
+                                                        | translate}}</label>
+                                          </div>
+                                          <div class="form-check">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question18No"
+                                                        disabled
+                                                        checked>
+                                                 <label class="form-check-label"
+                                                        for="question18No">{{'vouchers.questionnaire.questions.answers.no'
+                                                        | translate}}</label>
+                                          </div>
+                                   </li>
+
+                                   <li translate="vouchers.questionnaire.questions.nineteenthQuestion"
+                                       class="fw-bold mt-3">
+                                          <div class="form-check mt-3 fw-normal">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question19Yes"
+                                                        disabled>
+                                                 <label class="form-check-label"
+                                                        for="question19Yes">{{'vouchers.questionnaire.questions.answers.yes'
+                                                        | translate}}</label>
+                                          </div>
+                                          <div class="form-check">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question19No"
+                                                        disabled
+                                                        checked>
+                                                 <label class="form-check-label"
+                                                        for="question19No">{{'vouchers.questionnaire.questions.answers.no'
+                                                        | translate}}</label>
+                                          </div>
+                                   </li>
+
+                                   <li translate="vouchers.questionnaire.questions.twentiethQuestion"
+                                       class="fw-bold mt-3">
+                                          <div class="form-check mt-3 fw-normal">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question20Yes"
+                                                        disabled>
+                                                 <label class="form-check-label"
+                                                        for="question20Yes">{{'vouchers.questionnaire.questions.answers.yes'
+                                                        | translate}}</label>
+                                          </div>
+                                          <div class="form-check">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question20No"
+                                                        disabled
+                                                        checked>
+                                                 <label class="form-check-label"
+                                                        for="question20No">{{'vouchers.questionnaire.questions.answers.no'
+                                                        | translate}}</label>
+                                          </div>
+                                   </li>
+
+                                   <li translate="vouchers.questionnaire.questions.twentyFirstQuestion"
+                                       class="fw-bold mt-3">
+                                          <div class="form-check mt-3 fw-normal">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question21Yes"
+                                                        disabled>
+                                                 <label class="form-check-label"
+                                                        for="question21Yes">{{'vouchers.questionnaire.questions.answers.yes'
+                                                        | translate}}</label>
+                                          </div>
+                                          <div class="form-check">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question21No"
+                                                        disabled
+                                                        checked>
+                                                 <label class="form-check-label"
+                                                        for="question21No">{{'vouchers.questionnaire.questions.answers.no'
+                                                        | translate}}</label>
+                                          </div>
+                                   </li>
+
+                                   <li translate="vouchers.questionnaire.questions.twentySecondQuestion"
+                                       class="fw-bold mt-3">
+                                          <div class="form-check mt-3 fw-normal">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question21Yes"
+                                                        disabled>
+                                                 <label class="form-check-label"
+                                                        for="question21Yes">{{'vouchers.questionnaire.questions.answers.yes'
+                                                        | translate}}</label>
+                                          </div>
+                                          <div class="form-check">
+                                                 <input type="checkbox"
+                                                        class="form-check-input"
+                                                        id="question21No"
+                                                        disabled
+                                                        checked>
+                                                 <label class="form-check-label"
+                                                        for="question21No">{{'vouchers.questionnaire.questions.answers.no'
+                                                        | translate}}</label>
+                                          </div>
+                                   </li>
+                            </ol>
+                     </div>
+              </div>
+
+              <div class="d-flex mt-5 ms-3">
+                     <static-file-download href="assets/pdf/Въпросник_самооценка_МСП.pdf"
+                                           icon="fa-xl fa-regular fa-file-pdf"
+                                           text="vouchers.questionnaire.title2">
+                     </static-file-download>
+              </div>
+       </div>
+</div>

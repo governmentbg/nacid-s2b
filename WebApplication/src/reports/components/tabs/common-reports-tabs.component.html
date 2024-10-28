@@ -1,0 +1,20 @@
+<div class="container mt-5">
+    <div class="card no-border shadow">
+        <div class="card-body">
+            <nav ngbNav
+                 #nav="ngbNav"
+                 [(activeId)]="activeTab"
+                 class="nav-tabs">
+                <ng-container ngbNavItem="OfferingContract">
+                    <a ngbNavLink>{{ 'reports.offeringContracts.title' | translate }}</a>
+                    <ng-template ngbNavContent>
+                        <offering-contract-report></offering-contract-report>
+                    </ng-template>
+                </ng-container>
+            </nav>
+
+            <div [ngbNavOutlet]="nav"
+                 class="mt-2"></div>
+        </div>
+    </div>
+</div>

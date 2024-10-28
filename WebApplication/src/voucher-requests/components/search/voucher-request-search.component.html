@@ -1,0 +1,150 @@
+<div class="container mt-5">
+    <div class="card no-border shadow">
+        <div class="card-body">
+            <div class="card no-border shadow">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label">{{ 'voucherRequests.fromCreateDate' | translate }}</label>
+                            <div class="input-group">
+                                <date-time [(ngModel)]="filter.fromCreateDate"
+                                           class="w-100"
+                                           [allowClear]="true">
+                                </date-time>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">{{ 'voucherRequests.toCreateDate' | translate }}</label>
+                            <div class="input-group">
+                                <date-time [(ngModel)]="filter.toCreateDate"
+                                           class="w-100"
+                                           [allowClear]="true">
+                                </date-time>
+                            </div>
+                        </div>
+
+                        <!-- <div class="col-md-4">
+                            <label class="form-label">{{ 'enums.voucherRequestState.title' | translate }}</label>
+                            <enum-select name="state"
+                                         [(ngModel)]="filter.state"
+                                         [showSearchBox]="false"
+                                         enumName="voucherRequestState"
+                                         [enumType]="voucherRequestState"></enum-select>
+                        </div> -->
+                    </div>
+
+                    <div *ngIf="hasNacidAlias || hasPniiditAlias"
+                         class="row">
+                        <div class="col-md-6">
+                            <label class="form-label">{{ 'root.header.menu.suppliers' | translate }}</label>
+                            <nomenclature-select restUrl="suppliers"
+                                                 name="supplier"
+                                                 [(ngModel)]="filter.supplier"
+                                                 (keyPropertyChange)="filter.supplierId = $event"
+                                                 textTemplate="{{translateService.currentLang === 'bg' ? '{complex.name} {institution.name}' : '{complex.nameAlt} {institution.nameAlt}'}}">
+                            </nomenclature-select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">{{ 'routes.companies' | translate }}</label>
+                            <nomenclature-select restUrl="companies"
+                                                 name="requestCompanyId"
+                                                 [(ngModel)]="filter.requestCompany"
+                                                 (keyPropertyChange)="filter.requestCompanyId = $event"
+                                                 textTemplate="{name}">
+                            </nomenclature-select>
+                        </div>
+
+                    </div>
+
+                    <div class="d-flex justify-content-end mt-4">
+                        <div class="btn-group gap-3">
+                            <sync-button (btnClickedEvent)="search()"
+                                         text="root.buttons.search"
+                                         icon="fas fa-search"
+                                         btnClass="btn btn-primary btn-sm"
+                                         [pending]="searchDataPending">
+                            </sync-button>
+
+                            <sync-button (btnClickedEvent)="clear()"
+                                         text="root.buttons.clear"
+                                         icon="fas fa-trash"
+                                         btnClass="btn btn-outline-primary btn-sm"
+                                         [pending]="clearDataPending">
+                            </sync-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card no-border shadow mt-4">
+                <div class="card-body">
+                    <ng-container *ngIf="!loadingData; else loadingSection">
+                        <ng-container *ngIf="searchResult.result && searchResult.result.length > 0; else noResults">
+                            <div class="d-flex justify-content-between">
+                                <search-result [offset]="filter.offset"
+                                               [limit]="filter.limit"
+                                               [totalCount]="searchResult.totalCount">
+                                </search-result>
+                            </div>
+
+                            <div class="table-scrollable mt-4 mb-5">
+                                <table class="table table-striped">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th class="col-2">{{ 'voucherRequests.createDate' | translate }}</th>
+                                            <th class="col-5">{{ 'supplierOfferings.name' | translate }}</th>
+                                            <th class="col-4">{{ 'companies.title' | translate }}</th>
+                                            <!-- <th class="col-1 text-center">
+                                                {{ 'enums.voucherRequestState.title' | translate }}
+                                            </th> -->
+                                            <th class="col-1 text-center">{{ 'root.buttons.actions' | translate }}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ng-template ngFor
+                                                     let-voucherRequest
+                                                     [ngForOf]="searchResult.result"
+                                                     let-i="index">
+                                            <tr voucher-request-search-tr
+                                                [voucherRequest]="voucherRequest">
+                                            </tr>
+                                        </ng-template>
+                                    </tbody>
+                                </table>
+
+                                <div class="d-flex justify-content-center">
+                                    <ngb-pagination [collectionSize]="searchResult.totalCount"
+                                                    [(page)]="filter.currentPage"
+                                                    [pageSize]="filter.limit"
+                                                    (pageChange)="getData(false, false)"
+                                                    [maxSize]="3"
+                                                    [rotate]="true"
+                                                    [boundaryLinks]="true">
+
+                                        <ng-template ngbPaginationFirst>
+                                            <span *ngIf="filter.currentPage > 1">{{ 'root.buttons.first' | translate
+                                                }}</span>
+                                        </ng-template>
+
+                                        <ng-template ngbPaginationLast>
+                                            <span *ngIf="filter.currentPage < searchResult.totalCount / filter.limit">{{
+                                                'root.buttons.last' | translate }}</span>
+                                        </ng-template>
+                                    </ngb-pagination>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <ng-template #noResults>
+                            <i>{{ 'root.searchResult.noResults' | translate }}</i>
+                        </ng-template>
+                    </ng-container>
+                    <ng-template #loadingSection>
+                        <loading-section></loading-section>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

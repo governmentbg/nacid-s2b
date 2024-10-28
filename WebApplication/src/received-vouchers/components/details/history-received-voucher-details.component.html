@@ -1,0 +1,140 @@
+<div class="modal-header">
+    <h5 class="modal-title text-primary fw-bold">
+        {{ 'approveRegistrations.history' | translate }}
+    </h5>
+    <sync-button btnClass="btn-close"
+                 (btnClickedEvent)="close()">
+    </sync-button>
+</div>
+<ng-container *ngIf="!loadingData; else loadingSection">
+    <div class="modal-body">
+        <ng-template ngFor
+                     let-historyItem
+                     [ngForOf]="searchResultHistories?.result"
+                     let-i="index">
+            <collapsable-section
+                                 heading="{{ historyItem.contractDate | date: 'dd.MM.yyyy hh.mm' }} - {{ historyItem.contractNumber}}">
+                <div body
+                     class="modal-body">
+                    <collapsable-label heading="receivedVouchers.offeringInformation"
+                                       [isCollapsed]="false">
+                        <div body
+                             class="row g-3">
+                            <div class="col-md-4">
+                                <label class="form-label">
+                                    {{ 'suppliers.title' | translate }}
+                                </label>
+                                <input type="text"
+                                       class="form-control form-control-sm fw-bold"
+                                       value="{{historyItem.supplier?.complex?.name || historyItem.supplier?.institution?.name }}"
+                                       disabled />
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label">
+                                    {{ 'supplierOfferings.singularTitle' | translate }}
+                                </label>
+                                <input type="text"
+                                       class="form-control form-control-sm fw-bold"
+                                       value="{{historyItem.offering?.code}} - {{historyItem.offering?.name}}"
+                                       disabled />
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label">
+                                    {{ 'enums.receivedVoucherState.title' | translate }}
+                                </label>
+                                <input type="text"
+                                       class="form-control form-control-sm"
+                                       value="{{'enums.receivedVoucherState.' + (receivedVoucherState[historyItem.state]) | translate}}"
+                                       disabled />
+                            </div>
+                        </div>
+                        <div body
+                             class="row g-3">
+                            <div class="col-md-4">
+                                <label class="form-label">
+                                    {{ 'receivedVouchers.offeringClarifications' | translate }}
+                                </label>
+                                <textarea name="offeringClarifications"
+                                          class="form-control form-control-sm is-invalid-default"
+                                          style="max-height: 400px; height: 100px;"
+                                          value="{{historyItem.offeringClarifications}}"
+                                          disabled>
+                                </textarea>
+                            </div>
+
+                            <div class="col-md-4 d-flex align-items-center">
+                                <label class="form-label me-2">
+                                    {{ 'receivedVouchers.offeringAdditionalPayment' | translate }}:
+                                </label>
+                                <div *ngIf="historyItem.offeringAdditionalPayment; else notChecked">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <ng-template #notChecked>
+                                    <i class="fa-solid fa-xmark"></i>
+                                </ng-template>
+                            </div>
+                        </div>
+                    </collapsable-label>
+                    <collapsable-label *ngIf="historyItem.secondOffering?.name"
+                                       heading="receivedVouchers.secondOfferingInformation"
+                                       class="mt-2">
+                        <div body
+                             class="row g-3">
+                            <div class="col-md-4">
+                                <label class="form-label">
+                                    {{ 'suppliers.title' | translate }}
+                                </label>
+                                <input type="text"
+                                       class="form-control form-control-sm fw-bold"
+                                       value="{{ historyItem.secondSupplier.complex?.name || historyItem.secondSupplier.institution?.name}}"
+                                       disabled />
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label">
+                                    {{ 'supplierOfferings.singularTitle' | translate }}
+                                </label>
+                                <input type="text"
+                                       class="form-control form-control-sm fw-bold"
+                                       value="{{historyItem.secondOffering?.code}} - {{historyItem.secondOffering?.name}}"
+                                       disabled />
+                            </div>
+                        </div>
+                        <div body
+                             class="row g-3">
+                            <div class="col-md-4">
+                                <label class="form-label">
+                                    {{ 'receivedVouchers.offeringClarifications' | translate }}
+                                </label>
+                                <textarea name="offeringClarifications"
+                                          class="form-control form-control-sm is-invalid-default"
+                                          style="max-height: 400px; height: 100px;"
+                                          value="{{historyItem.secondOfferingClarifications}}"
+                                          disabled>
+                                </textarea>
+                            </div>
+                            <div class="col-md-4 d-flex align-items-center">
+                                <label class="form-label me-2">
+                                    {{ 'receivedVouchers.offeringAdditionalPayment' | translate }}:
+                                </label>
+                                <div class="ml-2"
+                                     *ngIf="historyItem.secondOfferingAdditionalPayment; else notChecked">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <ng-template #notChecked>
+                                    <i class="fa-solid fa-xmark"></i>
+                                </ng-template>
+                            </div>
+
+                        </div>
+                    </collapsable-label>
+                </div>
+            </collapsable-section>
+        </ng-template>
+    </div>
+</ng-container>
+<ng-template #loadingSection>
+    <loading-section></loading-section>
+</ng-template>

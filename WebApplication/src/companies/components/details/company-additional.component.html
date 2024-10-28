@@ -1,0 +1,61 @@
+<ng-container *ngIf="!loadingData; else loadingSection">
+    <ng-container *ngIf="companyAdditional; else noResults">
+        <div class="table-scrollable">
+            <table class="table table-striped">
+                <thead class="table-light">
+                    <tr>
+                        <th class="col-4">{{ 'companyAdditionals.staffCount' | translate }}</th>
+                        <th class="col-4">{{ 'companyAdditionals.annualTurnover' | translate }}</th>
+                        <th colspan="2"
+                            class="col-5">{{ 'companyAdditionals.webPage' | translate }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="col-4">
+                            <span>{{ companyAdditional.staffCount | number:'1.0-0':'bg-BG' }}</span>
+                        </td>
+
+                        <td class="col-4">
+                            <span>{{ companyAdditional.annualTurnover | number: '1.0-2':'bg-BG' }}</span>
+                        </td>
+
+                        <td class="col-4">
+                            <a href="{{companyAdditional.webPage}}"
+                               target="_blank"
+                               class="link-default cursor-pointer"
+                               clickStopPropagation>
+                                {{ companyAdditional.webPage }}
+                            </a>
+                        </td>
+
+                        <td>
+                            <sync-button *ngIf="configuration.useAllFunctionalities && hasCompanyAdditionalWritePermission && companyIsActive"
+                                         (btnClickedEvent)="openEditCompanyAdditional()"
+                                         title="root.buttons.edit"
+                                         icon="fas fa-pen"
+                                         btnClass="btn btn-purple btn-sm">
+                            </sync-button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </ng-container>
+    <ng-template #noResults>
+        <div class="d-flex justify-content-between">
+            <i>{{ 'root.searchResult.noResults' | translate }}</i>
+
+            <div *ngIf="configuration.useAllFunctionalities && hasCompanyAdditionalCreatePermission && companyIsActive">
+                <sync-button (btnClickedEvent)="openAddCompanyAdditional()"
+                             text="companyAdditionals.buttons.addAdditional"
+                             icon="fas fa-plus"
+                             btnClass="btn btn-purple btn-sm">
+                </sync-button>
+            </div>
+        </div>
+    </ng-template>
+</ng-container>
+<ng-template #loadingSection>
+    <loading-section></loading-section>
+</ng-template>

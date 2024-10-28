@@ -1,0 +1,338 @@
+<div class="container mt-5">
+    <div class="card no-border shadow">
+        <div class="card-body">
+            <ng-container *ngIf="!loadingData; else loadingSection">
+                <div class="row">
+                    <div class="col-md-12 pb-3">
+                        <h3 class="text-purple fw-bold d-flex justify-content-between">
+                            <translate-field class="text-truncate-1-rows w-80"
+                                             [model]="supplierOffering"
+                                             [showTitle]="true"></translate-field>
+                            <div>{{supplierOffering.code}}</div>
+                        </h3>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 mb-4">
+                        <nav [ngbScrollSpyMenu]="spy"
+                             class="h-100 flex-column align-items-stretch pe-4 border-end">
+                            <nav class="nav nav-pills flex-column">
+                                <a role="button"
+                                   class="nav-link"
+                                   ngbScrollSpyItem="supplierTitle"
+                                   (click)="communicationOpened = false"
+                                   clickStopPropagation>
+                                    {{ 'suppliers.title' | translate }}
+                                </a>
+                            </nav>
+
+                            <nav *ngIf="supplierOffering.supplierOfferingTeams.length > 0"
+                                 class="nav nav-pills flex-column">
+                                <a role="button"
+                                   class="nav-link"
+                                   ngbScrollSpyItem="supplierTeam"
+                                   (click)="communicationOpened = false"
+                                   clickStopPropagation>
+                                    {{ 'supplierTeams.singularTitle' | translate }}
+                                </a>
+                            </nav>
+
+                            <nav class="nav nav-pills flex-column">
+                                <a role="button"
+                                   class="nav-link"
+                                   ngbScrollSpyItem="addressOffer"
+                                   (click)="communicationOpened = false"
+                                   clickStopPropagation>
+                                    {{ 'supplierOfferings.addressOffer' | translate }}
+                                </a>
+                            </nav>
+
+                            <nav class="nav nav-pills flex-column">
+                                <a role="button"
+                                   class="nav-link"
+                                   ngbScrollSpyItem="supplierOfferingDescription"
+                                   (click)="communicationOpened = false"
+                                   clickStopPropagation>
+                                    {{ 'supplierOfferings.offeringDescription' | translate }}
+                                </a>
+                            </nav>
+
+                            <nav *ngIf="supplierOffering.files?.length > 0"
+                                 class="nav nav-pills flex-column">
+                                <a role="button"
+                                   class="nav-link"
+                                   ngbScrollSpyItem="supplierOfferingFile"
+                                   (click)="communicationOpened = false"
+                                   clickStopPropagation>
+                                    {{ 'supplierOfferings.file' | translate }}
+                                </a>
+                            </nav>
+
+                            <nav *ngIf="supplierOffering.supplierOfferingEquipment?.length > 0"
+                                 class="nav nav-pills flex-column">
+                                <a role="button"
+                                   class="nav-link"
+                                   ngbScrollSpyItem="supplierOfferingEquipment"
+                                   (click)="communicationOpened = false"
+                                   clickStopPropagation>
+                                    {{ 'supplierEquipment.singularTitle' | translate }}
+                                </a>
+                            </nav>
+
+                            <nav *ngIf="isCompanyUser"
+                                 class="nav nav-pills flex-column">
+                                <a role="button"
+                                   class="nav-link"
+                                   ngbScrollSpyItem="voucherRequestCommunication"
+                                   (click)="communicationOpened = true"
+                                   clickStopPropagation>
+                                    <i class="fa-solid fa-envelope"></i>
+                                    {{ 'voucherRequests.communications.start' | translate }}
+                                </a>
+                            </nav>
+                        </nav>
+                    </div>
+
+                    <div class="col-md-9">
+                        <div ngbScrollSpy
+                             #spy="ngbScrollSpy"
+                             rootMargin="16px"
+                             class="scroll-spy-container pe-3 rounded-2 mb-3">
+
+                            <vr-communication-container *ngIf="communicationOpened && isCompanyUser; else infoSections"
+                                                        [supplierOffering]="supplierOffering"
+                                                        [requestCompanyId]="userContextService.userContext.companyId"
+                                                        [entityId]="null"
+                                                        ngbScrollSpyFragment="voucherRequestCommunication">
+                            </vr-communication-container>
+
+                            <ng-template #infoSections>
+                                <h4 ngbScrollSpyFragment="supplierTitle"
+                                    class="text-primary fw-bold">
+                                    <translate-field *ngIf="supplier.type === supplierType.institution; else complexTitle"
+                                                     [model]="supplier.institution">
+                                    </translate-field>
+
+                                    <ng-template #complexTitle>
+                                        <translate-field [model]="supplier.complex">
+                                        </translate-field>
+                                    </ng-template>
+                                </h4>
+
+                                <h5 *ngIf="supplier.type === supplierType.institution
+                                    && supplier.institution.id !== supplier.institution.rootId"
+                                    class="text-purple fw-bold">
+                                    <translate-field [model]="supplier.institution.root"></translate-field>
+                                </h5>
+
+                                <div *ngIf="supplier?.institution?.uic || supplier?.institution?.webPageUrl || supplier?.complex?.webPageUrl"
+                                     class="mt-2">
+                                    <div *ngIf="supplier?.institution?.uic"
+                                         class="d-flex">
+                                        <div class="fw-bold">
+                                            {{ 'institutions.uic' | translate }}:
+                                        </div>
+                                        <div class="ms-1">
+                                            {{ supplier.institution.uic }}
+                                        </div>
+                                    </div>
+
+                                    <div *ngIf="supplier?.institution?.webPageUrl || supplier?.complex?.webPageUrl"
+                                         class="d-flex">
+                                        <div class="fw-bold">
+                                            {{ 'institutions.webPageUrl' | translate }}:
+                                        </div>
+                                        <div class="ms-1">
+                                            <a href="{{supplier?.institution?.webPageUrl ?? supplier?.complex?.webPageUrl}}"
+                                               target="_blank"
+                                               class="link-primary cursor-pointer"
+                                               clickStopPropagation>
+                                                {{supplier?.institution?.webPageUrl ?? supplier?.complex?.webPageUrl}}
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p *ngIf="supplier?.institution?.settlement || supplier?.complex?.settlement"
+                                   class="fst-italic mt-2">
+                                    <span>{{supplier?.institution?.settlement?.code ??
+                                        supplier?.complex?.settlement?.code}},</span>
+                                    <translate-field
+                                                     [model]="supplier?.institution?.settlement ?? supplier?.complex?.settlement"></translate-field>
+                                    <translate-field [model]="supplier?.institution ?? supplier?.complex"
+                                                     bgProperty="address"
+                                                     enProperty="addressAlt">
+                                    </translate-field>
+                                    <span *ngIf="supplier?.institution?.district ?? supplier?.complex?.district">
+                                        <span>{{ 'nomenclatures.districts.shortName' | translate }}</span>
+                                        <translate-field
+                                                         [model]="supplier?.institution?.district ?? supplier?.complex?.district"></translate-field>
+                                    </span>
+                                </p>
+
+                                <div *ngIf="supplierOffering.supplierOfferingTeams?.length > 0">
+                                    <h4 ngbScrollSpyFragment="supplierTeam"
+                                        class="text-primary fw-bold">
+                                        {{ 'supplierTeams.singularTitle' | translate }}</h4>
+                                </div>
+
+                                <div *ngFor="let team of supplierOffering.supplierOfferingTeams">
+                                    <div *ngIf="team.supplierTeam"
+                                         class="mt-2 mb-3">
+                                        <div class="d-flex mb-1">
+                                            <span *ngIf="team.supplierTeam?.academicRankDegree"
+                                                  class="me-1">
+                                                {{team.supplierTeam.academicRankDegree}}
+                                            </span>
+                                            <translate-field [model]="team.supplierTeam">
+                                            </translate-field>
+                                        </div>
+
+                                        <div *ngIf="team.supplierTeam?.rasPortalUrl"
+                                             class="mt-1">
+                                            <a class="link-default"
+                                               href="{{team.supplierTeam.rasPortalUrl}}"
+                                               target="_blank"
+                                               clickStopPropagation>
+                                                <span>{{ team.supplierTeam.rasPortalUrl }}</span>
+                                            </a>
+                                        </div>
+
+                                        <a class="link-primary"
+                                           href="mailto:{{ team.supplierTeam.name }}"
+                                           clickStopPropagation>
+                                            <i class="fa-solid fa-envelope"></i>
+                                            <span class="ms-2">{{ team.supplierTeam.userName }}</span>
+                                        </a>
+
+                                        <div class="mt-1">
+                                            <i class="fa-solid fa-phone text-purple"></i>
+                                            <span class="ms-2">{{ team.supplierTeam.phoneNumber }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <h4 ngbScrollSpyFragment="addressOffer"
+                                    class="text-primary fw-bold">
+                                    {{ 'supplierOfferings.addressOffer' | translate }}
+                                </h4>
+
+                                <p class="fst-italic mt-2">
+                                    <span *ngIf="supplierOffering.address">
+                                        {{supplierOffering.address}}<br>
+                                    </span>
+                                    <span>{{ 'nomenclatures.districts.shortName' | translate }}</span>
+                                    <translate-field [model]="supplierOffering.district"
+                                                     bgProperty="name"
+                                                     enProperty="nameAlt">
+                                    </translate-field>
+
+                                    <span>{{ 'nomenclatures.municipalities.shortName' | translate }}</span>
+                                    <translate-field [model]="supplierOffering.municipality"
+                                                     bgProperty="name"
+                                                     enProperty="nameAlt">
+                                    </translate-field>
+
+                                    <translate-field [model]="supplierOffering.settlement"
+                                                     bgProperty="name"
+                                                     enProperty="nameAlt">
+                                    </translate-field>
+                                </p>
+
+                                <h4 ngbScrollSpyFragment="supplierOfferingDescription"
+                                    class="text-primary fw-bold">
+                                    {{ 'supplierOfferings.shortDescription' | translate }}
+                                </h4>
+
+                                <p>
+                                    <translate-field [model]="supplierOffering"
+                                                     bgProperty="shortDescription"
+                                                     enProperty="shortDescriptionAlt"></translate-field>
+                                </p>
+
+                                <h4 *ngIf="supplierOffering.smartSpecializations?.length > 0"
+                                    class="text-primary fw-bold">
+                                    {{ 'supplierOfferings.typeAndSmartSpecialization' | translate }}
+                                </h4>
+
+                                <ul *ngIf="supplierOffering.smartSpecializations?.length > 0"
+                                    class="list-checkmarks">
+                                    <li
+                                        *ngFor="let smartSpecializationOffering of supplierOffering.smartSpecializations">
+                                        <span>
+                                            {{ smartSpecializationOffering.smartSpecialization.code }}
+                                        </span>
+                                        <translate-field [model]="smartSpecializationOffering.smartSpecialization">
+                                        </translate-field>
+                                    </li>
+
+                                    <li>
+                                        <translate-enum [model]="supplierOffering.offeringType"
+                                                        [enumType]="offeringType"
+                                                        enumName="offeringType">
+                                        </translate-enum>
+                                    </li>
+                                </ul>
+
+                                <h4 *ngIf="supplierOffering.description"
+                                    class="text-primary fw-bold">
+                                    {{ 'supplierOfferings.longDescription' | translate }}
+                                </h4>
+
+                                <p *ngIf="supplierOffering.description">
+                                    <translate-field [model]="supplierOffering"
+                                                     bgProperty="description"
+                                                     enProperty="descriptionAlt"></translate-field>
+                                </p>
+
+                                <h4 *ngIf="supplierOffering.webPageUrl"
+                                    class="text-primary fw-bold">
+                                    {{ 'supplierOfferings.webPageUrl' | translate}}
+                                </h4>
+
+                                <a class="link-primary d-flex"
+                                   href="{{supplierOffering.webPageUrl}}"
+                                   target="_blank"
+                                   clickStopPropagation>
+                                    <span class="ms-1">{{ supplierOffering.webPageUrl }}</span>
+                                </a>
+
+
+                                <h4 *ngIf="supplierOffering.files?.length > 0"
+                                    ngbScrollSpyFragment="supplierOfferingFile"
+                                    class="text-primary fw-bold mt-1">
+                                    {{ 'supplierOfferings.file' | translate }}
+                                </h4>
+
+                                <div *ngIf="supplierOffering.files?.length > 0">
+                                    <p *ngFor="let file of supplierOffering.files; let i = index">
+                                        <file-read [file]="supplierOffering.files[i]">
+                                        </file-read>
+                                    </p>
+                                </div>
+
+                                <h4 *ngIf="supplierOffering.supplierOfferingEquipment?.length > 0"
+                                    ngbScrollSpyFragment="supplierOfferingEquipment"
+                                    class="text-primary fw-bold">
+                                    {{ 'supplierEquipment.singularTitle' | translate }}
+                                </h4>
+
+                                <ul *ngIf="supplierOffering.supplierOfferingEquipment?.length > 0"
+                                    class="list-checkmarks">
+                                    <li *ngFor="let equipment of supplierOffering.supplierOfferingEquipment">
+                                        <translate-field [model]="equipment.supplierEquipment"></translate-field>
+                                    </li>
+                                </ul>
+
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-template #loadingSection>
+                <loading-section></loading-section>
+            </ng-template>
+        </div>
+    </div>
+</div>

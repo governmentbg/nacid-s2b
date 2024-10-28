@@ -1,0 +1,77 @@
+<div class="container mt-5">
+    <div class="card no-border shadow">
+        <div class="card-body">
+            <ng-container *ngIf="!loadingData; else loadingSection">
+                <supplier-institution-details *ngIf="supplier.type === supplierType.institution; else complexDetails"
+                                              [institution]="supplier.institution"
+                                              [supplierRepresentative]="supplier.representative">
+                </supplier-institution-details>
+
+                <ng-template #complexDetails>
+                    <supplier-complex-details [complex]="supplier.complex"
+                                              [supplierRepresentative]="supplier.representative">
+                    </supplier-complex-details>
+                </ng-template>
+
+                <div class="mt-4">
+                    <nav ngbNav
+                         #nav="ngbNav"
+                         [(activeId)]="activeTab"
+                         class="nav-tabs">
+                        <ng-container ngbNavItem="{{teamDetailsTab}}">
+                            <a ngbNavLink>
+                                {{ 'suppliers.tabs.teamDetailsTab' | translate }}
+                                <i class="fa-solid fa-circle-info ms-2 text-purple"
+                                   ngbTooltip="{{'supplierTeams.tabTooltip' | translate}}"
+                                   tooltipClass="custom-tooltip-purple"
+                                   (click)="openTeamModalInfo($event)"
+                                   clickStopPropagation>
+                                </i>
+                            </a>
+                            <ng-template ngbNavContent>
+                                <supplier-team [supplier]="supplier">
+                                </supplier-team>
+                            </ng-template>
+                        </ng-container>
+                        <ng-container ngbNavItem="{{offeringDetailsTab}}">
+                            <a ngbNavLink>{{ 'suppliers.tabs.offeringDetailsTab' | translate }}</a>
+                            <ng-template ngbNavContent>
+                                <supplier-offering [supplier]="supplier">
+                                </supplier-offering>
+                            </ng-template>
+                        </ng-container>
+                        <ng-container ngbNavItem="{{equipmentDetailsTab}}">
+                            <a ngbNavLink>
+                                {{ 'suppliers.tabs.equipmentDetailsTab' | translate }}
+                                <i class="fa-solid fa-circle-info ms-2 text-purple"
+                                   ngbTooltip="{{'supplierEquipment.tabTooltip' | translate}}"
+                                   tooltipClass="custom-tooltip-purple"
+                                   (click)="openEquipmentModalInfo($event)"
+                                   clickStopPropagation>
+                                </i>
+                            </a>
+                            <ng-template ngbNavContent>
+                                <supplier-equipment [supplier]="supplier">
+                                </supplier-equipment>
+                            </ng-template>
+                        </ng-container>
+                        <ng-container *ngIf="subordinates.length > 0"
+                                      ngbNavItem="{{subordinateDetailsTab}}">
+                            <a ngbNavLink>{{ 'suppliers.tabs.subordinateDetailsTab' | translate }}</a>
+                            <ng-template ngbNavContent>
+                                <supplier-institution-subordinates [subordinates]="subordinates">
+                                </supplier-institution-subordinates>
+                            </ng-template>
+                        </ng-container>
+                    </nav>
+
+                    <div [ngbNavOutlet]="nav"
+                         class="mt-2"></div>
+                </div>
+            </ng-container>
+            <ng-template #loadingSection>
+                <loading-section></loading-section>
+            </ng-template>
+        </div>
+    </div>
+</div>

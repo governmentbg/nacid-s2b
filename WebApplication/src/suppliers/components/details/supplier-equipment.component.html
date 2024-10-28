@@ -1,0 +1,112 @@
+<ng-container *ngIf="!loadingData; else loadingSection">
+    <ng-container *ngIf="supplierEquipment && supplierEquipment.length > 0; else noResults">
+        <div class="d-flex justify-content-between">
+            <div *ngIf="supplierEquipment">
+                <span>
+                    {{'root.searchResult.total' | translate}}
+                </span>
+                <span class="fw-bold">
+                    {{supplierEquipment.length}}
+                </span>
+                {{'root.searchResult.countShort' | translate}}
+                <span>
+                </span>
+                <span>
+                    {{'root.searchResult.equipment' | translate}}
+                </span>
+            </div>
+
+            <div *ngIf="configuration.useAllFunctionalities && hasSupplierEquipmentCreatePermission">
+                <sync-button (btnClickedEvent)="openAddSupplierEquipment()"
+                             text="supplierEquipment.buttons.addEquipment"
+                             icon="fas fa-plus"
+                             btnClass="btn btn-purple btn-sm">
+                </sync-button>
+            </div>
+        </div>
+        <div class="table-scrollable mt-4 mb-5">
+            <table class="table table-striped">
+                <thead class="table-light">
+                    <tr>
+                        <th class="col-4">{{ 'supplierEquipment.name' | translate }}</th>
+                        <th class="col-4">{{ 'supplierEquipment.description' | translate }}</th>
+                        <th class="col-3">{{ 'supplierEquipment.file' | translate }}</th>
+                        <th *ngIf="hasSupplierEquipmentWritePermission || hasSupplierEquipmentDeletePermission"
+                            class="col-1">
+                            <div class="d-flex justify-content-center">
+                                {{ 'root.buttons.actions'| translate }}
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let equipment of supplierEquipment; let i = index">
+                        <td class="col-4">
+                            <translate-field class="fw-bold"
+                                             [model]="equipment">
+                            </translate-field>
+
+                            <ng-template ngFor
+                                         let-supplierEquipmentTeam
+                                         [ngForOf]="equipment.supplierOfferingEquipment"
+                                         let-i="index">
+                                <div class="text-truncate-1-rows">
+                                    <translate-field [model]="supplierEquipmentTeam.supplierOffering"
+                                                     title="{{supplierEquipmentTeam.supplierOffering.name}}">
+                                    </translate-field>
+                                </div>
+                            </ng-template>
+                        </td>
+
+                        <td class="col-4">
+                            <div class="text-truncate-4-rows"
+                                 title="{{equipment.description}}">
+                                {{equipment.description}}
+                            </div>
+                        </td>
+
+                        <td class="col-3">
+                            <file-read [file]="equipment.file">
+                            </file-read>
+                        </td>
+
+                        <td class="col-1">
+                            <div class="d-flex gap-2 align-items-center justify-content-end">
+                                <sync-button *ngIf="configuration.useAllFunctionalities && hasSupplierEquipmentWritePermission"
+                                             (btnClickedEvent)="openEditSupplierEquipment(equipment, i)"
+                                             title="root.buttons.viewEdit"
+                                             icon="fas fa-search"
+                                             btnClass="btn btn-purple btn-sm">
+                                </sync-button>
+
+                                <sync-button *ngIf="configuration.useAllFunctionalities && hasSupplierEquipmentDeletePermission"
+                                             (btnClickedEvent)="deleteSupplierEquipment(equipment.id, i)"
+                                             title="root.buttons.delete"
+                                             icon="fas fa-trash"
+                                             btnClass="btn btn-danger btn-sm"
+                                             [pending]="deleteSupplierEquipmentPending[i]">
+                                </sync-button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </ng-container>
+    <ng-template #noResults>
+        <div class="d-flex justify-content-between">
+            <i>{{ 'root.searchResult.noInfoEntered' | translate }}</i>
+
+            <div *ngIf="configuration.useAllFunctionalities && hasSupplierEquipmentCreatePermission">
+                <sync-button (btnClickedEvent)="openAddSupplierEquipment()"
+                             text="supplierEquipment.buttons.addEquipment"
+                             icon="fas fa-plus"
+                             btnClass="btn btn-purple btn-sm">
+                </sync-button>
+            </div>
+        </div>
+    </ng-template>
+</ng-container>
+<ng-template #loadingSection>
+    <loading-section></loading-section>
+</ng-template>

@@ -1,0 +1,42 @@
+<div class="d-flex align-items-center {{inputGroupClass}}">
+    <div *ngIf="model?.name"
+         class="d-flex justify-content-between align-items-center {{formControlClass}}"
+         [class.disabled-select-clickable]="disabled">
+        <a (click)="getFile()"
+           target="_blank"
+           class="text-overflow cursor-pointer">{{ model?.name }}</a>
+        <i *ngIf="!disabled && allowClear"
+           class="fas fa-times cursor-pointer"
+           (click)="deleteFile()"></i>
+    </div>
+
+    <span *ngIf="!model?.key"
+          class="{{formControlClass}}"
+          clickStopPropagation
+          [class.is-invalid-static]="!disabled && required && !model?.key"
+          [class.disabled-select]="disabled"
+          [class.noevents]="disabled || fileUploadProgress"
+          [ngClass]="{'cursor-pointer': !disabled && !fileUploadProgress }"
+          (click)="uploadFileFromInput()">
+        {{ 'fileUpload.noFileUpload' | translate }}
+    </span>
+
+    <div *ngIf="!disabled">
+        <div *ngIf="fileUploadProgress"
+             class="btn {{btnClass}}">
+            <i class="fas fa-sync fa-spin"></i>
+        </div>
+
+        <label *ngIf="!fileUploadProgress"
+               class="btn {{btnClass}} cursor-pointer">
+            <i class="fas fa-file-upload"
+               style="min-width: 15px;"></i>
+            <input #fileUploadInput
+                   type="file"
+                   onclick="this.value = null"
+                   accept="application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                   (change)="uploadFile($event)"
+                   style="display: none;">
+        </label>
+    </div>
+</div>

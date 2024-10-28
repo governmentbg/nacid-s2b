@@ -1,0 +1,25 @@
+<div class="card-text mt-1">
+  <collapsable-label
+                     [heading]="(translateService.currentLang === 'bg' ? subordinate.name : subordinate.nameAlt) + ' (' + (subordinate.smartSpecializations ? subordinate.smartSpecializations.length : 0) + ')'">>
+    <ul body>
+      <ng-template ngFor
+                   let-smartSpecialization
+                   [ngForOf]="subordinate.smartSpecializations"
+                   let-j="index">
+        <li>
+          <supplier-smart-specialization-card [smartSpecialization]="smartSpecialization"
+                                              [supplierId]="subordinate.id">
+          </supplier-smart-specialization-card>
+        </li>
+      </ng-template>
+    </ul>
+
+    <div additional>
+      <a [routerLink]="['/suppliers', subordinate.id]"
+         clickStopPropagation
+         class="link-orange">
+        <i class="fa fa-search"></i>
+      </a>
+    </div>
+  </collapsable-label>
+</div>

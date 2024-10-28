@@ -1,0 +1,105 @@
+<div class="card no-border shadow">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-2">
+                <label for="code"
+                       class="form-label">{{ 'nomenclatures.code' | translate }}</label>
+                <input type="text"
+                       class="form-control form-control-sm"
+                       [(ngModel)]="filter.code"
+                       id="code"
+                       name="code">
+            </div>
+
+            <div class="col-md-8">
+                <label class="form-label">{{ 'nomenclatures.lawForms.name' | translate }}</label>
+                <input type="text"
+                       class="form-control form-control-sm"
+                       [(ngModel)]="filter.name"
+                       id="name"
+                       name="name">
+            </div>
+
+            <div class="col-md-2">
+                <label class="form-label">{{ 'nomenclatures.isActive' | translate }}</label>
+                <bool-select [(ngModel)]="filter.isActive">
+                </bool-select>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end mt-4">
+            <div class="btn-group">
+                <sync-button (btnClickedEvent)="search()"
+                             text="root.buttons.search"
+                             icon="fas fa-search"
+                             btnClass="btn btn-primary btn-sm"
+                             [pending]="searchDataPending">
+                </sync-button>
+
+                <sync-button (btnClickedEvent)="clear()"
+                             text="root.buttons.clear"
+                             icon="fas fa-trash"
+                             btnClass="btn btn-outline-primary btn-sm ms-3"
+                             [pending]="clearDataPending">
+                </sync-button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card no-border mt-4">
+    <div class="card-body">
+        <ng-container *ngIf="!loadingData; else loadingSection">
+            <ng-container *ngIf="searchResult.result && searchResult.result.length > 0; else noResults">
+                <div class="table-scrollable mt-4 mb-5">
+                    <table class="table table-striped">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="col-1">{{ 'nomenclatures.code' | translate }}</th>
+                                <th class="col-5">{{ 'nomenclatures.lawForms.name' | translate }}</th>
+                                <th class="col-5">{{ 'nomenclatures.lawForms.nameAlt' | translate }}</th>
+                                <th class="col-1 center-text-th">{{ 'nomenclatures.isActive' | translate }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let lawForm of searchResult.result">
+                                <td class="col-1">
+                                    {{ lawForm.code }}
+                                </td>
+
+                                <td class="col-5">
+                                    {{ lawForm.name }}
+                                </td>
+
+                                <td class="col-5">
+                                    {{ lawForm.nameAlt }}
+                                </td>
+
+                                <td class="col-1 center-text-td">
+                                    <span *ngIf="lawForm.isActive"
+                                          class="fas fa-check"></span>
+                                    <span *ngIf="!lawForm.isActive"
+                                          class="fas fa-times"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="d-flex justify-content-end"
+                     *ngIf="searchResult.result && searchResult.result.length > 0 && searchResult.result.length === filter.limit">
+                    <sync-button (btnClickedEvent)="loadMore()"
+                                 text="root.buttons.loadMore"
+                                 btnClass="btn btn-primary"
+                                 [pending]="moreDataPending">
+                    </sync-button>
+                </div>
+            </ng-container>
+            <ng-template #noResults>
+                <i>{{ 'root.searchResult.noResults' | translate }}</i>
+            </ng-template>
+        </ng-container>
+        <ng-template #loadingSection>
+            <loading-section></loading-section>
+        </ng-template>
+    </div>
+</div>

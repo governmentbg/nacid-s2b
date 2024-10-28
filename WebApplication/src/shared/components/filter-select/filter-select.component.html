@@ -1,0 +1,49 @@
+<div class="{{class}}">
+    <label class="{{labelClass}} mb-2">
+        {{ label | translate }}
+    </label>
+
+    <ng-template ngFor
+                 let-item
+                 [ngForOf]="filterResult | slice: 0:endIndex"
+                 let-i="index">
+        <div class="form-check">
+            <input class="form-check-input cursor-pointer"
+                   type="checkbox"
+                   name="item{{type}}{{i}}"
+                   id="item{{type}}{{i}}"
+                   [(ngModel)]="item.isSelected"
+                   (change)="selectItem(item)">
+            <label class="form-check-label cursor-pointer d-flex link-primary-hover"
+                   for="item{{type}}{{i}}"
+                   title="{{ translateService.currentLang === 'bg' ? item.name : item.nameAlt }}">
+                <span *ngIf="item.code"
+                      class="me-1">{{item.code}}</span>
+                <translate-field [model]="item"
+                                 [bgProperty]="bgProperty"
+                                 [enProperty]="enProperty"
+                                 class="overflow-ellipsis">
+                </translate-field>
+                <span class="ms-1">({{ item.count | number:'1.0-0':'bg-BG' }})</span>
+            </label>
+        </div>
+    </ng-template>
+
+    <div *ngIf="filterResult && filterResult.length > 5"
+         class="d-flex">
+        <a *ngIf="endIndex === 5; else closeLink"
+           class="link-primary fw-bold"
+           (click)="endIndex = filterResult.length"
+           clickStopPropagation>
+            {{ 'supplierOfferings.supplierOfferingGroup.showAll' | translate }}
+        </a>
+
+        <ng-template #closeLink>
+            <a class="link-primary fw-bold"
+               (click)="endIndex = 5"
+               clickStopPropagation>
+                {{ 'root.buttons.close' | translate }}
+            </a>
+        </ng-template>
+    </div>
+</div>

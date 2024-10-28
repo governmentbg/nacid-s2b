@@ -1,0 +1,53 @@
+<td class="align-middle">
+    <div *ngIf="voucherRequest.code"
+         class="fw-bold">
+        {{ voucherRequest.code }}
+    </div>
+    <div>
+        {{ voucherRequest.createDate | date: 'dd.MM.yyyy hh:mm' }}
+    </div>
+</td>
+
+<td class="align-middle">
+    <translate-field title="{{voucherRequest.supplierOffering.name}}"
+                     class="fw-bold link-primary text-truncate-1-rows"
+                     [model]="voucherRequest.supplierOffering"
+                     (click)="getSupplierOffering()"
+                     clickStopPropagation>
+    </translate-field>
+
+    <translate-field title="{{voucherRequest.supplierOffering.supplier?.institution?.name ?? voucherRequest.supplierOffering.supplier?.complex?.name}}"
+                     class="text-truncate-1-rows"
+                     [model]="voucherRequest.supplierOffering.supplier?.institution ?? voucherRequest.supplierOffering.supplier?.complex">
+    </translate-field>
+</td>
+
+<td class="align-middle">
+    <translate-field title="{{voucherRequest.requestCompany.name}}"
+                     class="fw-bold link-primary text-truncate-1-rows"
+                     [model]="voucherRequest.requestCompany"
+                     (click)="getCompany()"
+                     clickStopPropagation>
+    </translate-field>
+    <div>
+        {{ 'companies.uic' | translate }}: {{voucherRequest.requestCompany.uic}}
+    </div>
+</td>
+
+<!-- <td class="align-middle text-center">
+    <i title="{{ 'enums.voucherRequestState.' + voucherRequestState[voucherRequest.state] | translate }}"
+       class="fa-lg fa-solid"
+       [class.text-purple]="voucherRequest.state === voucherRequestState.draft || voucherRequest.state === voucherRequestState.pending || voucherRequest.state === voucherRequestState.requested"
+       [class.text-success]="voucherRequest.state === voucherRequestState.generated || voucherRequest.state === voucherRequestState.recieved"
+       [class.text-danger]="voucherRequest.state === voucherRequestState.declined"
+       [ngClass]="{'fa-hourglass-start': voucherRequest.state === voucherRequestState.draft, 'fa-hourglass-half': voucherRequest.state === voucherRequestState.pending, 'fa-hourglass-end': voucherRequest.state === voucherRequestState.requested, 'fa-ticket': voucherRequest.state === voucherRequestState.generated, 'fa-check': voucherRequest.state === voucherRequestState.recieved, 'fa-xmark': voucherRequest.state === voucherRequestState.declined }">
+    </i>
+</td> -->
+
+<td class="align-middle text-center">
+    <sync-button (btnClickedEvent)="open()"
+                 title="root.buttons.view"
+                 icon="fas fa-search"
+                 btnClass="btn btn-purple btn-sm">
+    </sync-button>
+</td>

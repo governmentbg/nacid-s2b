@@ -1,0 +1,25 @@
+<div class="card-text mt-1">
+  <collapsable-label
+                     [heading]="smartSpecialization.code + ' ' + (translateService.currentLang === 'bg' ? smartSpecialization.name : smartSpecialization.nameAlt)  + ' (' + (smartSpecialization.offerings ? smartSpecialization.offerings.length : 0) + ')'">
+    <ul body
+        class="list-group">
+      <li class="list-group-item"
+          *ngFor="let offering of smartSpecialization.offerings">
+        <h6>
+          <translate-field [model]="offering"
+                           clickStopPropagation
+                           (click)="openReadSupplierOffering(offering.id)"
+                           class="link-primary"></translate-field>
+        </h6>
+        <h6 *ngIf="offering.shortDescription"
+            class="text-muted fst-italic d-flex">
+          <translate-field [model]="offering"
+                           [hasBrackets]="true"
+                           bgProperty="shortDescription"
+                           enProperty="shortDescription">
+          </translate-field>
+        </h6>
+      </li>
+    </ul>
+  </collapsable-label>
+</div>

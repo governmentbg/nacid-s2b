@@ -1,0 +1,1 @@
+insert into supplierofferingcounter(id, counter, version, vieworder) values(1, 0, 0, 0);

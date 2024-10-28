@@ -1,0 +1,24 @@
+<ng-container *ngIf="!loadingData; else loadingSection">
+    <ng-container *ngIf="searchResult.result && searchResult.result.length > 0; else noResults">
+        <div class="d-flex justify-content-between mb-4">
+            <search-result [totalCount]="searchResult.totalCount">
+            </search-result>
+        </div>
+
+        <div class="row g-5 justify-content-between row-cols-1 mb-5">
+            <ng-template ngFor
+                         let-smartSpecializationRootGroup
+                         [ngForOf]="searchResult.result"
+                         let-i="index">
+                <smart-specialization-card [smartSpecializationRootGroup]="smartSpecializationRootGroup">
+                </smart-specialization-card>
+            </ng-template>
+        </div>
+    </ng-container>
+    <ng-template #noResults>
+        <i>{{ 'root.searchResult.noResults' | translate }}</i>
+    </ng-template>
+</ng-container>
+<ng-template #loadingSection>
+    <loading-section></loading-section>
+</ng-template>

@@ -1,0 +1,18 @@
+<ngb-toast *ngFor="let alertMessage of alertMessageService.alertMessages"
+           [class]="alertMessage.classname"
+           [autohide]="true"
+           [delay]="alertMessage.delay"
+           (hidden)="alertMessageService.remove(alertMessage)"
+           (click)="alertMessageService.remove(alertMessage)">
+    <div class="fs-16">
+        <span *ngIf="alertMessage.icon"
+              class="{{alertMessage.icon}} me-1">
+        </span>
+        <span *ngIf="alertMessage.alertText">
+            {{ alertMessage.alertText | translate }}
+        </span>
+        <span *ngIf="alertMessage.customText">
+            {{ alertMessage.customText | translate }}
+        </span>
+    </div>
+</ngb-toast>

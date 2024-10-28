@@ -1,0 +1,22 @@
+<div *ngIf="hasReadPermission">
+    <a *ngIf="file; else noFileUpload"
+       (click)="getFile()"
+       class="{{linkClass}}"
+       clickStopPropagation>
+        <span *ngIf="!downloadingFile; else downloadingFileTemp">
+            <i *ngIf="file.mimeType === pdfMimeType
+                || file.mimeType === excelMimeType
+                || file.mimeType === wordMimeType
+                || file.mimeType === docxMimeType"
+               class="fa-solid me-1"
+               [ngClass]="{'fa-file-word': file.mimeType === wordMimeType || file.mimeType === docxMimeType, 'fa-file-pdf': file.mimeType === pdfMimeType, 'fa-file-excel': file.mimeType === excelMimeType}"></i>
+            <span>{{ file.name }}</span>
+        </span>
+        <ng-template #downloadingFileTemp>
+            <i class="fas fa-sync fa-spin"></i>
+        </ng-template>
+    </a>
+    <ng-template #noFileUpload>
+        {{ 'fileUpload.noFileUpload' | translate }}
+    </ng-template>
+</div>

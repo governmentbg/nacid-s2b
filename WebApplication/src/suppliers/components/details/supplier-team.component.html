@@ -1,0 +1,147 @@
+<ng-container *ngIf="!loadingData; else loadingSection">
+    <ng-container *ngIf="supplierTeam && supplierTeam.length > 0; else noResults">
+        <div class="d-flex justify-content-between">
+            <div *ngIf="supplierTeam">
+                <span>
+                    {{'root.searchResult.total' | translate}}
+                </span>
+                <span class="fw-bold">
+                    {{supplierTeam.length}}
+                </span>
+                {{'root.searchResult.countShort' | translate}}
+                <span>
+                </span>
+                <span>
+                    {{'root.searchResult.team' | translate}}
+                </span>
+            </div>
+
+            <div *ngIf="hasSupplierTeamsCreatePermission">
+                <sync-button (btnClickedEvent)="openAddSupplierTeam()"
+                             text="supplierTeams.buttons.addToTeam"
+                             icon="fas fa-plus"
+                             btnClass="btn btn-purple btn-sm">
+                </sync-button>
+            </div>
+        </div>
+        <div class="table-scrollable mt-4 mb-5">
+            <table class="table table-striped">
+                <thead class="table-light">
+                    <tr>
+                        <th class="col-5">{{ 'supplierTeams.name' | translate }}</th>
+                        <th class="col-3">{{ 'supplierTeams.email' | translate }}</th>
+                        <th class="col-2">{{ 'supplierTeams.phoneNumber' | translate }}</th>
+                        <th *ngIf="hasSupplierTeamsWritePermission || hasSupplierTeamsDeletePermission"
+                            class="col-1">
+                            <div class="d-flex justify-content-center">
+                                {{ 'root.buttons.actions'| translate }}
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let personInTeam of supplierTeam; let i = index">
+                        <td class="col-4">
+                            <div class="d-flex">
+                                <span *ngIf="personInTeam.academicRankDegree"
+                                      class="fw-bold ms-1">
+                                    {{personInTeam.academicRankDegree}}
+                                </span>
+                                <translate-field class="fw-bold ms-1"
+                                                 [model]="personInTeam">
+                                </translate-field>
+                            </div>
+
+                            <div *ngIf="personInTeam.rasPortalUrl"
+                                 class="d-flex">
+                                <a class="link-default"
+                                   href="{{personInTeam.rasPortalUrl}}"
+                                   target="_blank"
+                                   clickStopPropagation>
+                                    <span>{{ personInTeam.rasPortalUrl }}</span>
+                                </a>
+                            </div>
+
+                            <ng-template ngFor
+                                         let-supplierOfferingTeam
+                                         [ngForOf]="personInTeam.supplierOfferingTeams"
+                                         let-i="index">
+                                <div class="text-truncate-1-rows">
+                                    <translate-field [model]="supplierOfferingTeam.supplierOffering"
+                                                     title="{{supplierOfferingTeam.supplierOffering.name}}">
+                                    </translate-field>
+                                </div>
+                            </ng-template>
+                        </td>
+
+                        <td class="col-3">
+                            <a class="link-default"
+                               href="mailto:{{ personInTeam.userName }}">{{ personInTeam.userName }}</a>
+                        </td>
+
+                        <td class="col-2">
+                            {{ personInTeam.phoneNumber }}
+                        </td>
+
+                        <td class="col-1">
+                            <div class="d-flex gap-2 align-items-center justify-content-end">
+                                <sync-button *ngIf="hasSupplierTeamsWritePermission"
+                                             (btnClickedEvent)="openEditSupplierTeam(personInTeam, i)"
+                                             title="root.buttons.viewEdit"
+                                             icon="fas fa-search"
+                                             btnClass="btn btn-purple btn-sm">
+                                </sync-button>
+
+                                <sync-button *ngIf="hasSupplierTeamsWritePermission && personInTeam.isActive"
+                                             (btnClickedEvent)="changeIsActive(personInTeam, i)"
+                                             title="root.buttons.deactivate"
+                                             icon="fa-solid fa-xmark"
+                                             btnClass="btn btn-danger btn-sm"
+                                             [pending]="changeIsActiveSupplierTeamPending[i]">
+                                </sync-button>
+
+                                <sync-button *ngIf="hasSupplierTeamsWritePermission && !personInTeam.isActive"
+                                             (btnClickedEvent)="changeIsActive(personInTeam, i)"
+                                             title="root.buttons.activate"
+                                             icon="fa-solid fa-check"
+                                             btnClass="btn btn-success btn-sm"
+                                             [pending]="changeIsActiveSupplierTeamPending[i]">
+                                </sync-button>
+
+                                <!-- <sync-button *ngIf="hasSupplierTeamsDeletePermission"
+                                             (btnClickedEvent)="deleteSupplierTeam(personInTeam.id, i)"
+                                             title="root.buttons.delete"
+                                             icon="fas fa-trash"
+                                             btnClass="btn btn-danger btn-sm"
+                                             [pending]="deleteSupplierTeamPending[i]">
+                                </sync-button> -->
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </ng-container>
+    <ng-template #noResults>
+        <div class="d-flex justify-content-between">
+
+            <div *ngIf="isSupplier; else noSupplier">
+                <i>{{ 'supplierTeams.modals.infoModal' | translate }}</i>
+            </div>
+            <ng-template #noSupplier>
+                <i>{{ 'root.searchResult.noInfoEntered' | translate }}</i>
+            </ng-template>
+
+            <div *ngIf="hasSupplierTeamsCreatePermission">
+                <sync-button (btnClickedEvent)="openAddSupplierTeam()"
+                             text="supplierTeams.buttons.addToTeam"
+                             icon="fas fa-plus"
+                             btnClass="btn btn-purple btn-sm">
+                </sync-button>
+            </div>
+        </div>
+    </ng-template>
+</ng-container>
+<ng-template #loadingSection>
+    <loading-section></loading-section>
+</ng-template>

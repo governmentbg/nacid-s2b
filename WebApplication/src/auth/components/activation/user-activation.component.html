@@ -1,0 +1,57 @@
+<div class="container mt-5">
+    <div class="card shadow no-border">
+        <div class="card-body">
+            <h4 class="text-center mb-4 text-purple">
+                {{ 'auth.userActivation' | translate }}
+            </h4>
+            <form #form="ngForm"
+                  autocomplete="off"
+                  (keyup.enter)="form.invalid ? null : activateUser()"
+                  [combinedPasswordValidation]="'password'">
+                <div class="row">
+                    <div class="form-group col-sm-4 offset-sm-4 mt-2">
+                        <input type="password"
+                               blockCopyPaste
+                               class="form-control is-invalid-default"
+                               [(ngModel)]="userActivationDto.password"
+                               name="password"
+                               placeholder="{{ 'auth.password' | translate }}"
+                               minlength="8"
+                               maxlength="50"
+                               passwordValidation
+                               #password="ngModel"
+                               ngbTooltip="{{ password.invalid ? ('invalidTexts.invalidPasswordValidation' | translate) : null }}"
+                               triggers="blur"
+                               tooltipClass="custom-tooltip-invalid">
+                    </div>
+
+                    <div class="form-group col-sm-4 offset-sm-4 mt-3">
+                        <input type="password"
+                               blockCopyPaste
+                               class="form-control is-invalid-default"
+                               [(ngModel)]="userActivationDto.passwordAgain"
+                               name="passwordAgain"
+                               placeholder="{{ 'auth.confirmPassword' | translate }}"
+                               minlength="8"
+                               maxlength="50"
+                               passwordValidation
+                               #passwordAgain="ngModel"
+                               ngbTooltip="{{ passwordAgain.invalid ? ('invalidTexts.invalidConfirmPasswordValidation' | translate) : null }}"
+                               triggers="blur"
+                               tooltipClass="custom-tooltip-invalid">
+                    </div>
+
+                    <div class="col-sm-4 offset-sm-4 mt-4">
+                        <sync-button btnClass="btn btn-primary w-100"
+                                     (btnClickedEvent)="activateUser()"
+                                     text="root.buttons.activate"
+                                     [showTextOnPending]="false"
+                                     [pending]="activationPending"
+                                     [disabled]="form.invalid || userContextService.authorizationState !== authorizationState.logout">
+                        </sync-button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

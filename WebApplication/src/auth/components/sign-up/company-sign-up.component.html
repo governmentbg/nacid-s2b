@@ -1,0 +1,190 @@
+<div class="row">
+    <div class="col-md-2">
+        <label class="form-label">
+            {{ 'companies.isRegistryAgency' | translate }}
+            <i class="fa-solid fa-circle-info text-purple"
+               ngbTooltip="{{'auth.signUp.isRegistryAgencyTooltip' | translate}}"
+               tooltipClass="custom-tooltip-purple">
+            </i>
+        </label>
+        <div>
+            <input class="form-check-input cursor-pointer"
+                   type="checkbox"
+                   name="isRegistryAgency"
+                   id="isRegistryAgency"
+                   [(ngModel)]="company.isRegistryAgency"
+                   (ngModelChange)="registryAgencyChanged()">
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <label class="form-label">
+            {{ 'companies.uic' | translate }}
+            <span class="fst-italic text-muted">
+                ({{'auth.signUp.getCompanyByUicTooltip' | translate}} <i class="fas fa-external-link-alt">
+                </i>)
+            </span>
+        </label>
+        <div class="input-group">
+            <input type="text"
+                   class="form-control form-control-sm is-invalid-default"
+                   [(ngModel)]="company.uic"
+                   (ngModelChange)="uicChanged()"
+                   name="companyUic"
+                   minlength="9"
+                   maxlength="13"
+                   uicValidation
+                   #uic="ngModel"
+                   ngbTooltip="{{ uic.invalid ? ('invalidTexts.invalidUic' | translate) : null }}"
+                   triggers="blur"
+                   tooltipClass="custom-tooltip-invalid">
+            <span class="input-group-text"
+                  title="{{'auth.signUp.getByUicTooltip' | translate}}"
+                  [class.cursor-pointer]="uic.valid"
+                  *ngIf="company.isRegistryAgency"
+                  (click)="uic.valid ? getCompanyByUic() : null"
+                  clickStopPropagation>
+                <i *ngIf="!getCompanyByUicPending"
+                   class="fas fa-external-link-alt"
+                   [class.text-muted]="uic.invalid">
+                </i>
+
+                <i *ngIf="getCompanyByUicPending"
+                   class="fas fa-sync fa-spin"
+                   [class.text-muted]="uic.invalid">
+                </i>
+            </span>
+        </div>
+    </div>
+
+
+    <div class="col-md-2">
+        <label class="form-label">
+            {{ 'enums.companyType.title' | translate }}
+            <i class="fa-solid fa-circle-info text-purple"
+               ngbTooltip="{{'auth.signUp.companyTypeTooltip' | translate}}"
+               tooltipClass="custom-tooltip-purple">
+            </i>
+        </label>
+        <enum-select [(ngModel)]="company.type"
+                     formControlClass="form-control form-control-sm "
+                     [allowClear]="false"
+                     enumName="companyType"
+                     [enumType]="companyType"
+                     name="companyType"
+                     [required]="true">
+        </enum-select>
+    </div>
+
+    <div class="col-md-4">
+        <label class="form-label">{{ 'nomenclatures.lawForms.name' | translate }}</label>
+        <nomenclature-select restUrl="nomenclatures/lawForms/search"
+                             name="lawForm"
+                             [(ngModel)]="company.lawForm"
+                             (keyPropertyChange)="company.lawFormId = $event"
+                             textTemplate="{{translateService.currentLang === 'bg' ? '{name} ({code})' : '{nameAlt} ({code})'}}"
+                             [showSearchBox]="false"
+                             [required]="true"
+                             [readonly]="company.isRegistryAgency">
+        </nomenclature-select>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <label class="form-label">
+            {{ 'companies.name' | translate }}
+            <i class="fa-solid fa-circle-info text-purple"
+               ngbTooltip="{{'auth.signUp.companyNameTooltip' | translate}}"
+               tooltipClass="custom-tooltip-purple">
+            </i>
+        </label>
+        <input type="text"
+               class="form-control form-control-sm is-invalid-default"
+               [(ngModel)]="company.name"
+               name="companyName"
+               minlength="2"
+               maxlength="100"
+               #name="ngModel"
+               ngbTooltip="{{ name.invalid ? ('invalidTexts.required' | translate) : null }}"
+               triggers="blur"
+               tooltipClass="custom-tooltip-invalid"
+               noWhiteSpacesValidation>
+    </div>
+
+    <div class="col-md-6">
+        <label class="form-label">{{ 'companies.address' | translate }}</label>
+        <input type="text"
+               class="form-control form-control-sm is-invalid-default"
+               [(ngModel)]="company.address"
+               name="companyAddress"
+               maxlength="250"
+               noWhiteSpacesValidation
+               #companyAddress="ngModel"
+               ngbTooltip="{{ companyAddress.invalid ? ('invalidTexts.required' | translate) : null }}"
+               triggers="blur"
+               tooltipClass="custom-tooltip-invalid">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <label class="form-label">{{ 'companies.email' | translate }}</label>
+        <input type="text"
+               class="form-control form-control-sm is-invalid-default"
+               [(ngModel)]="company.email"
+               name="companyEmail"
+               minlength="8"
+               maxlength="50"
+               emailValidation
+               #companyEmail="ngModel"
+               ngbTooltip="{{ companyEmail.invalid ? ('invalidTexts.invalidEmail' | translate) : null }}"
+               triggers="blur"
+               tooltipClass="custom-tooltip-invalid">
+    </div>
+
+    <div class="col-md-3">
+        <label class="form-label">{{ 'companies.phoneNumber' | translate }}</label>
+        <input type="text"
+               class="form-control form-control-sm is-invalid-default"
+               [(ngModel)]="company.phoneNumber"
+               name="companyPhoneNumber"
+               minlength="9"
+               maxlength="18"
+               #companyPhoneNumber="ngModel"
+               ngbTooltip="{{ companyPhoneNumber.invalid ? ('invalidTexts.invalidPhoneNumber' | translate) : null }}"
+               triggers="blur"
+               tooltipClass="custom-tooltip-invalid"
+               phoneValidation>
+    </div>
+
+    <div class="col-md-3">
+        <label class="form-label">
+            {{ 'nomenclatures.municipalities.name' | translate }}
+            <i class="fa-solid fa-circle-info text-purple"
+               ngbTooltip="{{'auth.signUp.companySettlementTooltip' | translate}}"
+               tooltipClass="custom-tooltip-purple">
+            </i>
+        </label>
+        <nomenclature-select restUrl="nomenclatures/municipalities/search"
+                             name="companyMunicipality"
+                             [(ngModel)]="company.municipality"
+                             (ngModelChange)="settlementChangeService.municipalityChange(company, $event, 'municipality', 'district', 'settlement')"
+                             textTemplate="{{translateService.currentLang === 'bg' ? '{name}' : '{nameAlt}'}}"
+                             [required]="true">
+        </nomenclature-select>
+    </div>
+
+    <div class="col-md-3">
+        <label class="form-label">{{ 'nomenclatures.settlements.name' | translate }}</label>
+        <nomenclature-select restUrl="nomenclatures/settlements/search"
+                             name="companySettlement"
+                             [(ngModel)]="company.settlement"
+                             (ngModelChange)="settlementChangeService.settlementChange(company, $event, 'settlement', 'district', 'municipality')"
+                             [filter]="{municipalityId: company.municipalityId}"
+                             [disabled]="!company.municipalityId"
+                             textTemplate="{{translateService.currentLang === 'bg' ? '{name}' : '{nameAlt}'}}"
+                             [required]="true">
+        </nomenclature-select>
+    </div>
+</div>

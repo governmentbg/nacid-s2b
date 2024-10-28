@@ -1,0 +1,7 @@
+{
+  "/api": {
+    "target": "http://localhost:10401",
+    "secure": false,
+    "ws": false
+  }
+}

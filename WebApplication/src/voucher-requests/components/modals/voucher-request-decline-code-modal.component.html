@@ -1,0 +1,18 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{'voucherRequests.modals.declineTitle' | translate}}</h4>
+  <sync-button btnClass="btn-close"
+               (btnClickedEvent)="onCancel()"
+               [disabled]="declineCodePending">
+  </sync-button>
+</div>
+<div class="modal-body">
+  <label>
+    {{'voucherRequests.modals.declineText' | translate}}
+  </label>
+</div>
+<div class="modal-footer">
+  <sync-button btnClass="btn btn-sm btn-primary"
+               (btnClickedEvent)="declineCode()"
+               [pending]="declineCodePending"
+               text="root.buttons.decline"></sync-button>
+</div>

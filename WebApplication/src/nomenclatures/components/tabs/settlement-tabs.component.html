@@ -1,0 +1,32 @@
+<div class="container mt-5">
+  <div class="card no-border shadow">
+      <div class="card-body">
+          <nav ngbNav
+               #nav="ngbNav"
+               [(activeId)]="activeTab"
+               class="nav-tabs">
+              <ng-container ngbNavItem="District">
+                <a ngbNavLink>{{ 'nomenclatures.districts.title' | translate }}</a>
+                <ng-template ngbNavContent>
+                  <district-search></district-search>
+                </ng-template>
+              </ng-container>
+              <ng-container ngbNavItem="Municipality">
+                <a ngbNavLink>{{ 'nomenclatures.municipalities.title' | translate }}</a>
+                <ng-template ngbNavContent>
+                  <municipality-search></municipality-search>
+                </ng-template>
+              </ng-container>
+              <ng-container ngbNavItem="Settlement">
+                <a ngbNavLink>{{ 'nomenclatures.settlements.title' | translate }}</a>
+                <ng-template ngbNavContent>
+                  <settlement-search></settlement-search>
+                </ng-template>
+              </ng-container>
+          </nav>
+          <div [ngbNavOutlet]="nav"
+               class="mt-2">
+          </div>
+      </div>
+  </div>
+</div>

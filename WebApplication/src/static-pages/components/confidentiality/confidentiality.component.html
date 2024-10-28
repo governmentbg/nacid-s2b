@@ -1,0 +1,63 @@
+<div class="container mt-5">
+  <div class="card no-border shadow">
+    <div class="card-body">
+      <!-- <h2 class="text-center text-purple fw-bold mb-4">{{'confidentiality.title1' | translate}}</h2> -->
+      <h2 class="text-purple fw-bold mb-4">{{'confidentiality.title2' | translate}}</h2>
+
+      <h4 class="text-primary fw-bold mt-4">{{'confidentiality.purpose.title' | translate}}</h4>
+      <p translate="confidentiality.purpose.firstParagraph"></p>
+      <p translate="confidentiality.purpose.secondParagraph"></p>
+      <p class="underline-text mt-4"
+         translate="confidentiality.purpose.contactData"></p>
+      <p translate="confidentiality.purpose.name"></p>
+      <p translate="confidentiality.purpose.address"></p>
+      <p translate="confidentiality.purpose.phone"></p>
+      <p translate="confidentiality.purpose.email"> <a href="mailto:{{'root.footer.contacts.email' | translate}}">
+          {{'nacid@nacid.bg'}}</a></p>
+      <p class="underline-text mt-4"
+         translate="confidentiality.purpose.person"></p>
+      <p translate="confidentiality.purpose.personName"></p>
+      <p translate="confidentiality.purpose.personEmail"><a href="mailto:{{'root.footer.contacts.email' | translate}}">
+          {{'d.evtimov@nacid.bg'}}</a></p>
+
+      <h4 class="text-primary fw-bold mt-4">{{'confidentiality.categoryPersonalData.title' | translate}}</h4>
+      <p class="fw-bold"
+         translate="confidentiality.categoryPersonalData.firstParagraph"></p>
+      <p [innerHTML]="'confidentiality.categoryPersonalData.secondParagraph' | translate"></p>
+      <p [innerHTML]="'confidentiality.categoryPersonalData.thirdParagraph' | translate"></p>
+      <p [innerHTML]="'confidentiality.categoryPersonalData.fourthParagraph' | translate"></p>
+      <p class="fw-bold"
+         translate="confidentiality.categoryPersonalData.fifthParagraph"></p>
+      <p translate="confidentiality.categoryPersonalData.sixthParagraph"></p>
+      <h4 class="text-primary fw-bold mt-4">{{'confidentiality.purposesOfProcessing.title' | translate}}</h4>
+      <p translate="confidentiality.purposesOfProcessing.firstParagraph"></p>
+      <ul class="list-bullets">
+        <li *ngFor="let purpose of purposes">
+          {{ purpose | translate }}
+        </li>
+      </ul>
+      <p translate="confidentiality.purposesOfProcessing.secondParagraph"></p>
+
+      <h4 class="text-primary fw-bold mt-4">{{'confidentiality.storagePeriod.title' | translate}}</h4>
+      <p translate="confidentiality.storagePeriod.firstParagraph"></p>
+
+      <h4 class="text-primary fw-bold mt-4">{{'confidentiality.securityOfProcessing.title' | translate}}</h4>
+      <p translate="confidentiality.securityOfProcessing.firstParagraph"></p>
+
+      <h4 class="text-primary fw-bold mt-4">{{'confidentiality.dataSubjectRigths.title' | translate}}</h4>
+      <p translate="confidentiality.dataSubjectRigths.firstParagraph"></p>
+      <p translate="confidentiality.dataSubjectRigths.secondParagraph"></p>
+      <p translate="confidentiality.dataSubjectRigths.thirdParagraph"></p>
+      <p translate="confidentiality.dataSubjectRigths.fourthParagraph"></p>
+      <p translate="confidentiality.dataSubjectRigths.fifthParagraph"></p>
+
+      <h4 class="text-primary fw-bold mt-4">{{'confidentiality.rightsExcersice.title' | translate}}</h4>
+      <p translate="confidentiality.rightsExcersice.firstParagraph"></p>
+      <p translate="confidentiality.rightsExcersice.secondParagraph"></p>
+      <p [innerHTML]="'confidentiality.rightsExcersice.thirdParagraph' | translate"></p>
+
+      <h4 class="text-primary fw-bold mt-4">{{'confidentiality.changes.title' | translate}}</h4>
+      <p translate="confidentiality.changes.firstParagraph"></p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="modal-header">
+    <h5 class="modal-title text-primary fw-bold">{{ 'supplierOfferings.modals.title' | translate }}</h5>
+    <sync-button btnClass="btn-close"
+                 (btnClickedEvent)="decline()"
+                 [disabled]="addOfferingPending">
+    </sync-button>
+</div>
+<form #form="ngForm"
+      autocomplete="off">
+    <div class="modal-body">
+        <supplier-offering-basic [supplierId]="supplierId"
+                                 [isEditMode]="true"
+                                 [supplierOfferingDto]="supplierOfferingDto"
+                                 (triggerAddEvent)="addSoSmartSpecialization()"
+                                 (triggerEraseEvent)="eraseSoSmartSpecialization($event)"
+                                 (triggerTeamAddEvent)="addSoTeam()"
+                                 (triggerTeamEraseEvent)="eraseSoTeam($event)"
+                                 (triggerEquipmentAddEvent)="addSoEquipment()"
+                                 (triggerEquipmentEraseEvent)="eraseSoEquipment($event)"
+                                 (triggerFileAddEvent)="addSoFile()"
+                                 (triggerFileEraseEvent)="eraseSoFile($event)">
+        </supplier-offering-basic>
+    </div>
+</form>
+
+<div class="modal-footer">
+    <sync-button btnClass="btn btn-sm btn-primary"
+                 (btnClickedEvent)="add()"
+                 text="root.buttons.add"
+                 [pending]="addOfferingPending"
+                 [disabled]="form.invalid">
+    </sync-button>
+</div>

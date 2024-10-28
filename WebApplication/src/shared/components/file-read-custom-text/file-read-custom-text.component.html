@@ -1,0 +1,16 @@
+<div *ngIf="hasReadPermission">
+  <a *ngIf="file; else noFileUpload"
+     (click)="getFile()"
+     class="{{linkClass}}"
+     clickStopPropagation>
+    <span *ngIf="!downloadingFile; else downloadingFileTemp">
+      <span>{{ text | translate }}</span>
+    </span>
+    <ng-template #downloadingFileTemp>
+      <i class="fas fa-sync fa-spin"></i>
+    </ng-template>
+  </a>
+  <ng-template #noFileUpload>
+    {{ 'fileUpload.noFileUpload' | translate }}
+  </ng-template>
+</div>

@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;NU1803</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>1701;1702;NU1803</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AspNet.Security.OpenIdConnect.Primitives" Version="2.0.0" />
+    <PackageReference Include="FileStorageNetCore" Version="7.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.20" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.16" />
+    <PackageReference Include="OpenIddict.AspNetCore" Version="4.5.0" />
+    <PackageReference Include="ProxyKit" Version="2.3.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+    <ProjectReference Include="..\Logs\Logs.csproj" />
+    <ProjectReference Include="..\MessageBroker\MessageBroker.csproj" />
+    <ProjectReference Include="..\Middlewares\Middlewares.csproj" />
+    <ProjectReference Include="..\Sc.Jobs\Sc.Jobs.csproj" />
+    <ProjectReference Include="..\Sc.Models\Sc.Models.csproj" />
+    <ProjectReference Include="..\Sc.Reports\Sc.Reports.csproj" />
+    <ProjectReference Include="..\Sc.Repositories\Sc.Repositories.csproj" />
+    <ProjectReference Include="..\Sc.Services\Sc.Services.csproj" />
+    <ProjectReference Include="..\Sc.SignalR\Sc.SignalR.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,32 @@
+<div class="custom-border">
+  <div *ngIf="clearFilterDtos.length > 0; else noActiveFilters">
+
+    <div class="mb-3">
+      <a class="link-primary fw-bold"
+         (click)="onClearFilters()"> <i class="fa-solid fa-xmark"></i>
+        {{'supplierOfferings.supplierOfferingGroup.clear' | translate}}</a>
+    </div>
+
+    <ng-template ngFor
+                 let-filter
+                 [ngForOf]="clearFilterDtos"
+                 let-i="index">
+      <div class="form-check">
+        <input class="form-check-input cursor-pointer"
+               type="checkbox"
+               name="filter{{filter.clearType}}{{i}}"
+               id="filter{{filter.clearType}}{{i}}"
+               [checked]="true"
+               (change)="onRemoveClearFilter(filter)">
+        <label class="form-check-label cursor-pointer d-flex link-primary-hover"
+               for="filter{{filter.clearType}}{{i}}">
+          <span>{{ filter.value }}</span>
+        </label>
+      </div>
+    </ng-template>
+
+  </div>
+  <ng-template #noActiveFilters>
+    <p>{{'supplierOfferings.supplierOfferingGroup.noFilters' | translate}}</p>
+  </ng-template>
+</div>

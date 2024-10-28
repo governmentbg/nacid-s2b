@@ -1,0 +1,25 @@
+.message {
+    padding: 10px 10px;
+    line-height: 26px;
+    font-size: 14px;
+    border-radius: 10px;
+    display: inline-block;
+    position: relative;
+    max-width: 50%;
+}
+
+.message-container .my-message {
+    color: #fff;
+    background-color: #135496;
+}
+
+.message-container .other-message {
+    color: #000;
+    background-color: #dcdcdc;
+}
+
+.message-container .message-data {
+    margin-bottom: 5px;
+    font-size: 12px;
+    color: #434651;
+}

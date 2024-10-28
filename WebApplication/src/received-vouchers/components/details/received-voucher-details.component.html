@@ -1,0 +1,94 @@
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h4 class="text-purple">
+                {{ 'receivedVouchers.details' | translate }}
+            </h4>
+
+            <div *ngIf="!loadingData"
+                 class="btn-group gap-2">
+
+                <div class="d-flex gap-2"
+                     *ngIf="(receivedVoucher.state === receivedVoucherState.draft || receivedVoucher.state === receivedVoucherState.completed) && hasDeleteDataPermission && !isEditMode">
+                    <sync-button icon="fa fa-times"
+                                 btnClass="btn btn-sm btn-danger"
+                                 (btnClickedEvent)="openTerminateVoucherModal()"
+                                 text="root.buttons.terminate"
+                                 [pending]="terminateDataPending">
+                    </sync-button>
+                </div>
+
+                <div class="d-flex gap-2"
+                     *ngIf="!isEditMode && receivedVoucher.historiesCount > 0">
+                    <sync-button icon="fa-solid fa-clock-rotate-left"
+                                 btnClass="btn btn-outline-purple btn-sm"
+                                 (btnClickedEvent)="openHistory()"
+                                 text="root.buttons.history">
+                    </sync-button>
+                </div>
+
+                <div class="d-flex gap-2"
+                     *ngIf="(receivedVoucher.state === receivedVoucherState.completed
+                            || receivedVoucher.state === receivedVoucherState.generatedCertificate)
+                        && canGenerateCertificate
+                        && !isEditMode">
+                    <sync-button btnClass="btn btn-sm btn-success"
+                                 (btnClickedEvent)="openCertificateGeneration()"
+                                 text="root.buttons.generateCertificate"
+                                 icon="fa-solid fa-certificate">
+                    </sync-button>
+                </div>
+
+                <div class="d-flex gap-2"
+                     *ngIf="hasEditDataPermissions && receivedVoucher.state === receivedVoucherState.draft">
+                    <sync-button *ngIf="!isEditMode"
+                                 btnClass="btn btn-sm btn-primary"
+                                 (btnClickedEvent)="edit()"
+                                 text="root.buttons.edit">
+                    </sync-button>
+
+                    <sync-button *ngIf="isEditMode"
+                                 btnClass="btn btn-sm btn-success"
+                                 (btnClickedEvent)="save()"
+                                 text="root.buttons.save"
+                                 [pending]="editReceivedVoucherPending"
+                                 [disabled]="form.invalid">
+                    </sync-button>
+
+                    <sync-button *ngIf="isEditMode"
+                                 btnClass="btn btn-sm btn-danger"
+                                 (btnClickedEvent)="cancel()"
+                                 text="root.buttons.cancel">
+                    </sync-button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <form #form="ngForm"
+                  autocomplete="off">
+                <ng-container *ngIf="!loadingData; else loadingSection">
+                    <received-voucher-basic [isEditMode]="isEditMode"
+                                            [receivedVoucherDto]="receivedVoucher">
+                    </received-voucher-basic>
+
+                    <div *ngIf="canReadCommunication"
+                         class="card mt-4">
+                        <div class="card-header">
+                            <h5 class="text-purple">
+                                {{ 'receivedVouchers.communications.title' | translate }}
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <rv-communication-container [entityId]="receivedVoucher.id">
+                            </rv-communication-container>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-template #loadingSection>
+                    <loading-section></loading-section>
+                </ng-template>
+            </form>
+        </div>
+    </div>
+</div>

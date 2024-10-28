@@ -1,0 +1,24 @@
+<ngb-toast *ngFor="let notification of notificationHubService.notifications; let i = index"
+           [autohide]="false"
+           (hidden)="close(i)">
+    <ng-template ngbToastHeader>
+        <i class="fa-solid text-purple fs-24"
+           [class.fa-envelope]="notification.type === notificationType.message"
+           [class.fa-ticket]="notification.type === notificationType.changedState || notification.type === notificationType.generatedCode">
+        </i>
+        <div class="me-auto text-truncate-1-rows ms-1">
+            <strong class="mx-1">{{ notification.fromFullname }}</strong>
+        </div>
+    </ng-template>
+
+    <div class="d-flex align-items-center gap-3"
+         (click)="getEntity(notification.entityId, notification.entityType , i)">
+        <div class="text-truncate-5-rows">
+            <div class="fw-bold text-muted fs-14">{{ notification.fromUserOrganization }}</div>
+            <div class="text-muted fs-14">{{ notification.fromUsername }}</div>
+            <div>
+                {{ notification.text }}
+            </div>
+        </div>
+    </div>
+</ngb-toast>

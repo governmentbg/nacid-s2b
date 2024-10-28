@@ -1,0 +1,31 @@
+<alert-container class="toast-container position-fixed top-0 end-0 p-3"
+                 style="z-index: 9999">
+</alert-container>
+
+<ng-container *ngIf="userContextService.authorizationState === authorizationState.login 
+                || userContextService.authorizationState === authorizationState.logout
+                || userContextService.authorizationState === authorizationState.eAuthLogin; else loadingUserInfo">
+    <section>
+        <app-header></app-header>
+    </section>
+
+    <section class="main-section">
+        <app-breadcrumb></app-breadcrumb>
+
+        <router-outlet>
+        </router-outlet>
+    </section>
+
+    <section class="mt-5">
+        <app-footer></app-footer>
+    </section>
+</ng-container>
+
+<notification-container *ngIf="userContextService.authorizationState === authorizationState.login"
+                        class="toast-container position-fixed bottom-0 end-0 p-3"
+                        style="z-index: 9999">
+</notification-container>
+
+<ng-template #loadingUserInfo>
+    <loading-page></loading-page>
+</ng-template>

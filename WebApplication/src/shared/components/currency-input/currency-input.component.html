@@ -1,0 +1,17 @@
+<div class="{{ inputGroupClass }}">
+       <input type="number"
+              class="{{ formControlClass }} {{ required ? 'is-invalid-default' : '' }}"
+              [ngModel]="model"
+              (ngModelChange)="setValueFromInside($event)"
+              #currencyInput="ngModel"
+              [min]="min"
+              [step]="step"
+              [required]="required"
+              [placeholder]="placeholder"
+              [disabled]="disabled"
+              [max]="max">
+       <span *ngIf="appendText"
+             class="input-group-text">
+              {{ appendText | translate }}
+       </span>
+</div>

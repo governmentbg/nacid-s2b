@@ -1,0 +1,95 @@
+<div class="row">
+    <div class="col-md-8 pb-3">
+        <h3>
+            <translate-field class="text-purple fw-bold"
+                             [model]="institution.id !== institution.rootId ? institution : institution.root"></translate-field>
+        </h3>
+
+        <h5 *ngIf="institution.id !== institution.rootId">
+            <translate-field class="text-primary fw-bold"
+                             [model]="institution.root"></translate-field>
+        </h5>
+
+        <div *ngIf="institution.uic || institution.webPageUrl || institution.ownershipType"
+             class="mt-4">
+            <div *ngIf="institution.uic"
+                 class="d-flex">
+                <div class="fw-bold">
+                    {{ 'institutions.uic' | translate }}:
+                </div>
+                <div class="ms-1">
+                    {{ institution.uic }}
+                </div>
+            </div>
+
+            <div *ngIf="institution.webPageUrl"
+                 class="d-flex">
+                <div class="fw-bold">
+                    {{ 'institutions.webPageUrl' | translate }}:
+                </div>
+                <div class="ms-1">
+                    <a href="{{institution.webPageUrl}}"
+                       target="_blank"
+                       class="link-primary cursor-pointer"
+                       clickStopPropagation>
+                        {{ institution.webPageUrl }}
+                    </a>
+                </div>
+            </div>
+
+            <div *ngIf="institution.ownershipType"
+                 class="d-flex">
+                <div class="fw-bold">
+                    {{ 'institutions.ownershipType' | translate }}:
+                </div>
+                <div class="ms-1">
+                    <translate-enum [model]="institution.ownershipType"
+                                    [enumType]="ownershipType"
+                                    enumName="ownershipType"></translate-enum>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="institution.settlement"
+             class="d-flex mt-4 align-items-center">
+            <i class="fa-solid fa-location-dot fa-2xl text-purple"></i>
+            <div class="ms-2 fst-italic">
+                <div class="d-flex">
+                    <span>{{institution.settlement.code}},</span>
+                    <translate-field class="ms-1"
+                                     [model]="institution.settlement"></translate-field>
+                    <translate-field [model]="institution"
+                                     bgProperty="address"
+                                     enProperty="addressAlt"
+                                     class="ms-1">
+                    </translate-field>
+                </div>
+                <div *ngIf="institution.district"
+                     class="d-flex">
+                    <span>{{ 'nomenclatures.districts.shortName' | translate }}</span>
+                    <translate-field class="ms-1"
+                                     [model]="institution.district"></translate-field>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div *ngIf="institution.organizationType"
+             class="row pb-4">
+            <h5 class="text-primary border-bottom-purple">
+                {{ 'institutions.organizationType' | translate }}
+            </h5>
+            <div class="col-md-12">
+                <translate-enum class="fs-18"
+                                [model]="institution.organizationType"
+                                [enumType]="organizationType"
+                                enumName="organizationType"></translate-enum>
+            </div>
+        </div>
+
+        <supplier-representative *ngIf="supplierRepresentative?.id"
+                                 [supplierRepresentative]="supplierRepresentative">
+        </supplier-representative>
+    </div>
+</div>

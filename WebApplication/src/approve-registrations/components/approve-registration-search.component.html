@@ -1,0 +1,253 @@
+<div class="container mt-5">
+  <div class="card no-border shadow">
+    <div class="card-body">
+      <div class="card no-border shadow">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4">
+              <label class="form-label">
+                {{ 'approveRegistrations.authorizedRepresentativeUsername' | translate }}
+                <i class="fa-solid fa-circle-info icon-spacing text-purple"
+                   ngbTooltip="{{'approveRegistrations.searchHistoryTooltip' | translate}}"
+                   tooltipClass="custom-tooltip-purple">
+                </i>
+              </label>
+              <input type="text"
+                     class="form-control form-control-sm"
+                     [(ngModel)]="filter.authorizedRepresentativeUsername"
+                     name="authorizedRepresentativeUsername">
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label">
+                {{ 'approveRegistrations.authorizedRepresentativeFullname' | translate }}
+                <i class="fa-solid fa-circle-info icon-spacing text-purple"
+                   ngbTooltip="{{'approveRegistrations.searchHistoryTooltip' | translate}}"
+                   tooltipClass="custom-tooltip-purple">
+                </i>
+              </label>
+              <input type="text"
+                     class="form-control form-control-sm"
+                     [(ngModel)]="filter.authorizedRepresentativeFullname"
+                     name="authorizedRepresentativeFullname">
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label">{{ 'approveRegistrations.state' | translate }}</label>
+              <enum-select name="state"
+                           [(ngModel)]="filter.state"
+                           [showSearchBox]="true"
+                           enumName="approveRegistrationState"
+                           [enumType]="state"></enum-select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <label class="form-label">
+                {{ 'institutions.title' | translate }}
+              </label>
+              <nomenclature-select restUrl="nomenclatures/institutions/search"
+                                   name="institution"
+                                   [(ngModel)]="filter.institution"
+                                   (keyPropertyChange)="filter.institutionId = $event"
+                                   textTemplate="{{translateService.currentLang === 'bg' ? '{name}' : '{nameAlt}'}}">
+              </nomenclature-select>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">
+                {{ 'complexes.title' | translate }}
+              </label>
+              <nomenclature-select restUrl="nomenclatures/complexes/search"
+                                   name="complex"
+                                   [(ngModel)]="filter.complex"
+                                   (keyPropertyChange)="filter.complexId = $event"
+                                   textTemplate="{{translateService.currentLang === 'bg' ? '{name}' : '{nameAlt}'}}">
+              </nomenclature-select>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-end mt-4">
+            <div class="btn-group">
+              <sync-button (btnClickedEvent)="search()"
+                           text="root.buttons.search"
+                           icon="fas fa-search"
+                           btnClass="btn btn-primary btn-sm"
+                           [pending]="searchDataPending">
+              </sync-button>
+
+              <sync-button (btnClickedEvent)="clearFilters()"
+                           btnClass="btn btn-outline-primary btn-sm ms-3"
+                           text="root.buttons.clear"
+                           icon="fas fa-trash"
+                           [pending]="clearDataPending">
+              </sync-button>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between">
+            <div *ngIf="supplierOfferingCountDto">
+
+              <span>
+                {{'root.searchResult.found' | translate}}
+              </span>
+              <span class="fw-bold">
+                {{supplierOfferingCountDto.supplierCount}}
+              </span>
+              <span>
+                {{'root.searchResult.countShort' | translate}}
+              </span>
+              <span>
+                {{'root.searchResult.approvedRegistrations' | translate}}
+              </span>
+              <span class="fw-bold">
+                {{supplierOfferingCountDto.supplierOfferingCount}}
+              </span>
+              <span>
+                {{'root.searchResult.service' | translate}}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card no-border mt-4">
+        <div class="card-body">
+          <ng-container *ngIf="!loadingData; else loadingSection">
+            <ng-container *ngIf="searchResult.result && searchResult.result.length > 0; else noResults">
+              <div class="d-flex justify-content-between">
+              </div>
+              <div class="table-scrollable mt-4 mb-5">
+                <table class="table table-striped">
+                  <thead class="table-light">
+                    <tr>
+                      <th class="col-2">{{ 'approveRegistrations.createDate' | translate }}</th>
+                      <th class="col-4">{{ 'suppliers.title' | translate }}</th>
+                      <th class="col-3">{{ 'auth.signUp.supplierAdministrator' | translate }}</th>
+                      <th class="col-1">{{ 'companies.contacts' | translate }}</th>
+                      <th class="col-2">{{ 'approveRegistrations.state' | translate }}</th>
+                      <th class="col-1">{{ 'approveRegistrations.actions' | translate }}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <ng-template ngFor
+                                 let-registration
+                                 [ngForOf]="searchResult.result | slice: (filter.currentPage-1) * filter.limit : filter.currentPage * filter.limit"
+                                 let-i="index">
+                      <tr>
+                        <td class="col-2">
+                          {{ registration.createDate | date: 'dd.MM.yyyy hh:mm' }}
+                        </td>
+
+                        <td class="col-4 fw-bold">
+                          <translate-field *ngIf="registration.supplierId; else declinedSupplier"
+                                           [model]="supplierType.institution === registration.signUpDto.supplierType 
+                            ? registration.signUpDto.institution 
+                            : registration.signUpDto.complex"
+                                           class="link-primary"
+                                           (click)="getSupplier(registration.supplierId)"
+                                           clickStopPropagation>
+                          </translate-field>
+
+                          <ng-template #declinedSupplier>
+                            <translate-field [model]="supplierType.institution === registration.signUpDto.supplierType 
+                            ? registration.signUpDto.institution 
+                            : registration.signUpDto.complex">
+                            </translate-field>
+                          </ng-template>
+                          <div *ngIf="supplierType.institution === registration.signUpDto.supplierType 
+                            && registration.signUpDto.rootInstitution.id !== registration.signUpDto.institution.id">
+                            <span class="fw-normal">
+                              <translate-field [model]="registration.signUpDto.rootInstitution">
+                              </translate-field>
+                            </span>
+                          </div>
+                        </td>
+
+                        <td class="col-3">
+                          {{ registration.signUpDto?.user.userInfo.firstName }}
+                          {{ registration.signUpDto?.user.userInfo.middleName }}
+                          {{ registration.signUpDto?.user.userInfo.lastName }}
+                        </td>
+
+                        <td class="col-1">
+                          <a href="mailto:{{ registration.signUpDto.user.userName }}">{{
+                            registration.signUpDto.user.userName }}</a><br>
+                          {{registration.signUpDto.user.phoneNumber}}
+                        </td>
+
+                        <td class="col-1">
+                          {{ 'enums.approveRegistrationState.' + state[registration.state] | translate }}
+                        </td>
+
+                        <td class="col-1 align-middle">
+                          <div class="d-flex justify-content-start gap-2 align-items-center">
+                            <sync-button *ngIf="hasApprovalRegistrationWritePermission"
+                                         (btnClickedEvent)="openEdit(registration.id)"
+                                         title="root.buttons.view"
+                                         icon="fas fa-search"
+                                         btnClass="btn btn-purple btn-sm">
+                            </sync-button>
+
+                            <sync-button *ngIf="registration.state === state.draft && hasApprovalRegistrationCreatePermission"
+                                         (btnClickedEvent)="openApproveModal(registration, i)"
+                                         title="root.buttons.accept"
+                                         icon="fa-solid fa-check"
+                                         btnClass="btn btn-success btn-sm">
+                            </sync-button>
+
+                            <sync-button *ngIf="registration.state === state.draft && hasApprovalRegistrationCreatePermission"
+                                         (btnClickedEvent)="openDeclineModal(registration, i)"
+                                         title="root.buttons.decline"
+                                         icon="fa-solid fa-xmark"
+                                         btnClass="btn btn-danger btn-sm">
+                            </sync-button>
+
+                            <sync-button *ngIf="hasApprovalRegistrationReadPermission && registration.approveRegistrationHistories?.length > 0"
+                                         (btnClickedEvent)="openHistory(registration.approveRegistrationHistories)"
+                                         title="root.buttons.history"
+                                         icon="fa-solid fa-clock-rotate-left"
+                                         btnClass="btn btn-outline-purple btn-sm">
+                            </sync-button>
+                          </div>
+                        </td>
+                      </tr>
+                    </ng-template>
+                  </tbody>
+                </table>
+
+                <div class="d-flex justify-content-center">
+                  <ngb-pagination [collectionSize]="searchResult.totalCount"
+                                  [(page)]="filter.currentPage"
+                                  [pageSize]="filter.limit"
+                                  (pageChange)="pageHandlingService.scrollToTop()"
+                                  [maxSize]="3"
+                                  [rotate]="true"
+                                  [boundaryLinks]="true"
+                                  #pagination>
+
+                    <ng-template ngbPaginationFirst>
+                      <span *ngIf="filter.currentPage > 1">{{ 'root.buttons.first' | translate
+                        }}</span>
+                    </ng-template>
+
+                    <ng-template ngbPaginationLast>
+                      <span *ngIf="filter.currentPage  < searchResult.totalCount / filter.limit">{{
+                        'root.buttons.last' | translate }}</span>
+                    </ng-template>
+                  </ngb-pagination>
+                </div>
+              </div>
+            </ng-container>
+            <ng-template #noResults>
+              <i>{{ 'root.searchResult.noResults' | translate }}</i>
+            </ng-template>
+          </ng-container>
+          <ng-template #loadingSection>
+            <loading-section></loading-section>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

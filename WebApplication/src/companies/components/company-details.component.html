@@ -1,0 +1,150 @@
+<div class="container mt-5">
+    <div class="card no-border shadow">
+        <div class="card-body">
+            <ng-container *ngIf="!loadingData; else loadingSection">
+                <div class="row">
+                    <div class="col-md-8 pb-3">
+                        <h3>
+                            <translate-field class="text-purple fw-bold"
+                                             [model]="company"></translate-field>
+                        </h3>
+
+                        <div *ngIf="company.uic"
+                             class="d-flex mt-4">
+                            <div class="fw-bold">
+                                {{ 'companies.uic' | translate }}:
+                            </div>
+                            <div class="ms-1">
+                                {{ company.uic }}
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-end">
+                            <div class="fw-bold">
+                                {{ 'nomenclatures.isActive' | translate }}:
+                            </div>
+
+                            <div class="ms-1">
+                                {{ (company.isActive ? 'booleans.active' : 'booleans.inactive') | translate }}
+                            </div>
+
+                            <sync-button *ngIf="hasCompanyAdditionalWritePermission && company.isActive"
+                                         (btnClickedEvent)="changeIsActive(false)"
+                                         text="root.buttons.deactivate"
+                                         btnClass="btn btn-danger btn-xs ms-2"
+                                         [pending]="changeIsActivePending">
+                            </sync-button>
+
+                            <sync-button *ngIf="hasCompanyAdditionalWritePermission && !company.isActive"
+                                         (btnClickedEvent)="changeIsActive(true)"
+                                         text="root.buttons.activate"
+                                         btnClass="btn btn-success btn-xs ms-2"
+                                         [pending]="changeIsActivePending">
+                            </sync-button>
+                        </div>
+
+                        <div class="d-flex">
+                            <div class="fw-bold">
+                                {{ 'companies.isRegistryAgency' | translate }}:
+                            </div>
+                            <div class="ms-1">
+                                <input type="checkbox"
+                                       class="form-check-input cursor-pointer"
+                                       [(ngModel)]="company.isRegistryAgency"
+                                       id="isRegistryAgencyCheckbox"
+                                       disabled>
+                            </div>
+                        </div>
+
+                        <div *ngIf="company.settlement"
+                             class="d-flex mt-4 align-items-center">
+                            <i class="fa-solid fa-location-dot fa-2xl text-purple"></i>
+                            <div class="ms-2 fst-italic">
+                                <div class="d-flex">
+                                    <span>{{company.settlement.code}},</span>
+                                    <translate-field class="ms-1"
+                                                     [model]="company.settlement"></translate-field>,
+                                    <translate-field class="ms-1"
+                                                     [model]="company"
+                                                     bgProperty="address"
+                                                     enProperty="addressAlt">
+                                    </translate-field>
+                                </div>
+                                <div *ngIf="company.district"
+                                     class="d-flex">
+                                    <span>{{ 'nomenclatures.districts.shortName' | translate }}</span>
+                                    <translate-field class="ms-1"
+                                                     [model]="company.district"></translate-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="row pb-4">
+                            <h5 class="text-primary border-bottom-purple">
+                                {{ 'enums.companyType.title' | translate }}
+                            </h5>
+                            <div class="col-md-12">
+                                <translate-enum [model]="company.type"
+                                                [enumType]="type"
+                                                enumName="companyType">
+                                </translate-enum>
+                            </div>
+                        </div>
+
+                        <div class="row pb-4">
+                            <h5 class="text-primary border-bottom-purple">
+                                {{ 'nomenclatures.lawForms.name' | translate }}
+                            </h5>
+                            <div class="col-md-12">
+                                <translate-field [model]="company.lawForm">
+                                </translate-field>
+                            </div>
+                        </div>
+
+                        <div class="row pb-4">
+                            <h5 class="text-primary border-bottom-purple">{{ 'companies.contacts' | translate }}
+                            </h5>
+                            <div class="col-md-12">
+                                <a class="link-primary"
+                                   href="mailto:{{ company.email }}"
+                                   clickStopPropagation>
+                                    <i class="fa-solid fa-envelope"></i>
+                                    <span class="ms-2">{{ company.email }}</span>
+                                </a>
+
+                                <div class="mt-1">
+                                    <i class="fa-solid fa-phone text-purple"></i>
+                                    <span class="ms-2">{{ company.phoneNumber }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <nav ngbNav
+                         #nav="ngbNav"
+                         [(activeId)]="activeTab"
+                         class="nav-tabs">
+                        <ng-container *ngIf="hasCompanyAdditionalPermission"
+                                      ngbNavItem="{{companyAdditionalTab}}">
+                            <a ngbNavLink>{{ 'companies.tabs.companyAdditionalTab' | translate }}</a>
+                            <ng-template ngbNavContent>
+                                <company-additional [companyId]="company.id"
+                                                    [companyIsActive]="company.isActive"></company-additional>
+                            </ng-template>
+                        </ng-container>
+                    </nav>
+
+                    <div [ngbNavOutlet]="nav"
+                         class="mt-2"></div>
+                </div>
+            </ng-container>
+            <ng-template #loadingSection>
+                <loading-section></loading-section>
+            </ng-template>
+        </div>
+    </div>
+</div>

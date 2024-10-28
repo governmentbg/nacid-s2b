@@ -1,0 +1,17 @@
+<div ngbDropdown
+     [placement]="fromEnd ? 'bottom-end' : 'bottom-start'">
+    <button ngbDropdownToggle
+            [disabled]="disabled || loading"
+            clickStopPropagation
+            class="btn {{btnClass}}">
+        <i *ngIf="icon || loading"
+           class="{{loading ? 'fas fa-sync fa-spin' : icon}} me-1">
+        </i>
+        <span *ngIf="text">
+            {{ text | translate }}
+        </span>
+    </button>
+    <div ngbDropdownMenu>
+        <ng-content select="[ngbDropdownItem]"></ng-content>
+    </div>
+</div>

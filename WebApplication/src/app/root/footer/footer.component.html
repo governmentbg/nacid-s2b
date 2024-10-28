@@ -1,0 +1,106 @@
+<footer>
+   <div class="footer-links">
+      <div class="container">
+         <div class="d-flex justify-content-center scroll-up-row">
+            <div class="btn btn-purple scroll-up d-flex justify-content-center align-items-center"
+                 (click)="pageHandlingService.scrollToTop()">
+               <i class="fa-solid fa-chevron-up"></i>
+            </div>
+         </div>
+
+         <div class="d-flex justify-content-center align-items-center">
+            <img src="../assets/img/nacid_logo_light.png" />
+         </div>
+
+         <div class="text-light mt-2">
+            <div class="d-flex justify-content-center align-items-center text-light">
+               <h5>{{ 'root.footer.nacidShort' | translate }}</h5>
+            </div>
+
+            <div class="d-flex justify-content-center align-items-center">
+               <h6>{{ 'root.footer.sc' | translate }}</h6>
+            </div>
+         </div>
+
+         <div class="row justify-content-evenly align-items-start">
+            <div class="col-sm-4 col-md-2 d-flex flex-column">
+               <h6 class="fw-bold text-primary">{{ 'root.footer.portal.title' | translate | uppercase }}</h6>
+               <a class="link-secondary"
+                  (click)="pageHandlingService.scrollToTop()"
+                  [routerLink]="['terms-of-use']">{{'root.footer.portal.termsOfUse' | translate}}</a>
+               <a class="link-secondary"
+                  (click)="pageHandlingService.scrollToTop()"
+                  [routerLink]="['/confidentiality']">{{'root.footer.portal.confidentiality' | translate}}</a>
+               <a class="link-secondary"
+                  href="https://nacid.bg/bg/web_accessibility/"
+                  target="_blank">{{'root.footer.portal.accessibility' | translate}}</a>
+               <a class="link-secondary"
+                  (click)="pageHandlingService.scrollToTop()"
+                  [routerLink]="['cookies-policy']">{{'root.footer.portal.cookies' | translate}}</a>
+            </div>
+
+            <div class="col-sm-4 col-md-2 d-flex flex-column">
+               <h6 class="fw-bold text-primary">{{ 'root.footer.links.title' | translate | uppercase }}</h6>
+               <a class="link-secondary"
+                  href="https://www.mig.government.bg/programa-nauchni-izsledvaniya-inovaczii-i-digitalizacziya-za-inteligentna-transformacziya/"
+                  target="_blank">{{'root.footer.links.first' | translate}}</a>
+               <a class="link-secondary"
+                  href="https://pniidit.egov.bg/"
+                  target="_blank">{{'root.footer.links.second' | translate}}</a>
+               <a class="link-secondary"
+                  href="https://www.mig.government.bg/wp-content/uploads/2022/12/isis-2021-2027.pdf"
+                  target="_blank">{{'root.footer.links.third' | translate}}</a>
+               <a class="link-secondary"
+                  href="https://nacid.bg/bg/"
+                  target="_blank">{{'root.footer.links.forth' | translate}}</a>
+               <a class="link-secondary"
+                  href="https://eumis2020.government.bg/"
+                  target="_blank">{{'root.footer.links.fifth' | translate}}</a>
+            </div>
+
+
+            <div class="col-sm-4 col-md-2 d-flex flex-column">
+               <h6 class="fw-bold text-primary">{{ 'root.footer.contacts.title' | translate | uppercase }}</h6>
+               <a class="link-secondary fw-bold">{{'root.footer.nacidShort' | translate}}</a>
+               <a class="link-secondary address">{{'root.footer.contacts.address' | translate}}</a>
+               <a class="link-secondary text-nowrap">{{'root.footer.contacts.phone' | translate}}</a>
+               <a class="link-secondary text-nowrap">{{'root.footer.contacts.fax' | translate}}</a>
+               <a class="link-secondary text-nowrap"
+                  href="mailto:{{'root.footer.contacts.email' | translate}}">
+                  {{'root.footer.contacts.email' | translate}}
+               </a>
+               <a class="link-secondary text-nowrap"
+                  target="_blank"
+                  href="https://nacid.bg/bg/contacts">
+                  {{'root.footer.contacts.feedback' | translate}}
+               </a>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="footer-copyright container">
+      <div class="row d-flex justify-content-around align-items-center">
+         <img class="footer-img"
+              src="../assets/img/eu.png" />
+         <img class="footer-img"
+              src="../assets/img/innovation.png" />
+      </div>
+
+      <div class="mt-4 row d-flex text-secondary text-center">
+         {{ 'root.footer.funds' | translate :{year: currentYear} }}
+      </div>
+
+      <div class="mt-4 row d-flex text-center">
+         <a href="{{'root.footer.eufundsUrl' | translate}}"
+            target="_blank"
+            class="link-primary fw-bold">
+            {{'root.footer.eufunds' | translate}}
+         </a>
+      </div>
+
+      <div class="mt-4 row d-flex justify-content-center fs-14">
+         {{ 'root.footer.copyright' | translate :{year: currentYear} }}
+      </div>
+   </div>
+</footer>

@@ -1,0 +1,13 @@
+<h5 class="text-primary text-uppercase fw-bold">
+    {{'reports.bgMap.navigation' | translate}}
+</h5>
+
+<ng-template ngFor
+             let-bgMapItem
+             [ngForOf]="bgMapReport"
+             let-i="index">
+    <highchart-bg-map-menu-item [bgMapItem]="bgMapItem"
+                                [selectedBgReportData]="selectedBgReportData"
+                                (selectRegionEvent)="selectRegionEvent.emit($event)">
+    </highchart-bg-map-menu-item>
+</ng-template>

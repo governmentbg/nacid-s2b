@@ -1,0 +1,26 @@
+<div class="col mt-4">
+    <div class="card no-border shadow">
+        <div class="card-body">
+            <div class="d-flex card-title justify-content-between align-items-center">
+                <h5 class="text-purple">
+                    <translate-field [model]="company"
+                                     class="link-primary"
+                                     (click)="getCompany()"
+                                     clickStopPropagation>
+                    </translate-field>
+                </h5>
+
+                <span class="badge fs-14"
+                      [ngClass]="{'bg-success': company.isActive, 'bg-danger': !company.isActive}">
+                    {{ (company.isActive ? 'nomenclatures.isActive' : 'nomenclatures.deactivated') | translate }}
+                </span>
+            </div>
+
+            <div class="card-subtitle">
+                <h6 class="text-primary">
+                    {{ company.uic }}
+                </h6>
+            </div>
+        </div>
+    </div>
+</div>

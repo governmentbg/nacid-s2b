@@ -1,0 +1,346 @@
+<div class="row">
+    <div class="col-md-3">
+        <label class="form-label">
+            {{ 'receivedVouchers.contractDate' | translate }}
+        </label>
+        <date-time [(ngModel)]="receivedVoucherDto.contractDate"
+                   name="contractDate"
+                   class="w-100"
+                   [startYear]="2024"
+                   [required]="true"
+                   [disabled]="!isEditMode">
+        </date-time>
+        <i class="fs-14 text-muted">{{'receivedVouchers.contractDateExplanation' | translate}}</i>
+    </div>
+
+    <div class="col-md-3">
+        <label class="form-label">
+            {{ 'receivedVouchers.contractNumber' | translate }}
+        </label>
+        <input type="text"
+               class="form-control form-control-sm is-invalid-default"
+               [(ngModel)]="receivedVoucherDto.contractNumber"
+               name="contractNumber"
+               minlength="2"
+               maxlength="100"
+               #contractNumber="ngModel"
+               ngbTooltip="{{ contractNumber.invalid ? ('invalidTexts.required' | translate) : null }}"
+               triggers="blur"
+               tooltipClass="custom-tooltip-invalid"
+               noWhiteSpacesValidation
+               [disabled]="!isEditMode">
+        <remaining-symbols *ngIf="isEditMode"
+                           [maxLength]="100"
+                           [textLength]="receivedVoucherDto?.contractNumber?.length">
+        </remaining-symbols>
+    </div>
+
+    <div class="col-md-3">
+        <label class="form-label">
+            {{ 'receivedVouchers.file' | translate }}
+        </label>
+        <file-upload name="fileUpload"
+                     [(ngModel)]="receivedVoucherDto.file"
+                     [acceptedFileFormats]="['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']"
+                     [disabled]="!isEditMode">
+        </file-upload>
+    </div>
+
+    <div class="col-md-3">
+        <label class="form-label">
+            {{ 'enums.receivedVoucherState.title' | translate }}
+        </label>
+        <input type="text"
+               class="form-control form-control-sm"
+               value="{{'enums.receivedVoucherState.' + (receivedVoucherDto.state ? receivedVoucherState[receivedVoucherDto.state] : 'draft') | translate}}"
+               disabled />
+    </div>
+</div>
+
+<collapsable-label heading="receivedVouchers.offeringInformation"
+                   [isCollapsed]="false">
+    <div body>
+        <div class="row">
+            <div class="col-md-4">
+                <label class="form-label">
+                    {{ 'suppliers.title' | translate }}
+                </label>
+                <nomenclature-select restUrl="suppliers"
+                                     name="supplier"
+                                     [(ngModel)]="receivedVoucherDto.supplier"
+                                     (keyPropertyChange)="changedSupplier($event)"
+                                     textTemplate="{{translateService.currentLang === 'bg' ? '{institution.name}{complex.name} ({institution.root.shortName}{complex.shortName})' : '{institution.nameAlt}{complex.nameAlt} ({institution.root.shortNameAlt}{complex.shortNameAlt})'}}"
+                                     [disabled]="!isEditMode">
+                </nomenclature-select>
+            </div>
+
+            <div class="col-md-5">
+                <label class="form-label">
+                    {{ 'supplierOfferings.singularTitle' | translate }}
+                </label>
+                <nomenclature-select restUrl="suppliers/offerings/search"
+                                     name="offering"
+                                     [(ngModel)]="receivedVoucherDto.offering"
+                                     (keyPropertyChange)="receivedVoucherDto.offeringId = $event"
+                                     [filter]="{supplierId: receivedVoucherDto.supplierId}"
+                                     textTemplate="{code} - {name}"
+                                     [required]="receivedVoucherDto.supplierId != null"
+                                     [disabled]="!isEditMode || !receivedVoucherDto.supplierId">
+                </nomenclature-select>
+                <i class="text-muted">{{ 'receivedVouchers.signularTitleExplanation' | translate }}</i>
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">
+                    {{ 'receivedVouchers.offeringAdditionalPayment' | translate }}
+                </label>
+                <div>
+                    <input class="form-check-input cursor-pointer"
+                           type="checkbox"
+                           name="offeringAdditionalPayment"
+                           id="offeringAdditionalPayment"
+                           [(ngModel)]="receivedVoucherDto.offeringAdditionalPayment"
+                           [disabled]="!isEditMode || !receivedVoucherDto.supplierId">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label class="form-label">
+                    {{ 'receivedVouchers.receivedOffering' | translate }}
+                    <i class="text-muted">{{ 'receivedVouchers.receivedOfferingExplanation' | translate }}</i>
+                </label>
+                <textarea name="receivedOffering"
+                          class="form-control form-control-sm is-invalid-default"
+                          [(ngModel)]="receivedVoucherDto.receivedOffering"
+                          minlength="2"
+                          maxlength="500"
+                          #receivedOffering="ngModel"
+                          style="max-height: 400px; height: 100px;"
+                          [required]="receivedVoucherDto.supplierId != null"
+                          [disabled]="!isEditMode || !receivedVoucherDto.supplierId">
+                            </textarea>
+                <remaining-symbols *ngIf="isEditMode"
+                                   [maxLength]="500"
+                                   [textLength]="receivedVoucherDto?.receivedOffering?.length">
+                </remaining-symbols>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label class="form-label">
+                    {{ 'nomenclatures.settlements.name' | translate }}
+                </label>
+                <input type="text"
+                       class="form-control form-control-sm"
+                       value="{{receivedVoucherDto.offering?.settlement?.name}}"
+                       disabled />
+                <i class="text-muted">{{ 'receivedVouchers.settlementExplanation' | translate }}</i>
+            </div>
+
+            <div class="col-md-8">
+                <div class="row">
+                    <i class="text-muted">{{ 'receivedVouchers.smartSpecializationExplanation' | translate }}</i>
+                    <label class="form-label">{{ 'nomenclatures.smartSpecializations.primary' | translate }}</label>
+                    <div class="col-md-12">
+                        <ng-container
+                                      *ngIf="receivedVoucherDto.offering?.smartSpecializations?.length > 0; else noResults">
+                            <div *ngFor="let soSmartSpecialization of receivedVoucherDto.offering.smartSpecializations; let i = index"
+                                 class="row">
+                                <label *ngIf="i === 1"
+                                       class="form-label">
+                                    {{ 'nomenclatures.smartSpecializations.secondary' | translate }}
+                                </label>
+                                <div class="d-flex">
+                                    <span>{{ soSmartSpecialization.smartSpecialization.code }}</span>
+                                    <translate-field class="ms-1 text-truncate-1-rows"
+                                                     [model]="soSmartSpecialization.smartSpecialization"
+                                                     [showTitle]="true">
+                                    </translate-field>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <ng-template #noResults>
+                            <i>{{ 'root.searchResult.noResults' | translate }}</i>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label class="form-label">
+                    {{ 'receivedVouchers.offeringClarifications' | translate }}
+                    <i class="text-muted">{{ 'receivedVouchers.clarificationExplanation' | translate }}</i>
+                </label>
+                <textarea name="offeringClarifications"
+                          class="form-control form-control-sm is-invalid-default"
+                          [(ngModel)]="receivedVoucherDto.offeringClarifications"
+                          minlength="2"
+                          maxlength="500"
+                          #offeringClarifications="ngModel"
+                          style="max-height: 400px; height: 100px;"
+                          [disabled]="!isEditMode || !receivedVoucherDto.supplierId">
+                </textarea>
+                <remaining-symbols *ngIf="isEditMode"
+                                   [maxLength]="500"
+                                   [textLength]="receivedVoucherDto?.offeringClarifications?.length">
+                </remaining-symbols>
+            </div>
+        </div>
+    </div>
+</collapsable-label>
+
+<collapsable-label *ngIf="isEditMode || receivedVoucherDto.secondOfferingId"
+                   heading="receivedVouchers.secondOfferingInformation"
+                   class="mt-2">
+    <div body>
+        <div class="row">
+            <div class="col-md-4">
+                <label class="form-label">
+                    {{ 'suppliers.title' | translate }}
+                </label>
+                <nomenclature-select restUrl="suppliers"
+                                     name="secondSupplier"
+                                     [(ngModel)]="receivedVoucherDto.secondSupplier"
+                                     (keyPropertyChange)="changedSecondSupplier($event)"
+                                     textTemplate="{{translateService.currentLang === 'bg' ? '{institution.name}{complex.name} ({institution.root.shortName}{complex.shortName})' : '{institution.nameAlt}{complex.nameAlt} ({institution.root.shortNameAlt}{complex.shortNameAlt})'}}"
+                                     [disabled]="!isEditMode || !receivedVoucherDto.supplierId">
+                </nomenclature-select>
+            </div>
+
+            <div class="col-md-5">
+                <label class="form-label">
+                    {{ 'supplierOfferings.singularTitle' | translate }}
+                </label>
+                <nomenclature-select restUrl="suppliers/offerings/search"
+                                     name="secondOffering"
+                                     [(ngModel)]="receivedVoucherDto.secondOffering"
+                                     (keyPropertyChange)="receivedVoucherDto.secondOfferingId = $event"
+                                     [filter]="{supplierId: receivedVoucherDto.secondSupplierId}"
+                                     textTemplate="{code} - {name}"
+                                     [required]="receivedVoucherDto.secondSupplierId != null"
+                                     [disabled]="!isEditMode || !receivedVoucherDto.secondSupplierId">
+                </nomenclature-select>
+                <i class="text-muted">{{ 'receivedVouchers.signularTitleExplanation' | translate }}</i>
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">
+                    {{ 'receivedVouchers.offeringAdditionalPayment' | translate }}
+                </label>
+                <div>
+                    <input class="form-check-input cursor-pointer"
+                           type="checkbox"
+                           name="secondOfferingAdditionalPayment"
+                           id="secondOfferingAdditionalPayment"
+                           [(ngModel)]="receivedVoucherDto.secondOfferingAdditionalPayment"
+                           [disabled]="!isEditMode || !receivedVoucherDto.secondSupplierId">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label class="form-label">
+                    {{ 'receivedVouchers.receivedOffering' | translate }}
+                    <i class="text-muted">{{ 'receivedVouchers.receivedOfferingExplanation' | translate }}</i>
+                </label>
+                <textarea name="secondReceivedOffering"
+                          class="form-control form-control-sm is-invalid-default"
+                          [(ngModel)]="receivedVoucherDto.secondReceivedOffering"
+                          minlength="2"
+                          maxlength="500"
+                          #receivedOffering="ngModel"
+                          style="max-height: 400px; height: 100px;"
+                          [required]="receivedVoucherDto.secondSupplierId != null"
+                          [disabled]="!isEditMode || !receivedVoucherDto.secondSupplierId">
+                            </textarea>
+                <remaining-symbols *ngIf="isEditMode"
+                                   [maxLength]="500"
+                                   [textLength]="receivedVoucherDto?.secondReceivedOffering?.length">
+                </remaining-symbols>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <label class="form-label">
+                    {{ 'nomenclatures.settlements.name' | translate }}
+                </label>
+                <input type="text"
+                       class="form-control form-control-sm"
+                       value="{{receivedVoucherDto.secondOffering?.settlement?.name}}"
+                       disabled />
+                <i class="text-muted">{{ 'receivedVouchers.settlementExplanation' | translate }}</i>
+            </div>
+
+            <div class="col-md-8">
+                <div class="row">
+                    <i class="text-muted">{{ 'receivedVouchers.smartSpecializationExplanation' | translate }}</i>
+                    <label class="form-label">{{ 'nomenclatures.smartSpecializations.primary' | translate }}</label>
+                    <div class="col-md-12">
+                        <ng-container
+                                      *ngIf="receivedVoucherDto.secondOffering?.smartSpecializations?.length > 0; else noResults">
+                            <div *ngFor="let soSmartSpecialization of receivedVoucherDto.secondOffering.smartSpecializations; let i = index"
+                                 class="row">
+                                <div class="col-md-12">
+                                    <label *ngIf="i === 1"
+                                           class="form-label">
+                                        {{ 'nomenclatures.smartSpecializations.secondary' | translate }}
+                                    </label>
+                                    <div class="d-flex">
+                                        <span>{{ soSmartSpecialization.smartSpecialization.code }}</span>
+                                        <translate-field class="text-truncate-1-rows"
+                                                         [model]="soSmartSpecialization.smartSpecialization"
+                                                         [showTitle]="true">
+                                        </translate-field>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <ng-template #noResults>
+                            <i>{{ 'root.searchResult.noResults' | translate }}</i>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <label class="form-label">
+                    {{ 'receivedVouchers.offeringClarifications' | translate }}
+                    <i class="text-muted">{{ 'receivedVouchers.clarificationExplanation' | translate }}</i>
+                </label>
+                <textarea name="secondOfferingClarifications"
+                          class="form-control form-control-sm is-invalid-default"
+                          [(ngModel)]="receivedVoucherDto.secondOfferingClarifications"
+                          minlength="2"
+                          maxlength="500"
+                          #offeringClarifications="ngModel"
+                          style="max-height: 400px; height: 100px;"
+                          [disabled]="!isEditMode || !receivedVoucherDto.secondSupplierId">
+                            </textarea>
+                <remaining-symbols *ngIf="isEditMode"
+                                   [maxLength]="500"
+                                   [textLength]="receivedVoucherDto?.secondOfferingClarifications?.length">
+                </remaining-symbols>
+            </div>
+        </div>
+    </div>
+</collapsable-label>
+
+<collapsable-label *ngIf="receivedVoucherDto.certificates && receivedVoucherDto.certificates?.length > 0"
+                   heading="receivedVouchers.generatedCertificates"
+                   class="mt-2">
+    <div body>
+        <ng-template ngFor
+                     let-certificate
+                     [ngForOf]="receivedVoucherDto.certificates"
+                     let-i="index">
+            <div class="d-flex mt-2 ms-3">
+                <file-read [file]="certificate.file">
+                </file-read>
+            </div>
+        </ng-template>
+    </div>
+</collapsable-label>

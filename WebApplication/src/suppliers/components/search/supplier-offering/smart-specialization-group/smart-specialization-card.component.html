@@ -1,0 +1,69 @@
+<div class="col">
+    <div class="card no-border shadow">
+        <div class="card-body">
+            <div class="card-title">
+                <h5 class="text-purple">
+                    <span>{{smartSpecializationRootGroup.code}}</span>
+                    <translate-field [model]="smartSpecializationRootGroup">
+                    </translate-field>
+                </h5>
+            </div>
+
+            <div class="card-text mt-3">
+                <ng-template ngFor
+                             let-smartSpecialization
+                             [ngForOf]="smartSpecializationRootGroup.smartSpecializations"
+                             let-i="index">
+                    <collapsable-label class="mt-1"
+                                       (click)="collapseAll(i)"
+                                       [heading]="smartSpecialization.code + ' ' + (translateService.currentLang === 'bg' ? smartSpecialization.name : smartSpecialization.nameAlt)">
+                        <div body
+                             class="mt-2 mb-2">
+                            <h6>
+                                <span>
+                                    {{'supplierOfferings.smartSpecializationGroup.offeredServicesCount' |
+                                    translate}}
+                                </span>
+                                <span class="fw-bold">
+                                    {{smartSpecialization.offeringsCount}}
+                                </span>
+                            </h6>
+                        </div>
+
+                        <ul body
+                            class="list-group">
+                            <ng-template ngFor
+                                         let-offering
+                                         [ngForOf]="smartSpecialization.offerings"
+                                         let-j="index">
+                                <li class="list-group-item">
+                                    <h6>
+                                        <translate-field [model]="offering"
+                                                         clickStopPropagation
+                                                         (click)="openReadSupplierOffering(offering.supplierId, offering.id)"
+                                                         class="link-primary">
+                                        </translate-field>
+                                    </h6>
+                                    <h6 class="text-muted fst-italic d-flex">
+                                        <translate-field [model]="offering"
+                                                         bgProperty="supplierName"
+                                                         enProperty="supplierNameAlt">
+                                        </translate-field>
+
+                                        <translate-field *ngIf="offering.institutionId && offering.institutionId !== offering.rootInstitutionId"
+                                                         class="ms-1"
+                                                         [model]="offering"
+                                                         [hasBrackets]="true"
+                                                         bgProperty="rootInstitutionShortName"
+                                                         enProperty="rootInstitutionShortNameAlt">
+                                        </translate-field>
+                                    </h6>
+                                </li>
+                            </ng-template>
+                        </ul>
+                    </collapsable-label>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

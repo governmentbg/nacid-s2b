@@ -1,0 +1,198 @@
+<div>
+    <div class="offcanvas-header">
+        <h3 class="offcanvas-title text-primary">{{userContextService.userContext.fullName}}</h3>
+        <button type="button"
+                class="btn btn-close btn-close-white"
+                (click)="offcanvasService.dismiss()"></button>
+    </div>
+
+    <div *ngIf="userContextService.authorizationState === userAuthorizationState.login"
+         class="offcanvas-body my-organizations">
+        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-sm-start fs-20">
+            <ng-template ngFor
+                         let-organizationalUnit
+                         [ngForOf]="userContextService.userContext.organizationalUnits"
+                         let-i="index">
+                <li class="nav-item"
+                    [class.text-decoration-line-through]="!organizationalUnit.isActive">
+                    <container-element [ngSwitch]="organizationalUnit.alias">
+                        <span *ngSwitchCase="companyAlias">
+                            <a (click)="changeRouter('/companies', organizationalUnit.externalId)"
+                               class="nav-link align-middle px-0 cursor-pointer">
+                                <i class="fa-solid fa-briefcase"></i>
+                                <translate-field class="ms-1"
+                                                 [model]="organizationalUnit"
+                                                 [bgProperty]="organizationalUnit.shortName ? 'shortName' : 'name'"
+                                                 [enProperty]="organizationalUnit.shortName ? 'shortName' : 'name'">
+                                </translate-field>
+                            </a>
+                        </span>
+
+                        <span *ngSwitchCase="nacidAlias"
+                              class="align-middle px-0">
+                            <i class="fa-solid fa-building"></i>
+                            <translate-field class="ms-1"
+                                             [model]="organizationalUnit"
+                                             [bgProperty]="organizationalUnit.shortName ? 'shortName' : 'name'"
+                                             [enProperty]="organizationalUnit.shortName ? 'shortName' : 'name'">
+                            </translate-field>
+                        </span>
+
+                        <span *ngSwitchCase="pniiditAlias"
+                              class="align-middle px-0">
+                            <i class="fa-solid fa-building"></i>
+                            <translate-field class="ms-1"
+                                             [model]="organizationalUnit"
+                                             [bgProperty]="organizationalUnit.shortName ? 'shortName' : 'name'"
+                                             [enProperty]="organizationalUnit.shortName ? 'shortName' : 'name'">
+                            </translate-field>
+                        </span>
+
+                        <span *ngSwitchDefault>
+                            <a (click)="changeRouter('/suppliers', organizationalUnit.supplierId)"
+                               class="nav-link align-middle px-0 cursor-pointer">
+                                <i class="fa-solid fa-flask"></i>
+                                <translate-field class="ms-1"
+                                                 [model]="organizationalUnit"
+                                                 [bgProperty]="organizationalUnit.shortName ? 'shortName' : 'name'"
+                                                 [enProperty]="organizationalUnit.shortName ? 'shortName' : 'name'">
+                                </translate-field>
+                            </a>
+
+                            <a (click)="supplierCollapsed.toggle()"
+                               class="nav-link align-middle px-0 list-dropbown-btn cursor-pointer"
+                               [class.collapsed-section]="supplierIsCollapsed[i]">
+                                <i class="fa-solid fa-chevron-right"></i>
+                                <span class="ms-2">{{ 'root.sidebar.supplierDropdownMenu' | translate }}</span>
+                            </a>
+                            <div #supplierCollapsed="ngbCollapse"
+                                 [(ngbCollapse)]="supplierIsCollapsed[i]">
+                                <ul
+                                    class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start fs-20 ms-4">
+                                    <li class="nav-item">
+                                        <a (click)="changeRouter('/suppliers', organizationalUnit.supplierId, teamDetailsTab)"
+                                           class="nav-link align-middle px-0 cursor-pointer">
+                                            <span class="ms-2">{{ 'suppliers.tabs.teamDetailsTab' | translate }}</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a (click)="changeRouter('/suppliers', organizationalUnit.supplierId, offeringDetailsTab)"
+                                           class="nav-link align-middle px-0 cursor-pointer">
+                                            <span class="ms-2">
+                                                {{ 'suppliers.tabs.offeringDetailsTab' | translate }}
+                                            </span>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a (click)="changeRouter('/suppliers', organizationalUnit.supplierId, equipmentDetailsTab)"
+                                           class="nav-link align-middle px-0 cursor-pointer">
+                                            <span class="ms-2">
+                                                {{ 'suppliers.tabs.equipmentDetailsTab' | translate }}
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </span>
+                    </container-element>
+                </li>
+            </ng-template>
+        </ul>
+    </div>
+
+    <div class="offcanvas-body">
+        <ul *ngIf="userContextService.authorizationState === userAuthorizationState.login"
+            class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start fs-20">
+            <li *ngIf="hasVoucherRequestsReadPermission"
+                class="nav-item">
+                <a (click)="changeRouter('/voucherRequests')"
+                   class="nav-link align-middle px-0 cursor-pointer">
+                    <i class="fa-solid fa-hashtag"></i>
+                    <span class="ms-2">{{ 'root.sidebar.voucherRequests' | translate }}</span>
+                </a>
+            </li>
+
+            <li *ngIf="hasReceivedVouchersReadPermission"
+                class="nav-item">
+                <a (click)="receivedVoucherRouter()"
+                   class="nav-link align-middle px-0 cursor-pointer">
+                    <i class="fa-solid fa-ticket"></i>
+                    <span class="ms-2">{{ 'root.sidebar.receivedVouchers' | translate }}</span>
+                </a>
+            </li>
+
+            <li *ngIf="hasCompanyReadPermission"
+                class="nav-item">
+                <a (click)="changeRouter('/companies')"
+                   class="nav-link align-middle px-0 cursor-pointer">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <span class="ms-2">{{ 'root.sidebar.companies' | translate }}</span>
+                </a>
+            </li>
+
+            <li *ngIf="hasCommonReportsReadPermission"
+                class="nav-item">
+                <a (click)="changeRouter('/report/common')"
+                   class="nav-link align-middle px-0 cursor-pointer">
+                    <i class="fa-solid fa-chart-column"></i>
+                    <span class="ms-2">{{ 'root.sidebar.reports' | translate }}</span>
+                </a>
+            </li>
+
+            <li *ngIf="hasSystemLogsReadPermission"
+                class="nav-item">
+                <a (click)="changeRouter('/logs')"
+                   class="nav-link align-middle px-0 cursor-pointer">
+                    <i class="fa-solid fa-list"></i>
+                    <span class="ms-2">{{ 'root.sidebar.logs' | translate }}</span>
+                </a>
+            </li>
+
+            <li *ngIf="hasNomenclaturesReadPermission"
+                class="nav-item">
+                <a (click)="nomenclaturesCollapsed.toggle()"
+                   class="nav-link align-middle px-0 list-dropbown-btn cursor-pointer"
+                   [class.collapsed-section]="nomenclaturesIsCollapsed">
+                    <i class="fa-solid fa-chevron-right"></i>
+                    <span class="ms-2">{{ 'root.sidebar.nomenclaturesDropdownMenu' | translate }}</span>
+                </a>
+                <div #nomenclaturesCollapsed="ngbCollapse"
+                     [(ngbCollapse)]="nomenclaturesIsCollapsed">
+                    <ul
+                        class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start fs-20 ms-4">
+                        <li class="nav-item">
+                            <a (click)="changeRouter('/nomenclatures/settlements')"
+                               class="nav-link align-middle px-0 cursor-pointer">
+                                <span class="ms-2">{{ 'root.sidebar.settlements' | translate }}</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a (click)="changeRouter('/nomenclatures/others')"
+                               class="nav-link align-middle px-0 cursor-pointer">
+                                <span class="ms-2">{{ 'root.sidebar.others' | translate }}</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+        </ul>
+
+        <div class="position-absolute top-95 start-50 translate-middle d-flex flex-column align-items-center gap-3">
+            <sync-button *ngIf="userContextService.authorizationState === userAuthorizationState.login"
+                         (btnClickedEvent)="openChangePasswordModal()"
+                         text="auth.changePassword.changePassword"
+                         btnClass="btn btn-primary rounded-pill">
+            </sync-button>
+
+            <sync-button (btnClickedEvent)="logoutUser()"
+                         text="auth.exit"
+                         btnClass="btn btn-primary rounded-pill mb-5">
+            </sync-button>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="col">
+  <div class="card no-border shadow">
+    <div class="card-body">
+      <div class="card-title">
+        <h5 class="text-purple">
+          <translate-field [model]="supplier"
+                           [class.link-primary]="supplier.id"
+                           (click)="getSupplier()"
+                           clickStopPropagation>
+          </translate-field>
+        </h5>
+      </div>
+
+      <div class="card-text mt-3">
+        <ng-container *ngIf="supplier.smartSpecializations && supplier.smartSpecializations.length > 0">
+          <collapsable-label
+                             [heading]="('nomenclatures.smartSpecializations.title2' | translate) + ' (' + (supplier.smartSpecializations ? supplier.smartSpecializations.length : 0) + ')'">
+            <ul body>
+              <ng-template ngFor
+                           let-smartSpecialization
+                           [ngForOf]="supplier.smartSpecializations"
+                           let-j="index">
+                <li>
+                  <supplier-smart-specialization-card [smartSpecialization]="smartSpecialization"
+                                                      [supplierId]="supplier.id">
+                  </supplier-smart-specialization-card>
+                </li>
+              </ng-template>
+            </ul>
+          </collapsable-label>
+        </ng-container>
+
+        <ng-container *ngIf="supplier.supplierSubordinateGroup && supplier.supplierSubordinateGroup.length > 0">
+          <collapsable-label
+                             [heading]="('auth.signUp.subordinate' | translate) + ' (' + (supplier.supplierSubordinateGroup ? supplier.supplierSubordinateGroup.length: 0) + ')'">
+            <ul body>
+              <ng-template ngFor
+                           let-subordinate
+                           [ngForOf]="supplier.supplierSubordinateGroup"
+                           let-j="index">
+                <li>
+                  <supplier-subordinate-card [subordinate]="subordinate"></supplier-subordinate-card>
+                </li>
+              </ng-template>
+            </ul>
+          </collapsable-label>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

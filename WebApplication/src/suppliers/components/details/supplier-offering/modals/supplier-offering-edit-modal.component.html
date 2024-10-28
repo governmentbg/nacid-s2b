@@ -1,0 +1,54 @@
+<div class="modal-header">
+    <h5 class="modal-title text-primary fw-bold">
+        {{ 'supplierOfferings.modals.editOffering' | translate:{code: supplierOfferingDto.code} }}
+    </h5>
+    <sync-button btnClass="btn-close"
+                 (btnClickedEvent)="decline()"
+                 [disabled]="editOfferingPending">
+    </sync-button>
+</div>
+<form #form="ngForm"
+      autocomplete="off">
+    <div class="modal-body">
+        <ng-container *ngIf="!loadingData; else loadingSection">
+            <supplier-offering-basic [supplierId]="supplierOfferingDto.supplierId"
+                                     [isEditMode]="isEditMode"
+                                     [supplierOfferingDto]="supplierOfferingDto"
+                                     (triggerAddEvent)="addSoSmartSpecialization()"
+                                     (triggerEraseEvent)="eraseSoSmartSpecialization($event)"
+                                     (triggerTeamAddEvent)="addSoTeam()"
+                                     (triggerTeamEraseEvent)="eraseSoTeam($event)"
+                                     (triggerEquipmentAddEvent)="addSoEquipment()"
+                                     (triggerEquipmentEraseEvent)="eraseSoEquipment($event)"
+                                     (triggerFileAddEvent)="addSoFile()"
+                                     (triggerFileEraseEvent)="eraseSoFile($event)">
+            </supplier-offering-basic>
+        </ng-container>
+        <ng-template #loadingSection>
+            <loading-section></loading-section>
+        </ng-template>
+    </div>
+</form>
+
+<div *ngIf="!loadingData"
+     class="modal-footer">
+    <sync-button *ngIf="!isEditMode"
+                 btnClass="btn btn-sm btn-primary"
+                 (btnClickedEvent)="edit()"
+                 text="root.buttons.edit">
+    </sync-button>
+
+    <sync-button *ngIf="isEditMode"
+                 btnClass="btn btn-sm btn-success"
+                 (btnClickedEvent)="save()"
+                 text="root.buttons.save"
+                 [pending]="editOfferingPending"
+                 [disabled]="form.invalid">
+    </sync-button>
+
+    <sync-button *ngIf="isEditMode"
+                 btnClass="btn btn-sm btn-danger"
+                 (btnClickedEvent)="cancel()"
+                 text="root.buttons.cancel">
+    </sync-button>
+</div>

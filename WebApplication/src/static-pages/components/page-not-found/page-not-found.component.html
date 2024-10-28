@@ -1,0 +1,16 @@
+<div class="container mt-5">
+  <div class="card no-border padding-top-bottom-sm shadow">
+    <div class="card-body">
+      <div class="page-not-found-404">
+        4<span class="text-purple">0</span>4
+      </div>
+      <div class="page-not-found-text">
+        {{ 'pageNotFound.text' | translate }}
+      </div>
+      <div class="mt-2 page-not-found-return">
+        <a [routerLink]="['/']"
+           class="text-purple underline">{{ 'pageNotFound.returnToWebsibe' | translate }}</a>
+      </div>
+    </div>
+  </div>
+</div>

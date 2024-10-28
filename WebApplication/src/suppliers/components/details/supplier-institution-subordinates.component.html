@@ -1,0 +1,40 @@
+<ng-container *ngIf="subordinates && subordinates.length > 0; else noResults">
+    <div class="d-flex justify-content-between">
+        <search-result [totalCount]="subordinates.length"></search-result>
+    </div>
+    <div class="table-scrollable mt-4 mb-5">
+        <table class="table table-striped">
+            <thead class="table-light">
+                <tr>
+                    <th class="col-5">{{ 'institutions.name' | translate }}</th>
+                    <th class="col-3">{{ 'institutions.type' | translate }}</th>
+                    <th class="col-2">{{ 'institutions.ownershipType' | translate }}</th>
+                    <th class="col-2">{{ 'nomenclatures.settlements.name' | translate }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let subordinate of subordinates">
+                    <td class="col-5">
+                        <translate-field [model]="subordinate"></translate-field>
+                    </td>
+                    <td class="col-3">
+                        <translate-enum [model]="subordinate.organizationType"
+                                        [enumType]="organizationType"
+                                        enumName="organizationType"></translate-enum>
+                    </td>
+                    <td class="col-2">
+                        <translate-enum [model]="subordinate.ownershipType"
+                                        [enumType]="ownershipType"
+                                        enumName="ownershipType"></translate-enum>
+                    </td>
+                    <td class="col-2">
+                        <translate-field [model]="subordinate.settlement"></translate-field>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</ng-container>
+<ng-template #noResults>
+    <i>{{ 'root.searchResult.noInfoEntered' | translate }}</i>
+</ng-template>

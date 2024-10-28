@@ -1,0 +1,70 @@
+<td class="col-2">
+    <div class="text-truncate-4-rows">
+        {{supplierOffering.code}}
+    </div>
+</td>
+
+<td class="col-4">
+    <translate-field title="{{supplierOffering.name}}"
+                     class="fw-bold text-truncate-1-rows"
+                     [model]="supplierOffering">
+    </translate-field>
+
+    <ng-template ngFor
+                 let-supplierOfferingTeam
+                 [ngForOf]="supplierOffering.supplierOfferingTeams"
+                 let-i="index">
+        <div clas="d-flex">
+            <span *ngIf="supplierOfferingTeam.supplierTeam.academicRankDegree">
+                {{supplierOfferingTeam.supplierTeam.academicRankDegree}}
+            </span>
+            <translate-field [model]="supplierOfferingTeam.supplierTeam">
+            </translate-field>
+        </div>
+    </ng-template>
+</td>
+
+<td class="col-5">
+    <div class="text-truncate-4-rows"
+         title="{{supplierOffering.shortDescription}}">
+        {{supplierOffering.shortDescription}}
+    </div>
+</td>
+
+
+<td class="col-1">
+    <div class="d-flex gap-2 align-items-center justify-content-end">
+
+        <sync-button *ngIf="configuration.useAllFunctionalities && configuration.useAllFunctionalities && hasSupplierOfferingsWritePermission"
+                     (btnClickedEvent)="openEditSupplierOffering()"
+                     title="root.buttons.viewEdit"
+                     icon="fas fa-search"
+                     btnClass="btn btn-purple btn-sm">
+        </sync-button>
+
+        <sync-button *ngIf="configuration.useAllFunctionalities && hasSupplierOfferingsWritePermission && supplierOffering.isActive"
+                     (btnClickedEvent)="changeIsActive()"
+                     title="root.buttons.deactivate"
+                     icon="fa-solid fa-xmark"
+                     btnClass="btn btn-danger btn-sm"
+                     [pending]="changeIsActiveSupplierOfferingPending">
+        </sync-button>
+
+        <sync-button *ngIf="configuration.useAllFunctionalities && hasSupplierOfferingsWritePermission && !supplierOffering.isActive"
+                     (btnClickedEvent)="changeIsActive()"
+                     title="root.buttons.activate"
+                     icon="fa-solid fa-check"
+                     btnClass="btn btn-success btn-sm"
+                     [pending]="changeIsActiveSupplierOfferingPending">
+        </sync-button>
+
+        <sync-button *ngIf="configuration.useAllFunctionalities && hasSupplierOfferingsDeletePermission"
+                     (btnClickedEvent)="deleteSupplierOffering()"
+                     title="root.buttons.delete"
+                     icon="fas fa-trash"
+                     btnClass="btn btn-danger btn-sm"
+                     [pending]="deleteSupplierOfferingPending">
+        </sync-button>
+
+    </div>
+</td>

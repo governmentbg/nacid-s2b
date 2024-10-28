@@ -1,0 +1,19 @@
+<div class="modal-header flex-row-reverse">
+    <sync-button btnClass="btn-close"
+                 (btnClickedEvent)="decline()">
+    </sync-button>
+</div>
+<div class="modal-body">
+    <div>{{ 'receivedVouchers.modals.verifyState' | translate }}</div>
+</div>
+<div class="modal-footer gap-1">
+    <sync-button btnClass="btn btn-sm btn-primary"
+                 (btnClickedEvent)="accept(receivedVoucherState.completed)"
+                 text="root.buttons.saveAsCompleted">
+    </sync-button>
+
+    <sync-button btnClass="btn btn-sm btn-outline-primary"
+                 (btnClickedEvent)="accept(receivedVoucherState.draft)"
+                 text="root.buttons.saveAsDraft">
+    </sync-button>
+</div>

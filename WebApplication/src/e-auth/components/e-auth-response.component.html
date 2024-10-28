@@ -1,0 +1,12 @@
+<div class="container mt-5">
+    <div class="card no-border shadow">
+        <ng-container *ngIf="!loading; else loadingSection">
+            <h3 class="d-flex justify-content-center">
+                {{ errorMessage }}
+            </h3>
+        </ng-container>
+        <ng-template #loadingSection>
+            <loading-section></loading-section>
+        </ng-template>
+    </div>
+</div>

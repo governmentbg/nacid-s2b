@@ -1,0 +1,13 @@
+<div class="d-flex gap-2">
+    <a (click)="dropdownCollapsed.toggle()"
+       class="nav-link align-middle px-0 list-dropbown-btn cursor-pointer {{class}}"
+       [class.collapsed-section]="isCollapsed">
+        <i class="fa-solid fa-chevron-right me-2"></i>
+        <span>{{ heading | translate }}</span>
+    </a>
+    <ng-content select="[additional]"></ng-content>
+</div>
+<div #dropdownCollapsed="ngbCollapse"
+     [(ngbCollapse)]="isCollapsed">
+    <ng-content select="[body]"></ng-content>
+</div>

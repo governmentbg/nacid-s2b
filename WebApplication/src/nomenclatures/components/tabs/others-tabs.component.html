@@ -1,0 +1,26 @@
+<div class="container mt-5">
+    <div class="card no-border shadow">
+        <div class="card-body">
+            <nav ngbNav
+                 #nav="ngbNav"
+                 [(activeId)]="activeTab"
+                 class="nav-tabs">
+                <ng-container ngbNavItem="LawForms">
+                  <a ngbNavLink>{{ 'nomenclatures.lawForms.title' | translate }}</a>
+                  <ng-template ngbNavContent>
+                    <law-form-search></law-form-search>
+                  </ng-template>
+                </ng-container>
+                <ng-container ngbNavItem="SmartSpecializations">
+                  <a ngbNavLink>{{ 'nomenclatures.smartSpecializations.title' | translate }}</a>
+                  <ng-template ngbNavContent>
+                    <smart-specialization-search></smart-specialization-search>
+                  </ng-template>
+                </ng-container>
+            </nav>
+            <div [ngbNavOutlet]="nav"
+                 class="mt-2">
+            </div>
+        </div>
+    </div>
+  </div>

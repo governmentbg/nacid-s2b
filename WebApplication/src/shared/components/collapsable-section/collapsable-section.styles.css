@@ -1,0 +1,15 @@
+.collapsable-header-section .fa-chevron-right {
+    transition: .3s transform ease-in-out;
+}
+
+.collapsable-header-section:not(.collapsed-section) .fa-chevron-right {
+    transform: rotate(90deg);
+}
+
+.collapsable-header-section {
+    background-color: #135496;
+    color: #fff !important;
+    font-weight: 700;
+    font-size: 18px;
+    cursor: pointer;
+}

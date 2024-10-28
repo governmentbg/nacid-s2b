@@ -1,0 +1,272 @@
+<div class="row">
+    <div class="col-md-4">
+        <label class="form-label">
+            {{ 'supplierTeams.firstName' | translate }}
+            <i class="fa-solid fa-circle-info icon-spacing text-purple"
+               ngbTooltip="{{'supplierTeams.nameToolTip' | translate}}"
+               tooltipClass="custom-tooltip-purple">
+            </i>
+        </label>
+        <input type="text"
+               class="form-control form-control-sm is-invalid-default"
+               [(ngModel)]="supplierTeamDto.firstName"
+               name="firstName"
+               minlength="2"
+               maxlength="50"
+               #firstName="ngModel"
+               ngbTooltip="{{ firstName.invalid ? ('invalidTexts.invalidName' | translate) : null }}"
+               triggers="blur"
+               tooltipClass="custom-tooltip-invalid"
+               customRegexValidation="namesCyrillic"
+               [disabled]="!isEditMode">
+    </div>
+
+    <div class="col-md-4">
+        <label class="form-label">{{ 'supplierTeams.middleName' | translate }}</label>
+        <input type="text"
+               class="form-control form-control-sm is-invalid-default"
+               [(ngModel)]="supplierTeamDto.middleName"
+               name="middleName"
+               minlength="2"
+               maxlength="50"
+               #middleName="ngModel"
+               ngbTooltip="{{ middleName.invalid ? ('invalidTexts.invalidName' | translate) : null }}"
+               triggers="blur"
+               tooltipClass="custom-tooltip-invalid"
+               customRegexValidation="namesCyrillic"
+               [enableEmptyValidation]="true"
+               [disabled]="!isEditMode">
+    </div>
+
+    <div class="col-md-4">
+        <label class="form-label">{{ 'supplierTeams.lastName' | translate }}</label>
+        <input type="text"
+               class="form-control form-control-sm is-invalid-default"
+               [(ngModel)]="supplierTeamDto.lastName"
+               name="lastName"
+               minlength="2"
+               maxlength="50"
+               #lastName="ngModel"
+               ngbTooltip="{{ lastName.invalid ? ('invalidTexts.invalidName' | translate) : null }}"
+               triggers="blur"
+               tooltipClass="custom-tooltip-invalid"
+               customRegexValidation="namesCyrillic"
+               [disabled]="!isEditMode">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <label class="form-label">
+            {{ 'supplierTeams.academicRankDegree' | translate }}
+            <i class="fa-solid fa-circle-info icon-spacing text-purple"
+               ngbTooltip="{{'supplierTeams.academicRankDegreeToolTip' | translate}}"
+               tooltipClass="custom-tooltip-purple">
+            </i>
+        </label>
+        <input type="text"
+               class="form-control form-control-sm is-invalid-default"
+               [(ngModel)]="supplierTeamDto.academicRankDegree"
+               name="academicRankDegree"
+               minlength="2"
+               maxlength="50"
+               #position="ngModel"
+               tooltipClass="custom-tooltip-invalid"
+               [disabled]="!isEditMode">
+    </div>
+
+    <div class="col-md-6">
+        <label class="form-label">
+            {{ 'supplierTeams.position' | translate }}
+            <i class="fa-solid fa-circle-info icon-spacing text-purple"
+               ngbTooltip="{{'supplierTeams.positionToolTip' | translate}}"
+               tooltipClass="custom-tooltip-purple">
+            </i>
+        </label>
+        <input type="text"
+               class="form-control form-control-sm is-invalid-default"
+               [(ngModel)]="supplierTeamDto.position"
+               name="position"
+               minlength="2"
+               maxlength="50"
+               #position="ngModel"
+               tooltipClass="custom-tooltip-invalid"
+               [disabled]="!isEditMode">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <label class="form-label">
+            {{ 'supplierTeams.email' | translate }}
+        </label>
+        <input type="text"
+               blockCopyPaste
+               class="form-control form-control-sm is-invalid-default"
+               [(ngModel)]="supplierTeamDto.userName"
+               name="userName"
+               minlength="8"
+               maxlength="50"
+               emailValidation
+               #userName="ngModel"
+               ngbTooltip="{{ userName.invalid ? ('invalidTexts.invalidEmail' | translate) : null }}"
+               triggers="blur"
+               tooltipClass="custom-tooltip-invalid"
+               [disabled]="!isEditMode || updateModal">
+    </div>
+
+    <div *ngIf="isEditMode && !updateModal"
+         class="col-md-4">
+        <label class="form-label">{{ 'supplierTeams.confirmEmail' | translate }}</label>
+        <input type="text"
+               blockCopyPaste
+               class="form-control form-control-sm is-invalid-default"
+               [(ngModel)]="supplierTeamDto.userNameAgain"
+               name="userNameAgain"
+               minlength="8"
+               maxlength="50"
+               emailValidation
+               [confirmValidation]="supplierTeamDto.userName"
+               #userNameAgain="ngModel"
+               ngbTooltip="{{ userNameAgain.invalid ? ('invalidTexts.invalidConfirmEmail' | translate) : null }}"
+               triggers="blur"
+               tooltipClass="custom-tooltip-invalid"
+               [disabled]="userName.invalid">
+    </div>
+
+    <div class="col-md-4">
+        <label class="form-label">
+            {{ 'supplierTeams.phoneNumber' | translate }}
+        </label>
+        <input type="text"
+               class="form-control form-control-sm is-invalid-default"
+               [(ngModel)]="supplierTeamDto.phoneNumber"
+               name="phoneNumber"
+               minlength="9"
+               maxlength="18"
+               phoneValidation
+               #phoneNumber="ngModel"
+               ngbTooltip="{{ phoneNumber.invalid ? ('invalidTexts.invalidPhoneNumber' | translate) : null }}"
+               triggers="blur"
+               tooltipClass="custom-tooltip-invalid"
+               [disabled]="!isEditMode">
+    </div>
+</div>
+
+<collapsable-label *ngIf="supplierType === supplierTypeEnum.institution"
+                   heading="supplierTeams.rasIdentificator"
+                   [isCollapsed]="false"
+                   class="mt-2 mb-2">
+    <div body>
+        <div class="row">
+            <ng-container *ngIf="isEditMode || supplierTeamDto.rasLotId; else noInfo">
+                <div *ngIf="isEditMode"
+                     class="col-md-4">
+                    <label class="form-label">{{ 'supplierTeams.rasScientist' | translate }}</label>
+                    <nomenclature-select restUrl="ras/ws/RasBasic/search"
+                                         name="user"
+                                         [(ngModel)]="supplierTeamDto.rasBasic"
+                                         (ngModelChange)="rasBasicChanged($event)"
+                                         [filter]="{organizationLotId: supplierInstitutionId}"
+                                         textTemplate="{name} {uin}">
+                    </nomenclature-select>
+                </div>
+
+                <div *ngIf="supplierTeamDto.rasLotNumber"
+                     class="col-md-4">
+                    <label class="form-label">
+                        {{ 'supplierTeams.rasLotNumber' | translate }}
+                    </label>
+                    <div class="fw-bold">
+                        {{supplierTeamDto.rasLotNumber}}
+                    </div>
+                </div>
+
+                <div *ngIf="supplierTeamDto.rasPortalUrl && !isEditMode"
+                     class="col-md-8">
+                    <label class="form-label">
+                        {{ 'supplierTeams.rasPortalUrl' | translate }}
+                    </label>
+                    <div>
+                        <a class="link-default"
+                           href="{{supplierTeamDto.rasPortalUrl}}"
+                           target="_blank"
+                           clickStopPropagation>
+                            <span>{{ supplierTeamDto.rasPortalUrl }}</span>
+                        </a>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-template #noInfo>
+                <div class="col-md-12">
+                    <i>{{ 'root.searchResult.noInfoEntered' | translate }}</i>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</collapsable-label>
+
+<table class="table table-striped">
+    <thead class="table-light">
+        <tr>
+            <th class="col-11">
+                {{ 'supplierOfferings.singularTitle' | translate }}
+                <i class="fa-solid fa-circle-info icon-spacing text-purple"
+                   ngbTooltip="{{'supplierTeams.offeringToolTip' | translate}}"
+                   tooltipClass="custom-tooltip-purple">
+                </i>
+            </th>
+            <th class="col-1 text-end">
+                <sync-button *ngIf="isEditMode"
+                             (btnClickedEvent)="triggerAddEvent.emit()"
+                             title="root.buttons.add"
+                             icon="fas fa-plus"
+                             btnClass="btn btn-primary btn-sm">
+                </sync-button>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngIf="supplierTeamDto.supplierOfferingTeams?.length > 0; else noSoTeams">
+            <tr *ngFor="let soTeam of supplierTeamDto.supplierOfferingTeams; let i = index">
+                <td class="col-11">
+                    <nomenclature-select *ngIf="isEditMode; else disabledOfferingTeams"
+                                         restUrl="suppliers/offerings/search"
+                                         name="soTeam{{i}}"
+                                         [(ngModel)]="soTeam.supplierOffering"
+                                         (keyPropertyChange)="soTeamChanged($event, i)"
+                                         textTemplate="{code} - {name}"
+                                         [filter]="{isActive: true, supplierId: supplierId, excludeIds: excludedSupplierOfferingIds}"
+                                         [allowClear]="false"
+                                         [required]="true">
+                    </nomenclature-select>
+                    <ng-template #disabledOfferingTeams>
+                        <div class="d-flex">
+                            <translate-field [model]="soTeam.supplierOffering"
+                                             bgProperty="name"
+                                             enProperty="nameAlt">
+                            </translate-field>
+                        </div>
+                    </ng-template>
+                </td>
+
+                <td class="col-1 text-end">
+                    <sync-button *ngIf="isEditMode"
+                                 (btnClickedEvent)="eraseSoTeam(i)"
+                                 title="root.buttons.delete"
+                                 icon="fas fa-trash"
+                                 btnClass="btn btn-danger btn-sm">
+                    </sync-button>
+                </td>
+            </tr>
+        </ng-container>
+        <ng-template #noSoTeams>
+            <tr>
+                <td class="col-12"
+                    colspan="2">
+                    <i>{{ 'supplierOfferings.noOfferedServices' | translate }}</i>
+                </td>
+            </tr>
+        </ng-template>
+    </tbody>
+</table>

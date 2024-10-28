@@ -1,0 +1,83 @@
+<div class="root d-flex justify-content-center align-items-center mb-4 shadow text-white">
+  <div class="container opacity">
+    <h2 class="d-flex justify-content-center text-uppercase fw-bold mb-4">
+      {{ 'suppliers.search' | translate }}
+    </h2>
+    <div class="row">
+      <div class="col-md-2">
+        <input type="text"
+               class="form-control"
+               [(ngModel)]="filter.uic"
+               name="uic"
+               placeholder="{{ 'institutions.uic' | translate }}">
+      </div>
+
+      <div class="col-md-3">
+        <nomenclature-select restUrl="nomenclatures/districts/search"
+                             placeholder="nomenclatures.districts.name"
+                             [(ngModel)]="filter.district"
+                             (keyPropertyChange)="filter.districtId = $event"
+                             formControlClass="form-control"
+                             textTemplate="{{translateService.currentLang === 'bg' ? '{name}' : '{nameAlt}'}}">
+        </nomenclature-select>
+      </div>
+
+      <div class="col-md-5">
+        <input type="text"
+               class="form-control"
+               [(ngModel)]="filter.name"
+               name="name"
+               placeholder="{{ 'suppliers.name' | translate }}">
+      </div>
+
+      <div class="col-md-2">
+        <sync-button (btnClickedEvent)="getData(false)"
+                     text="root.buttons.search"
+                     icon="fas fa-search"
+                     btnClass="btn btn-primary fw-bold"
+                     [pending]="getDataPending">
+        </sync-button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <ng-container *ngIf="!loadingData; else loadingSection">
+    <ng-container *ngIf="searchResult.result && searchResult.result.length > 0; else noResults">
+      <div class="d-flex justify-content-between mb-4">
+        <search-result [offset]="filter.offset"
+                       [limit]="filter.limit"
+                       [totalCount]="searchResult.totalCount">
+        </search-result>
+      </div>
+
+      <div class="row g-5 justify-content-between row-cols-1 mb-5">
+        <ng-template ngFor
+                     let-supplier
+                     [ngForOf]="searchResult.result"
+                     let-i="index">
+          <supplier-search-group-card [supplier]="supplier">
+          </supplier-search-group-card>
+        </ng-template>
+      </div>
+
+      <div *ngIf="!loadingData && searchResult && searchResult.result && searchResult.result.length > 0"
+           class="d-flex justify-content-center">
+        <ngb-pagination [collectionSize]="searchResult.totalCount"
+                        [(page)]="filter.currentPage"
+                        [pageSize]="filter.limit"
+                        (pageChange)="pageHandlingService.scrollToTop();"
+                        [maxSize]="3"
+                        [rotate]="true"
+                        [boundaryLinks]="true"></ngb-pagination>
+      </div>
+    </ng-container>
+    <ng-template #noResults>
+      <i>{{ 'root.searchResult.noResults' | translate }}</i>
+    </ng-template>
+  </ng-container>
+  <ng-template #loadingSection>
+    <loading-section></loading-section>
+  </ng-template>
+</div>

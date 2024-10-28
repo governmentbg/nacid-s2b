@@ -1,0 +1,119 @@
+<div class="row">
+    <div class="col-md-7">
+        <label class="form-label">
+            {{ 'supplierEquipment.name' | translate }}
+        </label>
+        <input type="text"
+               class="form-control form-control-sm is-invalid-default"
+               [(ngModel)]="supplierEquipmentDto.name"
+               name="name"
+               minlength="2"
+               maxlength="100"
+               #name="ngModel"
+               ngbTooltip="{{ name.invalid ? ('invalidTexts.required' | translate) : null }}"
+               triggers="blur"
+               tooltipClass="custom-tooltip-invalid"
+               noWhiteSpacesValidation
+               [disabled]="!isEditMode">
+        <remaining-symbols *ngIf="isEditMode"
+                           [maxLength]="100"
+                           [textLength]="supplierEquipmentDto?.name?.length">
+        </remaining-symbols>
+    </div>
+
+    <div class="col-md-5">
+        <label class="form-label">
+            {{ 'supplierEquipment.file' | translate }}
+        </label>
+        <file-upload name="fileUpload"
+                     [(ngModel)]="supplierEquipmentDto.file"
+                     [acceptedFileFormats]="['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']"
+                     [disabled]="!isEditMode">
+        </file-upload>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <label class="form-label">
+            {{ 'supplierEquipment.description' | translate }}
+        </label>
+        <textarea name="description"
+                  class="form-control form-control-sm is-invalid-default"
+                  [(ngModel)]="supplierEquipmentDto.description"
+                  minlength="2"
+                  maxlength="500"
+                  #description="ngModel"
+                  ngbTooltip="{{ description.invalid ? ('invalidTexts.required' | translate) : null }}"
+                  triggers="blur"
+                  tooltipClass="custom-tooltip-invalid"
+                  noWhiteSpacesValidation
+                  style="max-height: 400px; height: 100px;"
+                  [disabled]="!isEditMode">
+                </textarea>
+        <remaining-symbols *ngIf="isEditMode"
+                           [maxLength]="500"
+                           [textLength]="supplierEquipmentDto?.description?.length">
+        </remaining-symbols>
+    </div>
+</div>
+
+<table *ngIf="includeEquipmentOfferings"
+       class="table table-striped">
+    <thead class="table-light">
+        <tr>
+            <th class="col-11">{{ 'supplierOfferings.singularTitle' | translate }}</th>
+            <th class="col-1 text-end">
+                <sync-button *ngIf="isEditMode"
+                             (btnClickedEvent)="triggerAddEvent.emit()"
+                             title="root.buttons.add"
+                             icon="fas fa-plus"
+                             btnClass="btn btn-primary btn-sm">
+                </sync-button>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngIf="supplierEquipmentDto.supplierOfferingEquipment?.length > 0; else noSoEquipment">
+            <tr *ngFor="let soEquipment of supplierEquipmentDto.supplierOfferingEquipment; let i = index">
+                <td class="col-11">
+                    <nomenclature-select *ngIf="isEditMode; else disabledOfferingEquipment"
+                                         restUrl="suppliers/offerings/search"
+                                         name="soEquipment{{i}}"
+                                         [(ngModel)]="soEquipment.supplierOffering"
+                                         (keyPropertyChange)="soEquipmentChanged($event, i)"
+                                         textTemplate="{code} - {name}"
+                                         [filter]="{isActive: true, supplierId: supplierId, excludeIds: excludedSupplierOfferingIds}"
+                                         [allowClear]="false"
+                                         [required]="true">
+                    </nomenclature-select>
+                    <ng-template #disabledOfferingEquipment>
+                        <div class="d-flex">
+                            <translate-field [model]="soEquipment.supplierOffering"
+                                             bgProperty="name"
+                                             enProperty="nameAlt">
+                            </translate-field>
+                        </div>
+                    </ng-template>
+                </td>
+
+                <td class="col-1 text-end">
+                    <sync-button *ngIf="isEditMode"
+                                 (btnClickedEvent)="eraseSoEquipment(i)"
+                                 title="root.buttons.delete"
+                                 icon="fas fa-trash"
+                                 btnClass="btn btn-danger btn-sm">
+                    </sync-button>
+                </td>
+            </tr>
+        </ng-container>
+        <ng-template #noSoEquipment>
+            <tr>
+                <td class="col-12"
+                    colspan="2">
+                    <i>{{ 'supplierOfferings.noOfferedServices' | translate }}</i>
+                </td>
+            </tr>
+        </ng-template>
+    </tbody>
+</table>

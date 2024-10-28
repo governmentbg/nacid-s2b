@@ -1,0 +1,23 @@
+.root {
+    background-image: url('../../../assets/img/main_2.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 120px;
+}
+
+.opacity {
+    opacity: 0.9;
+}
+
+.breadcrumb {
+    --bs-breadcrumb-divider-color: #ff9800 !important;
+}
+
+.root-simple {
+    background-image: url('../../../assets/img/main_2.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 80px;
+}

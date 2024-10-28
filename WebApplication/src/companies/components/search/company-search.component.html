@@ -1,0 +1,112 @@
+<div class="root d-flex justify-content-center align-items-center mb-4 shadow text-white">
+    <div class="container opacity">
+        <h2 class="d-flex justify-content-center text-uppercase fw-bold mb-4">
+            {{ 'companies.search' | translate }}
+        </h2>
+        <div class="row">
+            <div class="col-md-2">
+                <input type="text"
+                       class="form-control"
+                       [(ngModel)]="filter.uic"
+                       name="uic"
+                       placeholder="{{ 'companies.uic' | translate }}">
+            </div>
+
+            <div class="col-md-8">
+                <input type="text"
+                       class="form-control"
+                       [(ngModel)]="filter.name"
+                       name="name"
+                       placeholder="{{ 'companies.name' | translate }}">
+            </div>
+
+            <div class="col-md-2">
+                <sync-button (btnClickedEvent)="getData(false, true)"
+                             text="root.buttons.search"
+                             icon="fas fa-search"
+                             btnClass="btn btn-primary fw-bold"
+                             [pending]="getDataPending">
+                </sync-button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="card no-border mt-4 shadow">
+        <div class="card-body">
+            <ng-container *ngIf="!loadingData; else loadingSection">
+                <ng-container *ngIf="searchResult.result && searchResult.result.length > 0; else noResults">
+                    <div class="d-flex justify-content-between">
+                        <search-result [offset]="filter.offset"
+                                       [limit]="filter.limit"
+                                       [totalCount]="searchResult.totalCount">
+                        </search-result>
+                    </div>
+
+                    <div class="table-scrollable mt-4 mb-5">
+                        <table class="table table-striped">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="col-1">{{ 'companies.uic' | translate }}</th>
+                                    <th class="col-2">{{ 'companies.name' | translate }}</th>
+                                    <th class="col-2">{{ 'companies.contacts' | translate }}</th>
+                                    <th class="col-2">{{ 'nomenclatures.lawForms.name' | translate}}</th>
+                                    <th class="col-1">{{ 'approveRegistrations.state' | translate }}</th>
+                                    <th class="col-1">{{ 'approveRegistrations.actions' | translate }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let company of searchResult.result; let index = index;">
+                                    <td class="col-2">{{ company.uic }}</td>
+                                    <td class="col-2">{{company.name}}</td>
+                                    <td class="col-2">
+                                        <a href="mailto:{{ company.email }}">{{ company.email }}</a><br>
+                                        {{company.phoneNumber}}
+                                    </td>
+                                    <td class="col-2">
+                                        <translate-field [model]="company.lawForm">
+                                        </translate-field>
+                                    </td>
+                                    <td class="col-1"> <span class="badge fs-14"
+                                              [ngClass]="{'bg-success': company.isActive, 'bg-danger': !company.isActive}">
+                                            {{ (company.isActive ? 'nomenclatures.isActive' :
+                                            'nomenclatures.deactivated') |
+                                            translate }}
+                                        </span>
+                                    </td>
+                                    <td class="col-1 align-middle">
+                                        <div class="d-flex justify-content-center gap-2 align-items-center">
+                                            <sync-button (btnClickedEvent)="getCompany(company.id)"
+                                                         title="root.buttons.edit"
+                                                         icon="fas fa-search"
+                                                         btnClass="btn btn-purple btn-sm">
+                                            </sync-button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="d-flex justify-content-center">
+                        <ngb-pagination [collectionSize]="searchResult.totalCount"
+                                        [(page)]="filter.currentPage"
+                                        [pageSize]="filter.limit"
+                                        (pageChange)="getData(false, false)"
+                                        [maxSize]="3"
+                                        [rotate]="true"
+                                        [boundaryLinks]="true">
+                        </ngb-pagination>
+                    </div>
+                </ng-container>
+                <ng-template #noResults>
+                    <i>{{ 'root.searchResult.noResults' | translate }}</i>
+                </ng-template>
+            </ng-container>
+            <ng-template #loadingSection>
+                <loading-section></loading-section>
+            </ng-template>
+        </div>
+    </div>
+</div>
